@@ -3,7 +3,7 @@ Sistema para cadastro de professores para aulas de reforço escolar (com recomen
 
 #Universidade Federal de Pernambuco - UFPE
 ####Centro de Informática - Cin
-####Disciplina: Engenharia de Software (MPI906)
+#####Disciplina: Engenharia de Software (MPI906)
 #####Professor: Vinicius Cardoso Garcia
 
 #Mestrandos:
