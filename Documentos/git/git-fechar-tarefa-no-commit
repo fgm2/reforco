@@ -1,0 +1,16 @@
+O Github tem um segredinho, onde você consegue fechar uma issue através de uma mensagem de commit.
+Como é que é?
+Isso mesmo que você leu: você pode commitar e, ao mesmo tempo, a issue será fechada!
+Como isso?
+Você já deve saber que inglês é essencial hoje em dia. Quando você codifica, principalmente se você pretende colaborar com projetos Open Source, você deveria escrever seus nomes de funções, métodos, variáveis, etc., tudo em inglês, correto? Pois assim, mais pessoas poderão ter acesso ao projeto, já que inglês é uma linguagem mundial!
+E o que isso tem a ver com o post?
+Já ia chegar lá xD
+O Github tem algumas palavras mágicas que você pode usar na sua mensagem de commit, para fechar uma issue. Você porecisa referenciar também, o ID da issue (aquele número que aparece na URL quando você acessa a issue).
+As palavras chave são:
+1
+fix, fixes, fixed, close, closes, closed, resolve, resolves, resolved
+Então você pode escrever sua mensagem de commit mais ou menos assim:
+1
+git commit -m "Fix error on issue #32"
+Usando uma das palavras mágicas, e referenciando a issue com a hash # + número/ID da issue, - essas informações só precisam aparecer na mensagem de commit, não precisam ter uma ordem específica - a issue #32 será fechada (nesse caso).
+
