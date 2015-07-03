@@ -1,0 +1,25 @@
+<%= form_for(@area_of_knowledge) do |f| %>
+  <% if @area_of_knowledge.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@area_of_knowledge.errors.count, "error") %> prohibited this area_of_knowledge from being saved:</h2>
+
+      <ul>
+      <% @area_of_knowledge.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :created_at %><br>
+    <%= f.datetime_select :created_at %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

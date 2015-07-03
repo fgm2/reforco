@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  formation: MyString
+  created_at: 2015-07-03 21:36:37
+  user_id: 
+
+two:
+  formation: MyString
+  created_at: 2015-07-03 21:36:37
+  user_id: 

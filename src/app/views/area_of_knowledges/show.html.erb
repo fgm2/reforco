@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @area_of_knowledge.name %>
+</p>
+
+<p>
+  <strong>Created at:</strong>
+  <%= @area_of_knowledge.created_at %>
+</p>
+
+<%= link_to 'Edit', edit_area_of_knowledge_path(@area_of_knowledge) %> |
+<%= link_to 'Back', area_of_knowledges_path %>

@@ -1,129 +1,15 @@
 <!DOCTYPE html>
+
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-<title>My Website Page</title>
-
-<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <!--<%= csrf_meta_tags %>-->
-
-
-<style type='text/css' title='geratedcsss'>body{  background-image:none; background-color:rgb(241, 238, 231); color:#2e0c2e;}nav{background-color:rgba(0, 0, 0, 0);}#header{background-color:#f5f516;}#footer{background-color:rgba(0, 0, 0, 0);}#container{background-color:rgba(0, 0, 0, 0);}h2,h3,h4,h5{color:#3838c9;}#logo{color:#ff0505;}</style>
+  <title>Through</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
 </head>
 <body>
-<header id="header">
-		<div class="pageWidth clearfix">
-				<h1 id="logo"><a href="/">Reforço Escolar</a></h1>
-				<!-- Start Navigation-->
-				<nav id="navigation" class="clearfix"><a href="#" id="menu">Menu</a>
-						<ul>
-							<li>
-								
-								<%= link_to 'Entrar', "#", id: 'add_user_view' %>
-								
-								<!--<a href="#" title="cadastrar">Cadastre-se</a>-->
-								
-								
-								<!--<div id="dialog_form">-->
-								<!--    <%= form_tag(new_user_path,  remote: true, html: { class: "form-horizontal"}) do %>-->
-								<!--        <div class="control-group">-->
-								<!--            <%= label_tag :email, "Editors email", class: "control-label" %>-->
-								<!--            <div class="controls">-->
-								<!--                <%= text_field_tag(:email, nil, placeholder: "Enter Reviewer's email; multiple emails divided by comma ", class:"input-block-level") %>-->
-								<!--            </div>-->
-								<!--        </div>-->
-								<!--        <% end %>-->
-								<!--</div>-->
-								
-								
-							</li>
-							<li>
-								<a href="#" data-modal="dialog_form" id="showModal" title="Cadastre-se">Cadastre-se</a>
-							</li>
-							<!--<li>-->
-							<!--	<a href="#" title="Our Gallery">Our Gallery</a>-->
-							<!--</li>-->
-							<!--<li>-->
-							<!--	<a href="#" title="Contact">Contact</a>-->
-							<!--</li>-->
-						</ul>
-				</nav>
-				<!-- End Navigation--> 
-		</div>
-</header>
-<!-- Start Banner-->
-<!--<div id="banner"><ul><li><img src="img/banner-img.jpg" alt=""></li></ul></div>-->
-<!-- End Banner--> 
-
-<!-- Start Middle-->
-<section id="container">
-		<div class="pageWidth">
-			<%= yield %>
-				<!--<article class="pageControl"><div class="pageContainer" id="home"><h2>Welcome To My Website</h2>-->
-				 	
-				<!--</article>-->
-		</div>
-</section>
-
-<!-- End Middle--> 
-<!-- Start Footer-->
-<footer id="footer">
-		<div class="pageWidth">
-				<div class="copyRight">© Copyright 2014 | My Website </div>
-		</div>
-</footer>
-<!-- END Footer-->
-
-
-<div class="modal modalEffectFlip modalDefault loginBox modalShow" id="dialog_form">
-    <button class="modalClose">X</button>
-    <div class="modalContent">
-    	<div class="row">
-			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 center">
-		       	<form action="/contas/login/" method="POST">
-					<div style="display:none"><input name="csrfmiddlewaretoken" value="5KCNOesL0vBdHCtJGwu0wlFHE344iim1" type="hidden"></div>
-					
-					<input name="next" value="/" type="hidden">
-
-					<div class="row v-margin10">
-						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-							Entre na sua conta
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 full">
-							<input name="username" placeholder="Usuário ou E-mail" type="text">
-							<br><br>
-							<input name="password" placeholder="Senha" type="password">
-							<br><br>
-							<button type="submit" class="button bg-green width100-xs">Entre</button>
-							<br><br>
-							<a href="/contas/senha/redefinir/" class="grayLink underlineDecorator">Esqueceu sua senha?</a>
-							<br>
-							<a href="/contas/reativacao-link/" class="grayLink underlineDecorator">Quer reativar sua conta?</a>
-						</div>
-						<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 center">
-							ou
-						</div>
-						<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
-							<a href="/contas/social/login/facebook/" class="button medium facebook facebookLogin" title="Entrar usando Facebook">Entrar com Facebook</a>
-						</div>
-					</div>
-				</form>
-
-			    <hr class="bg-gray-light">
-
-				<div class="popTitle">Crie sua conta grátis</div>
-				<br>
-				<a href="/contas/cadastro/" class="button medium">Cadastre-se</a>
-				
-			</div>
-    	</div>
-    </div>
-</div>
-
+  <%= render 'shared/navbar' %>
+<%= yield %>
 
 </body>
 </html>

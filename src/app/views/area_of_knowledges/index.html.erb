@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Area Of Knowledges</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Created at</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @area_of_knowledges.each do |area_of_knowledge| %>
+      <tr>
+        <td><%= area_of_knowledge.name %></td>
+        <td><%= area_of_knowledge.created_at %></td>
+        <td><%= link_to 'Show', area_of_knowledge %></td>
+        <td><%= link_to 'Edit', edit_area_of_knowledge_path(area_of_knowledge) %></td>
+        <td><%= link_to 'Destroy', area_of_knowledge, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Area of knowledge', new_area_of_knowledge_path %>

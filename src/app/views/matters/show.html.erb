@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @matter.name %>
+</p>
+
+<p>
+  <strong>Descripition:</strong>
+  <%= @matter.descripition %>
+</p>
+
+<p>
+  <strong>Created at:</strong>
+  <%= @matter.created_at %>
+</p>
+
+<p>
+  <strong>Areaofknowledge:</strong>
+  <%= @matter.areaOfKnowledge %>
+</p>
+
+<%= link_to 'Edit', edit_matter_path(@matter) %> |
+<%= link_to 'Back', matters_path %>

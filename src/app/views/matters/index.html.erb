@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Matters</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Descripition</th>
+      <th>Created at</th>
+      <th>Areaofknowledge</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @matters.each do |matter| %>
+      <tr>
+        <td><%= matter.name %></td>
+        <td><%= matter.descripition %></td>
+        <td><%= matter.created_at %></td>
+        <td><%= matter.areaOfKnowledge %></td>
+        <td><%= link_to 'Show', matter %></td>
+        <td><%= link_to 'Edit', edit_matter_path(matter) %></td>
+        <td><%= link_to 'Destroy', matter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Matter', new_matter_path %>

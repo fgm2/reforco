@@ -11,7 +11,64 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150703175600) do
+ActiveRecord::Schema.define(version: 20150703221433) do
+
+  create_table "area_of_knowledges", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "matter_teacher_students", force: :cascade do |t|
+    t.integer  "matter_id"
+    t.integer  "student_id"
+    t.integer  "teacher_id"
+    t.integer  "many"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "matter_teachers", force: :cascade do |t|
+    t.integer  "matter_id"
+    t.integer  "teacher_id"
+    t.float    "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "matters", force: :cascade do |t|
+    t.string   "name"
+    t.text     "descripition"
+    t.datetime "created_at",         null: false
+    t.integer  "areaOfKnowledge_id"
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "matters", ["areaOfKnowledge_id"], name: "index_matters_on_areaOfKnowledge_id"
+
+  create_table "recommendations", force: :cascade do |t|
+    t.integer  "rating"
+    t.text     "descripition"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "students", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.integer  "user_id"
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "students", ["user_id"], name: "index_students_on_user_id"
+
+  create_table "teachers", force: :cascade do |t|
+    t.string   "formation"
+    t.datetime "created_at", null: false
+    t.integer  "user_id"
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "teachers", ["user_id"], name: "index_teachers_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "name"

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  descripition: MyText
+  created_at: 2015-07-03 21:39:28
+  areaOfKnowledge_id: 
+
+two:
+  name: MyString
+  descripition: MyText
+  created_at: 2015-07-03 21:39:28
+  areaOfKnowledge_id: 

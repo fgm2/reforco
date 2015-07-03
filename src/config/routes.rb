@@ -1,6 +1,17 @@
 Rails.application.routes.draw do
+  get 'pages/home'
+
+  root 'pages#home'
+  get 'pages/home'
+  resources :matter_teacher_students
+  resources :matter_teachers
+  resources :recommendations
+  resources :matters
+  resources :area_of_knowledges
+  resources :students
+  resources :teachers
   
-  root 'reinforcements#index'
+  #root 'reinforcements#index'
 
   devise_for :users
   resources :users

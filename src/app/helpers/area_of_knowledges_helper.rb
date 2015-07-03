@@ -1,0 +1,2 @@
+module AreaOfKnowledgesHelper
+end
