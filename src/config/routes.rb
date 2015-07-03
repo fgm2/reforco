@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   
-  get 'reinforcements/index'
+  root 'reinforcements#index'
 
   devise_for :users
   resources :users
