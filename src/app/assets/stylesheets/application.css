@@ -13,3 +13,297 @@
  *= require_tree .
  *= require_self
  */
+/* html { */
+/*     display: block;*/
+/*     background-color: white;*/
+/*     padding: 0 0 0 0px;*/
+     
+/* }*/
+/* body {*/
+     /*margin: 0 0 0 0px; */
+     /* remove margens da pagina*/
+/* }*/
+/* header { */
+/*     background-color: yellow;*/
+/*     height: 65px;*/
+/* }*/
+/* footer {*/
+/*    text-align: center;*/
+/*    background-color: rgb(237, 236, 236) ; */
+/* }*/
+
+ /* Elementos a serem ocultados*/
+/* .hide { display: none;}*/
+ 
+ 
+/*nav {*/
+/*    display: block;*/
+/*    float: left;*/
+/*    background-color: #9900CC;*/
+/*    height: 50px;*/
+/*    width: 80%;*/
+/*}*/
+
+/*ul {*/
+/*    list-style: none;*/
+/*    float: right;*/
+/*    margin: 0;*/
+/*}*/
+
+/*li {*/
+/*    float: left;*/
+    /*width: 100px;*/
+    /*line-height: 80px;*/
+/*    vertical-align: middle;*/
+/*    text-align: center;*/
+/*    margin: 0;*/
+/*}*/
+
+/*nav li a {*/
+    /*width: 100px;*/
+/*    text-decoration: none;*/
+/*    color: #FFFFFF;*/
+/*}*/
+ 
+ 
+/*.nav li {*/
+/*    border: solid 1px black;*/
+/*    display: block;*/
+/*    float: left;*/
+/*    height: 100px;*/
+/*    list-style-type: none;*/
+/*    margin: 10px;*/
+/*    vertical-align: middle;*/
+/*}*/
+/*.nav li.button{*/
+/*    height: 50px;*/
+/*}*/
+ 
+/* .nav-ul {*/
+/*     width: 100%;*/
+/*     list-style: none;*/
+/*     list-style-type: none;*/
+/*     display: list-item;*/
+/* }*/
+
+
+/*###################################################################################################################
+#    main
+#####################################################################################################################*/ 
+ 
+ /*@charset "utf-8";*/
+/* CSS Document */
+
+/* Genral 
+========================================================================================*/
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video { 	margin: 0; 	padding: 0; border: 0;	font-size: 100%; font: inherit;	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section { display: block;}
+ol, ul { list-style: none;}
+blockquote, q {	quotes: none;}
+blockquote:before, blockquote:after, q:before, q:after { content: ''; content: none; }
+table {	border-collapse: collapse; border-spacing: 0;}
+
+.clearfix:after {  content: "."; display:block; font-size:0; line-height:0; height:0; clear:both; visibility:hidden; }
+.clearfix { display:inline-block; }		
+* html .clearfix { height:1%; }
+.clearfix { display:block; }
+
+.alingLeft { float:left}
+.alingRight { float:right}
+
+:focus { outline:none;}
+img { vertical-align:top; border:0; max-width:100% }
+p { padding:0 0 15px 0}
+strong { font-weight:bold }
+address { font-size:13px; font-style:normal }
+
+section:after {  content: "."; display:block; font-size:0; line-height:0; height:0; clear:both; visibility:hidden; }
+section { display:inline-block; }		
+* html section { height:1%; }
+section { display:block; }
+
+.pageContainer{ display:none;}
+.pageContainer:first-child{ display:block;}
+
+
+article fieldset ul{ padding:0; margin:0;}
+article fieldset ul li{ padding:0; margin:0 0 10px 0; float:none;}
+article fieldset label{ width:80px; display:inline-block; vertical-align:top;}
+article fieldset li:before{ display:none; padding:0; margin:0}
+
+input[type="text"], input[type="tel"], input[type="email"], input[type="password"], input[type="search"], input[type="date"], input[type="url"],  textarea{ font-family:Helvetica, Arial, sans-serif
+	
+}
+input[type="submit"], input[type="button"]{
+}
+
+
+/*###################################################################################################################
+#    media
+#####################################################################################################################*/
+  
+  @media only screen and (max-width: 900px), only screen and (min-width: 768px) and (max-width: 1023px) {
+body { min-width: auto;}
+.pageWidth { width:auto;}
+
+#logo { margin-left:20px; font-size:40px; line-height:50px; }
+
+nav { margin-right:15px }
+nav li a { min-width:70px }
+#banner ul { padding:17px 0 17px 0}
+#banner ul li { padding:0 15px; width:auto; }
+
+#container { padding:36px 15px 35px }
+.copyRight { padding:0 15px }
+
+}
+
+
+@media only screen and (max-width: 767px), only screen and (max-device-width: 480px), only screen and (max-width: 767px) {
+body { min-width: auto;}
+.pageWidth { width:auto }
+
+#logo { line-height:40px; float:none; display:block; text-align:center; padding:0 0 0 0; margin:15px 0 15px 0 }
+
+h2 { font-size:24px; margin-bottom:7px;}
+
+#menu { display:block; }
+nav { float:none; margin:0 } 
+nav li { float:none; text-align:center; display:block; }
+nav li a { font-size:18px; display:block; min-height:inherit; padding:10px; }
+nav li a:before { border-top:solid 3px #faa236;}
+
+#banner ul { padding:14px 0 7px 0}
+#banner ul li { width:auto; background-size:100%; padding-bottom:2%; padding:0 10px 2% }
+#container  { padding:10px; }
+
+footer { padding:15px 0; }
+.copyRight { display:block; text-align:center; padding:0 }
+
+}
+
+
+@media only screen and (max-width: 400px), only screen and (max-device-width: 400px), only screen and (max-width: 400px) {
+
+}
+
+
+/*###################################################################################################################
+#    styles
+#####################################################################################################################*/
+
+/* Font  
+========================================================================================*/
+body { -webkit-text-size-adjust:100%; -moz-text-size-adjust:100%; font-family: 'Cabin', sans-serif, sans-serif, Arial, Helvetica, sans-serif; font-size:16px; color:#8b8165; line-height:22px;}
+#logo { font-family: 'Dancing Script', cursive, Arial, Helvetica, sans-serif; }
+nav, h1, h2, h3, h4, h5, h6, #footer { font-family: 'Questrial', sans-serif, Arial, Helvetica, sans-serif; }
+
+/* End Font  
+========================================================================================*/
+
+/* Branding  
+========================================================================================*/
+body { background:#f1eee7 }
+.pageWidth { width:980px; margin:0 auto;}
+
+#logo { display:block; text-align:left; padding:0; margin:23px 0 0 0; font-size:50px; text-transform:capitalize; line-height:60px; color:#FFF; float:left }
+
+header, nav, section, footer { display:block;}
+#header { background:#57433a url(../img/header-bg.png) repeat 0 0; position:relative; padding:0; border-top:solid 9px rgba(255,255,255,0.25); }
+
+/* END Branding  
+========================================================================================*/
+
+/* HEADING   
+========================================================================================*/
+h1 { font-size:38px; color:#8e8771; line-height:35px; margin-bottom:10px; text-transform:capitalize; font-weight:normal}
+h2 { font-size:35px; color:#8e8771; line-height:35px; margin-bottom:10px; text-transform:capitalize; font-weight:normal}
+h3 { font-size:32px; color:#8e8771; line-height:26px; margin-bottom:10px; text-transform:capitalize; font-weight:normal}
+h4 { font-size:29px; color:#8e8771; line-height:24px; margin-bottom:9px; text-transform:capitalize; font-weight:normal}
+h5 { font-size:26px; color:#8e8771; line-height:22px; margin-bottom:10px; text-transform:capitalize; font-weight:normal}
+h6 { font-size:23px; color:#8e8771; line-height:20px; margin-bottom:5px; text-transform:capitalize; font-weight:normal}
+
+/* END  HEADING   
+========================================================================================*/
+
+/* Links AND Button   
+========================================================================================*/
+a:focus{ outline:none;}
+a { color:#0a95cf; text-decoration:none;}
+a:hover { color:red;}
+li { list-style:none;}
+
+/* Links AND Button   
+========================================================================================*/
+
+/* Main Navigation 
+========================================================================================*/
+nav { margin:-9px 0 0 0; float:right  }
+nav ul { text-align:center; }
+nav li { float:left; position:relative; overflow:hidden }
+nav li a { color:#FFF; font-size:20px; position:relative; z-index:1; text-transform:lowercase; line-height:25px; padding:53px 10px 0 10px; text-align:center; min-width:109px; min-height:67px;  display:block;  } 
+
+nav li a:before {position:absolute; left:0; top:0; width:100%; height:100%;  display:block; -webkit-transition:all .30s linear;
+	-moz-transition:all .30s linear;
+	-o-transition:all .30s linear;
+	transition:all .30s linear; border-top:solid 9px #faa236; content:'0'; font-size:0; text-indent:-999px; overflow:hidden; z-index:-1 }
+nav li:nth-child(1) a:before { background:#e18d27; border-top-color:#faa236;  }
+nav li:nth-child(2) a:before { background:#b3518f; border-top-color:#cb5ea3; }
+nav li:nth-child(3) a:before { background:#1a9f20; border-top-color:#26b52c;  }
+nav li:nth-child(4) a:before { background:#dba71c; border-top-color:#e8b734; }
+nav li:nth-child(5) a:before { background:#009999; border-top-color:#01b3b3; }
+nav li:nth-child(6) a:before { background:#ff6633; border-top-color:#fe865e; }
+nav li:nth-child(7) a:before { background:#ff6699; border-top-color:#ff7ba7; }
+nav li:nth-child(8) a:before { background:#999933; border-top-color:#aeae46; }
+nav li a:hover, nav li.active a { color:#FFFFFF; -webkit-transition:all .05s linear;
+	-moz-transition:all .05s linear;
+	-o-transition:all .05s linear;
+	transition:all .05s linear; }
+	/*background-color: #f5f516;}*/
+nav li:hover a:before, nav li.active a:before { height:0%;}	
+
+#menu { display:none; color:#ffffff; font-size:16px; background:url(../img/menu-img.png) no-repeat 97% 14px; padding:15px 0 15px 3%; }
+
+/* End Navigation 
+========================================================================================*/
+
+#banner { text-align:center; background:#e8efd6; padding:8px 0 8px 0 }
+#banner ul {  border-bottom:dashed 1px rgba(0,0,0,0.15); border-top:dashed 1px rgba(0,0,0,0.15); padding:30px 0 17px 0}
+#banner ul li { width:980px; text-align:center; margin:0 auto; background:url(../img/banner-shadow.png) no-repeat center bottom; padding:0 0 17px 0 }
+#banner ul li img { width:100%; }
+
+#container { padding:36px 0 68px 0; box-shadow:inset 0 3px 5px rgba(0,0,0,0.06) }
+
+article ul li { padding-left:15px;}
+article ul li:before{ content:'B'; text-indent:-5px; font-weight:bold; font-size:60px; height:5px; line-height:5px; width:5px; border-radius:10px;  vertical-align:middle; float:left;  margin-left:-15px; overflow:hidden; margin-top:8px; }
+article ol { margin-left:15px; }
+article ol li { list-style:decimal; }
+
+.pageControl{ transform: translate(0px, 0px);
+-webkit-transform: translate(0px, 0px);
+-moz-transform: translate(0px, 0px);
+-o-transform: translate(0px, 0px);
+-ms-transform: translate(0px, 0px);}
+
+.activepage .pageControl{transform: translate(-1000px, 0px);
+-webkit-transform: translate(-1000px, 0px);
+-moz-transform: translate(-1000px, 0px);
+-o-transform: translate(-1000px, 0px);
+-ms-transform: translate(-1000px, 0px);
+
+}
+
+/* FORM 
+========================================================================================*/
+fieldset {}
+/* Footer
+===============================================*/
+footer { padding:22px 0 21px 0; border-top:dashed 1px rgba(0,0,0,0.15);  }
+.copyRight { text-align:left; display:block; color:#5b483f; font-size:14px; text-transform:capitalize }
+
+/* transition
+===============================================*/
+#wrapper, #widecolumn, aside, nav li{transition: all 0.2s; -moz-transition: all 0.2s; -webkit-transition: all 0.2s; -o-transition: all 0.2s;}
