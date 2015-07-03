@@ -188,6 +188,7 @@ DEPENDENCIES
   devise
   jbuilder (~> 2.0)
   jquery-rails
+  jquery-ui-rails (~> 5.0.5)
   rails (= 4.2.1)
   rails_admin
   sass-rails (~> 5.0)
