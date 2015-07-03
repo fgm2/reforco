@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 userss = [
-            {:name => 'admin', :email => 'admin@reforco.com.br',:password => 'mprof2014', :password_confirmation =>'mprof2014'},
+            {:name => 'admin', :email => 'admin@reforco.com',:password => 'mprof2015', :password_confirmation =>'mprof2015'},
   	    ]
 
 userss.each do |u|
