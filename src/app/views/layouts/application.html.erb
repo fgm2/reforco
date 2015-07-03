@@ -1,14 +1,63 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Projeto</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>My Website Page</title>
+
+<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <!--<%= csrf_meta_tags %>-->
+
+
+<style type='text/css' title='geratedcsss'>body{  background-image:none; background-color:rgb(241, 238, 231); color:#2e0c2e;}nav{background-color:rgba(0, 0, 0, 0);}#header{background-color:#f5f516;}#footer{background-color:rgba(0, 0, 0, 0);}#container{background-color:rgba(0, 0, 0, 0);}h2,h3,h4,h5{color:#3838c9;}#logo{color:#ff0505;}</style>
 </head>
 <body>
+<header id="header">
+		<div class="pageWidth clearfix">
+				<h1 id="logo"><a href="/">Reforço Escolar</a></h1>
+				<!-- Start Navigation-->
+				<nav id="navigation" class="clearfix"><a href="#" id="menu">Menu</a>
+						<ul>
+							<li>
+								<a href="#" title="cadastrar">Cadastre-se</a>
+							</li>
+							<li>
+								<a href="#" title="entrar">Entrar</a>
+							</li>
+							<!--<li>-->
+							<!--	<a href="#" title="Our Gallery">Our Gallery</a>-->
+							<!--</li>-->
+							<!--<li>-->
+							<!--	<a href="#" title="Contact">Contact</a>-->
+							<!--</li>-->
+						</ul>
+				</nav>
+				<!-- End Navigation--> 
+		</div>
+</header>
+<!-- Start Banner-->
+<!--<div id="banner"><ul><li><img src="img/banner-img.jpg" alt=""></li></ul></div>-->
+<!-- End Banner--> 
 
-<%= yield %>
+<!-- Start Middle-->
+<section id="container">
+		<div class="pageWidth">
+			<%= yield %>
+				<!--<article class="pageControl"><div class="pageContainer" id="home"><h2>Welcome To My Website</h2>-->
+				 	
+				<!--</article>-->
+		</div>
+</section>
+
+<!-- End Middle--> 
+<!-- Start Footer-->
+<footer id="footer">
+		<div class="pageWidth">
+				<div class="copyRight">© Copyright 2014 | My Website </div>
+		</div>
+</footer>
+<!-- END Footer-->
 
 </body>
 </html>
