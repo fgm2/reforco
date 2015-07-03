@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  get 'reinforcements/index'
+
   devise_for :users
   resources :users
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
