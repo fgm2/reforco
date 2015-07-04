@@ -16,17 +16,17 @@ end
 
 # --------------------
 
-areaOfKnowledge = [
-        {:name => 'Ciências Exatas e da Terra'},
-        {:name => 'Ciências Biológicas'},
-        {:name => 'Engenharias'},
-        {:name => 'Ciências da Saúde'},
-        {:name => 'Ciências Agrárias'},
-        {:name => 'Ciências Sociais Aplicadas'},
-        {:name => 'Ciências Humanas'},
-        {:name => 'Linguística, Letras e Artes'},
-        {:name => 'Outros'},
-  	 ]
+# areaOfKnowledge = [
+#         {:name => 'Ciências Exatas e da Terra'},
+#         {:name => 'Ciências Biológicas'},
+#         {:name => 'Engenharias'},
+#         {:name => 'Ciências da Saúde'},
+#         {:name => 'Ciências Agrárias'},
+#         {:name => 'Ciências Sociais Aplicadas'},
+#         {:name => 'Ciências Humanas'},
+#         {:name => 'Linguística, Letras e Artes'},
+#         {:name => 'Outros'},
+#   	 ]
 
 areaOfKnowledge.each do |a|
   AreaOfKnowledge.create!(a)
