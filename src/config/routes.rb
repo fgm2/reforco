@@ -9,8 +9,7 @@ Rails.application.routes.draw do
   resources :matters
   resources :area_of_knowledges
   resources :students
-  resources :teachers
-  
+  resources :teachers 
   #root 'reinforcements#index'
 
   devise_for :users

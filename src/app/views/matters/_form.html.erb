@@ -25,7 +25,7 @@
   </div>
   <div class="field">
     <%= f.label :areaOfKnowledge_id %><br>
-    <%= f.text_field :areaOfKnowledge_id %>
+    <%= f.collection_select(:areaOfKnowledge_id, AreaOfKnowledge.order(:name), :id, :name, :prompt => true) %>
   </div>
   <div class="actions">
     <%= f.submit %>
