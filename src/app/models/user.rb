@@ -21,6 +21,21 @@ class User < ActiveRecord::Base
         configure :password do
           label 'Senha'
         end
+        configure :sign_in_count do
+          label 'Quantidade de logins'
+        end
+        configure :current_sign_in_at do
+          label 'Login corrente'
+        end
+        configure :last_sign_in_at do
+          label 'Último login'
+        end
+        configure :current_sign_in_ip do
+          label 'IP do login corrente'
+        end
+        configure :last_sign_in_ip do
+          label 'IP do último login'
+        end
         edit do
           field :name
           field :email
