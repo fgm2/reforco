@@ -1,8 +1,8 @@
 <h2>Sign up</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {multipart: true}) do |f| %>
   <%= devise_error_messages! %>
-
+  
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true %>
@@ -22,7 +22,7 @@
   </div>
   <div class="field">
     <%= f.label :date_of_birth %><br />
-    <%= f.text_field :date_of_birth, autofocus: "on" %>
+    <%= f.date_field :date_of_birth, autofocus: "on" %>
   </div>
   <div class="field">
     <%= f.label :cpf %><br />
