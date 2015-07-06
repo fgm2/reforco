@@ -1,5 +1,8 @@
 class StudentsController < ApplicationController
+  #before_action :find_student, only: [:edit, :update, :destroy]
   before_action :set_student, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
+
 
   # GET /students
   # GET /students.json
@@ -14,7 +17,8 @@ class StudentsController < ApplicationController
 
   # GET /students/new
   def new
-    @student = Student.new
+    @student = current_user.students.build
+    @student.user_id = current_user.id
   end
 
   # GET /students/1/edit
@@ -24,7 +28,7 @@ class StudentsController < ApplicationController
   # POST /students
   # POST /students.json
   def create
-    @student = Student.new(student_params)
+    @student =current_user.students.build(student_params)
 
     respond_to do |format|
       if @student.save
@@ -69,6 +73,14 @@ class StudentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def student_params
-      params.require(:student).permit(:created_at, :user_id)
+      params.require(:student).permit(:formation, :description)
     end
+    private
+    # acrtion em caso de se cadastrar mais de uma vez como studante
+    #def find_student
+      #@student.user_id = current_user.id
+      #if @student != params[:id]
+       # redirect_to students_path(params[:id]), notice: 'Some message about not having access to perform that action'
+      #end
+    #end
 end

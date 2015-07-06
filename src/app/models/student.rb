@@ -1,6 +1,6 @@
 class Student < ActiveRecord::Base
-    validates :user, presence: true
-    belongs_to :user
+        belongs_to :user
+        validates_uniqueness_of :user_id, :message => "Você já é um estudante"
     # has_many :matter_teacher_student
     # has_many :matter_teacher, :through => :matter_teacher_student
     

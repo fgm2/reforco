@@ -6,15 +6,12 @@
 </p>
 
 <p>
-  <strong>Created at:</strong>
-  <%= @teacher.created_at %>
+  <strong>Description:</strong>
+  <%= @teacher.description %>
 </p>
-
 <p>
   <strong>User:</strong>
-  <%= @user.user_id %>
+  <%= @teacher.user.email %>
 </p>
-
 <%= link_to 'Edit', edit_teacher_path(@teacher) %> |
 <%= link_to 'Back', teachers_path %>
-c

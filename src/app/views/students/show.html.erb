@@ -1,14 +1,19 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Created at:</strong>
-  <%= @student.created_at %>
+  <strong>Formation:</strong>
+  <%= @student.formation %>
 </p>
 
 <p>
-  <strong>User:</strong>
-  <%= @student.user %>
+  <strong>Description:</strong>
+  <%= @student.description %>
 </p>
+<p>
+  <strong>User:</strong>
+  <%= @student.user.email %>
+</p>
+
 
 <%= link_to 'Edit', edit_student_path(@student) %> |
 <%= link_to 'Back', students_path %>

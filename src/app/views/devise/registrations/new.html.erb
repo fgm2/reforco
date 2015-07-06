@@ -1,0 +1,70 @@
+<h2>Sign up</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+  <div class="field">
+    <%= f.label :date_of_birth %><br />
+    <%= f.text_field :date_of_birth, autofocus: "on" %>
+  </div>
+  <div class="field">
+    <%= f.label :cpf %><br />
+    <%= f.text_field :cpf, autofocus: "on" %>
+  </div>
+  <div><%= f.check_box :is_female, {}, true %> <%= f.label :is_female, "Female" %> </div>
+  <div><%= f.check_box :is_female, {}, false %> <%= f.label :is_female, "Male" %> </div>
+  <div class="field">
+    <%= f.label :scholarity %><br />
+    <%= f.text_field :scholarity, autofocus: "on" %>
+  </div>  
+  <div class="field">
+    <%= f.label :fone %><br />
+    <%= f.text_field :fone, autofocus: "on" %>
+  </div>
+  <div class="field">
+    <%= f.label :whatsapp %><br />
+    <%= f.text_field :whatsapp, autofocus: "on" %>
+  </div>
+  <div class="field">
+    <%= f.label :skype %><br />
+    <%= f.text_field :skype, autofocus: "on" %>
+  </div>
+  <div class="field">
+    <%= f.label :addrress %><br />
+    <%= f.text_field :addrress, autofocus: "on" %>
+  </div>
+  <div class="field">
+    <%= f.label :state %><br />
+    <%= f.text_field :state, autofocus: "on" %>
+  </div>
+  <div class="field">
+    <%= f.label :country %><br />
+    <%= f.text_field :country, autofocus: "on" %>
+  </div>
+  <div class="field">
+    <%= f.label :avatar %><br />
+    <%= f.file_field :avatar %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Sign up" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>

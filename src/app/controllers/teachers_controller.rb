@@ -1,7 +1,9 @@
 class TeachersController < ApplicationController
   before_action :set_teacher, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
-  
+  before_action :authenticate_user!, except: [:index, :show]
+  #before_action :find_teacher, only: [:show, :edit, :update, :destroy]
+
+ 
   def index
     @teachers = Teacher.all
   end
@@ -10,19 +12,20 @@ class TeachersController < ApplicationController
   def show
   end
 
-  
+ 
   def new
-    @teacher = current_user.teacher.build
+    @teacher = current_user.teachers.build
+    @teacher.user_id = current_user.id
+
   end
 
  
   def edit
   end
 
- 
+  
   def create
     @teacher = current_user.teachers.build(teacher_params)
-    @teacher.user_id = current_user.id
 
     respond_to do |format|
       if @teacher.save
@@ -35,7 +38,7 @@ class TeachersController < ApplicationController
     end
   end
 
- 
+  
   def update
     respond_to do |format|
       if @teacher.update(teacher_params)
@@ -58,13 +61,19 @@ class TeachersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+    
     def set_teacher
       @teacher = Teacher.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def teacher_params
-      params.require(:teacher).permit(:formation, :created_at, :user_id)
+      params.require(:teacher).permit(:formation, :description)
     end
+    ## para tomar um action em caso de duplicidades
+    #def find_teacher
+      #@teacher.user_id = current_user.id
+      #if @teacher.user_id != params[:id]
+       # redirect_to teachers_path(params[:id]), notice: 'Some message about not having access to perform that action'
+      #end
+    #end
 end
