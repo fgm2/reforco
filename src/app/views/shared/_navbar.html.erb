@@ -16,7 +16,7 @@
       <ul class="nav navbar-nav">
         <% if user_signed_in? %>
         <li><%= link_to "Professor", new_teacher_path, class: "active" %></li>
-        <li><%= link_to "Aluno", new_teacher_path, class: "active" %></li>
+        <li><%= link_to "Aluno", new_student_path, class: "active" %></li>
         <li><%= link_to "Perfil", edit_user_registration_path, class: "active" %></li>
         <li><%= link_to 'Logout', destroy_user_session_path, :method => :delete, class: "active" %> </li>
         <% else %>

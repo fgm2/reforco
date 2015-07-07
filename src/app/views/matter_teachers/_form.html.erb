@@ -13,8 +13,13 @@
 
   <div class="field">
     <%= f.label :matter_id %><br>
-    <%= f.number_field :matter_id %>
+    <%= f.collection_select(:matter_id, Matter.order(:name), :id, :name, :prompt => true) %>
   </div>
+  
+ 
+   
+   
+    
   <div class="field">
     <%= f.label :teacher_id %><br>
     <%= f.number_field :teacher_id %>
