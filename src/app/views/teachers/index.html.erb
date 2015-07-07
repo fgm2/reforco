@@ -1,31 +1,35 @@
-<p id="notice"><%= notice %></p>
+<% if !user_signed_in? %>
+  <div class= "jumbotron">
+    <h1 class="text-center"> Reforço</h1>
+      <div class = "container">
+        <p class="text-center"> Suas aulas de reforço agora com mais flexibilidade e qualidade!</p>
+       <%= button_to "Cadastre-se", new_user_registration_path, :class => "btn btn-primary btn-lg btn-block", :method => :get  %>
+        <button type="button" href=# class="btn btn-default btn-lg btn-block">Entenda como funciona</button>
+      </div>  
+  </div>
+<% end%>
 
-<h1>Listing Teachers</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Formation</th>
-      <th>Description</th>
-         <th>user </th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class = "row">
+  <% @teachers.each do |teacher| %>
+    <div class="col-sm-6 col-md-3">
+      <div class= "thumbnail">
+        <%= link_to (image_tag teacher.user.avatar.url(:medium), class: 'avatar'), teacher %> <br>
+        <blockquote><p> <%= teacher.formation %> </p>
+        <footer> <%= teacher.user.name %> <cite title="Source Title"><%= teacher.description %></cite></footer>
+</blockquote>
+       
+      </div>
+      
+      </div>
+<%end%>
+  </div>
 
-  <tbody>
-    <% @teachers.each do |teacher| %>
-      <tr>
-        <td><%= image_tag teacher.user.avatar.url(:medium) %></td>
-        <td><%= teacher.formation %></td>
-        <td><%= teacher.user.email %></td>
-        <td><%= link_to 'Show', teacher %></td>
-        <td><%= link_to 'Edit', edit_teacher_path(teacher) %></td>
-        <td><%= link_to 'Destroy', teacher, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<br>
 
-<%= link_to 'New Teacher', new_teacher_path %>
+
+
+
+
+
+
