@@ -1,7 +1,6 @@
-<h2>Sign up</h2>
-
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {multipart: true}) do |f| %>
   <%= devise_error_messages! %>
+  
   
   <div class="field">
     <%= f.label :email %><br />
@@ -9,7 +8,7 @@
   </div>
 
   <div class="field">
-    <%= f.label :password %>
+    <%= f.label :senha %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
@@ -17,11 +16,11 @@
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
+    <%= f.label :confirmação_senha %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
   <div class="field">
-    <%= f.label :date_of_birth %><br />
+    <%= f.label :data_nascimento %><br />
     <%= f.date_field :date_of_birth, autofocus: "on" %>
   </div>
   <div class="field">
@@ -31,31 +30,31 @@
   <div><%= f.check_box :is_female, {}, true %> <%= f.label :is_female, "Female" %> </div>
   <div><%= f.check_box :is_female, {}, false %> <%= f.label :is_female, "Male" %> </div>
   <div class="field">
-    <%= f.label :scholarity %><br />
+    <%= f.label :Escolaridade %><br />
     <%= f.text_field :scholarity, autofocus: "on" %>
   </div>  
   <div class="field">
-    <%= f.label :fone %><br />
+    <%= f.label :Telefone%><br />
     <%= f.text_field :fone, autofocus: "on" %>
   </div>
   <div class="field">
-    <%= f.label :whatsapp %><br />
+    <%= f.label :Whatsapp %><br />
     <%= f.text_field :whatsapp, autofocus: "on" %>
   </div>
   <div class="field">
-    <%= f.label :skype %><br />
+    <%= f.label :Skype%><br />
     <%= f.text_field :skype, autofocus: "on" %>
   </div>
   <div class="field">
-    <%= f.label :addrress %><br />
+    <%= f.label :Endereço %><br />
     <%= f.text_field :addrress, autofocus: "on" %>
   </div>
   <div class="field">
-    <%= f.label :state %><br />
+    <%= f.label :Estado %><br />
     <%= f.text_field :state, autofocus: "on" %>
   </div>
   <div class="field">
-    <%= f.label :country %><br />
+    <%= f.label :pais %><br />
     <%= f.text_field :country, autofocus: "on" %>
   </div>
   <div class="field">
@@ -63,7 +62,7 @@
     <%= f.file_field :avatar %>
   </div>
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "cadastrar" %>
   </div>
 <% end %>
 
