@@ -10,12 +10,13 @@
 
 <body>
 
-<%= render 'shared/navbar' %>
-<div class = "container">
-    <% flash.each do |name, msg| %>
-        <%= content_tag(:div, msg, class: "alert alert-info") %>
-    <% end %>
-    <%= yield %>
+    <%= render 'shared/navbar' %>
+    <div class = "container">
+        <% flash.each do |name, msg| %>
+            <%= content_tag(:div, msg, class: "alert alert-info") %>
+        <% end %>
+        <%= yield %>
     </div>
+    <%= render 'shared/footer' %>
 </body>
 </html>
