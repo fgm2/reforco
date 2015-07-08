@@ -12,9 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require cocoon
 //= require jquery-ui
 //= require turbolinks
 //= require_tree .
+
 
 $(document).ready(function() {
     $('#dialog_form').hide();
