@@ -16,12 +16,49 @@ class User < ActiveRecord::Base
             configure :email do
               label 'E-mail'
             end
+            configure :scholarity do
+              label 'Escolaridade'
+            end
+            configure :date_of_birth do
+              label 'Data de Aniversário'
+            end
+            configure :addrress do
+              label 'Endereço'
+            end
+            configure :state do
+              label 'Estado'
+            end
+            configure :country do
+              label 'País'
+            end
+            configure :password do
+              label 'Senha'
+            end
+            configure :password_confirmation do
+              label 'Confirmação de senha'
+            end
             configure :created_at do
                 label 'Criado em'
             end
             configure :updated_at do
                 label 'Atualizado em'
             end
+            configure :sign_in_count do
+              label 'Quantidade de logins'
+            end
+            configure :current_sign_in_at do
+              label 'Data do login corrente'
+            end
+            configure :last_sign_in_at do
+              label 'Data do último login'
+            end
+            configure :current_sign_in_ip do
+              label 'IP do login corrente'
+            end
+            configure :last_sign_in_ip do
+              label 'IP do último login'
+            end
+            
             list do
               field :id
               field :name
