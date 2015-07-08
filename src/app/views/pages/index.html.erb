@@ -1,9 +1,5 @@
  <!-- Main jumbotron for a primary marketing message or call to action -->
-    
-    <body>
-    
       
-   
     <div class="container-fluid">
 
       <div class="jumbotron" >
@@ -12,34 +8,54 @@
         <p><a class="btn btn-primary btn-lg" href="teachers" role="button">Encontre seu professor &raquo;</a></p>
         <p><a class="btn btn-primary btn-lg" href="Sobre o Reforço" role="button">Seja um professor &raquo;</a></p>
       </div>
+      
     </div>
 
     <div class="container">
       
-       Example row of columns
+<div class = "row">
+  <% @teachers.each do |teacher| %>
+    <div class="col-sm-6 col-md-3">
+      <div class= "thumbnail">
+        <%= link_to (image_tag teacher.user.avatar.url(:medium), class: 'avatar'), teacher %> <br>
+        <blockquote>
+          <p> <%= teacher.user.name %> </p>
+          <footer> <%= teacher.formation %> <br> <cite title="Source Title"><%= teacher.description %></cite></footer>
+        </blockquote>
+       
+      </div>
+      
+    </div>
+  <%end%>
+</div>
+      
+       
       <div class="row">
         <div class="col-md-4">
-          <h2>Professor</h2>
+          <h2>Seja um Professor</h2>
           <p>Se você é um professor, cadastre-se e comece a receber propostas de todo o mundo. A nossa base conta com milhões de alunos de todo o mundo em busca de profissionais como você.</p>
-          <p><a class="btn btn-default" href="teachers" role="button">Comece agora &raquo;</a></p>
+          
+          <p>
+            <%= link_to "Comece agora »", new_user_registration_path, class: "btn btn-default"%>
+          </p>
+          
         </div>
         <div class="col-md-4">
           <h2>Aluno</h2>
           <p>Em busca de orientações diversificadas de profissionais de todo o mundo, que possam lhe atender de forma exclusiva? Encontre sua melhor opção hoje mesmo </p>
-          <p><a class="btn btn-default" href="matter_teachers" role="button">Encontre seu professor &raquo;</a></p>
+          
+          <p>
+            <%= link_to "Encontre seu professor »", new_user_registration_path, class: "btn btn-default"%>
+          </p>
+          
+          <!--<p><a class="btn btn-default" href="matter_teachers" role="button">Encontre seu professor &raquo;</a></p>-->
        </div>
         <div class="col-md-4">
           <h2>Conheça-nos</h2>
           <p>O portal Reforço, busca ligar pessoas professores e alunos que buscam independẽncia e flexibilidade no aprendizado. As aulas de reforço permite um atendimento exclusivo que faz toda a adiferença na sua carreira.</p>
-          <p><a class="btn btn-default" href="#" role="button">Saiba mais &raquo;</a></p>
+          <p><a class="btn btn-default" href="/pages/sobre" role="button">Saiba mais &raquo;</a></p>
         </div>
       </div>
      
-      <hr> 
-      
-      
-      <footer>
-        <p>&copy; Reforço 2015</p>
-      </footer>
+      <hr>
     </div> <!-- /container -->
-    </body>
