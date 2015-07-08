@@ -35,6 +35,6 @@ end
 #         {:name => 'Outros'},
 #   	 ]
 
-areaOfKnowledge.each do |a|
-  AreaOfKnowledge.create!(a)
-end
+# areaOfKnowledge.each do |a|
+#   AreaOfKnowledge.create!(a)
+# end
