@@ -4,6 +4,10 @@ class Teacher < ActiveRecord::Base
 #<<<<<<< HEAD
     has_many :matter_teacher, :dependent => :destroy
     has_many :matter, :through => :matter_teacher
+    has_many :courses
+    accepts_nested_attributes_for :courses, 
+                                 reject_if: proc{ |attributes| attributes ['name'].blank?},
+                                 allow_destroy: true
 #=======
     # has_many :matter_teacher
     # has_many :matter, :through => :matter_teacher

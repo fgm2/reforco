@@ -67,7 +67,7 @@ class TeachersController < ApplicationController
     end
 
     def teacher_params
-      params.require(:teacher).permit(:formation, :description)
+      params.require(:teacher).permit(:formation, :description, courses_attributes: [:id, :name, :_destroy])
     end
     ## para tomar um action em caso de duplicidades
     #def find_teacher

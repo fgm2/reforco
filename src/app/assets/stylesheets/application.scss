@@ -26,12 +26,55 @@ footer {
 // 	bottom:0;
 // 	left:0;
 }
-body{
-    background: #D2EAF0;
-}
 
+
+#teacher_info, #courses {
+	background: white;
+	min-height: 200px;
+	border-radius: 5px;
+	padding: 2em 8%;
+}
 
 #page {
 	min-height:100%;
 	position:relative;
+}
+
+.form-inline {
+	margin-top: 15px;
+}
+.form-input {
+	width: 65% !important;
+	float: left;
+}
+.form-button {
+	float: left;
+	width: 30% !important;
+	margin-left: 5%;
+}
+.add-button {
+	margin-top: 25px;
+}
+
+.main_content {
+	padding: 0 0 20px 0;
+}
+
+.alert {
+	padding: 15px;
+	margin-bottom: 20px;
+	border: 1px solid transparent;
+	border-radius: 5px;
+	background: white;
+	font-weight: bold;
+}
+#teacher_top {
+	margin-bottom: 50px;
+}
+#teacher_info {
+	h1 {
+		font-size: 36px;
+		font-weight: normal;
+	
+	}
 }

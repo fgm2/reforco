@@ -1,0 +1,24 @@
+.main_content
+#teacher_top.row
+		.col-md-4
+		= image_tag @teacher.user.avatar.url(:medium), class: "avatar"
+		.col-md-8
+		#teacher_info
+				%h3 Formação: 
+				%h4= @teacher.formation
+				%p.description= @teacher.description
+				%p
+		E-mail: 
+		= @teacher.user.email
+
+.row
+		.col-md-6
+		#courses
+				%h3 Disciplinas Lecionadas
+				%ul
+		- @teacher.courses.each do |course|
+				%li= course.name
+				
+		= link_to 'Back', teachers_path 
+
+		
