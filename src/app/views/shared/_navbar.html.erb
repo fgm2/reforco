@@ -1,3 +1,4 @@
+
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -8,30 +9,46 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <%= link_to "Reforço", root_path, class: "navbar-brand" %>
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
+      <%= link_to image_tag("logo.png", size: "160x55", alt: "Reforço WEB"), root_path, class: "navbar-brand" %>
+    </div
+    
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <% if user_signed_in? %>
-          <li><%= link_to "Professor", new_teacher_path, class: "active" %></li>
-          <li><%= link_to "Aluno", new_student_path, class: "active" %></li>
-          <li><%= link_to "Perfil", edit_user_registration_path, class: "active" %></li>
-          <li><%= link_to 'Logout', destroy_user_session_path, :method => :delete, class: "active" %> </li>
-        <% else %>
-          <!--<li><%= link_to "Entrar", new_user_registration_path, class: "active"%></li>-->
-          <!--<li><%= link_to "fazer Login", new_user_session_path, class: "active"%></li>-->
-        <% end %>
+          <li><%= link_to "inicio", root_path, class: "active" %> </li>
+          <li><%= link_to "Professores", teachers_path, class: "active" %> </li>
+          <li><%= link_to "Aulas Disponiveis", "#", class: "active"%></li>
+          <% if user_signed_in? %>
+            <!--<li><%= link_to "Professor", new_teacher_path, class: "active" %></li>-->
+            <!--<li><%= link_to "Aluno", new_student_path, class: "active" %></li>-->
+            <li><%= link_to "Meu Perfil", edit_user_registration_path, class: "active" %></li>
+            <li><%= link_to 'Sair', destroy_user_session_path, :method => :delete, class: "active" %> </li>
+          <% end %>
+
       </ul>
       
       <form class="navbar-form navbar-right" role="search">
         
          <ul class="nav navbar-nav">
           <% if user_signed_in? %>
-            <li><%= link_to "Olá #{current_user.name}", "#", class: "active" %></li>
+          
+            <div class="dropdown">
+              <button class="btn btn-primary dropdown-toggle" style="margin-right: 10px;" type="button" data-toggle="dropdown"> <%= current_user.name %>
+              <span class="caret"></span></button>
+              <ul class="dropdown-menu">
+                <li><a href="#">Meu Perfil</a></li>
+                <li><a href="#">Meus Cursos</a></li>
+                <li><a href="#">Sair</a></li>
+              </ul>
+            </div>
+            
+            <span>&nbsp;</span><span>&nbsp;</span>
+          
+            <!--<li><%= link_to "Olá #{current_user.name}", "#", class: "active" %></li>-->
           <% else %>
-            <li><%= link_to "Entrar", new_user_registration_path, class: "active"%></li>
+            <li>
+                <%= link_to "Entrar", new_user_registration_path, class: "active"%>
+                <span></span>
+            </li>
           <% end %>
           
         </ul>
