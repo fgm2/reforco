@@ -6,11 +6,18 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-userss = [
-            {:name => 'admin', :email => 'admin@reforco.com',:password => 'mprof2015', :password_confirmation =>'mprof2015'},
+users = [
+            {:name => 'admin', :email => 'admin@reforco.com',:password => '123456', :password_confirmation =>'123456'},
+            {:name => 'Fabrício Matos', :email => 'fgm2@reforco.com',:password => '123456', :password_confirmation =>'123456'},
+            {:name => 'Fabiano Matos', :email => 'fgm@reforco.com',:password => '123456', :password_confirmation =>'123456'},
+            {:name => 'Rogério Luiz', :email => 'rlcsf@reforco.com',:password => '123456', :password_confirmation =>'123456'},
+            {:name => 'Nelson Cavalcante', :email => 'nbcj2@reforco.com',:password => '123456', :password_confirmation =>'123456'},
+            {:name => 'Paulo de Tarso', :email => 'pt@reforco.com',:password => '123456', :password_confirmation =>'123456'},
+            {:name => 'Maria Joaquina', :email => 'mj@reforco.com',:password => '123456', :password_confirmation =>'123456'},
+            {:name => 'Carla Silva', :email => 'cs@reforco.com',:password => '123456', :password_confirmation =>'123456'},
   	    ]
 
-userss.each do |u|
+users.each do |u|
   User.create!(u)
 end
 
