@@ -12,6 +12,21 @@ class Teacher < ActiveRecord::Base
     # has_many :matter_teacher
     # has_many :matter, :through => :matter_teacher
     
-   
+   RailsAdmin.config do |config|
+        config.model "Teacher" do
+            parent User
+            label "Professor"
+            label_plural "Professores"
+            configure :formation do
+                label 'Formação'
+            end
+            configure :created_at do
+                label 'Criado em'
+            end
+            configure :updated_at do
+                label 'Atualizado em'
+            end
+        end
+    end 
   
 end
