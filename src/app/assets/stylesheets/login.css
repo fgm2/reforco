@@ -92,7 +92,7 @@ html {
   float: left;
   text-align: center;
   background: #D2D8D8;
-  line-height: 72px;
+  /*line-height: 72px;*/
   height: 72px;
   text-decoration: none;
   color: #809191;

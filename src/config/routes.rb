@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :area_of_knowledges
   resources :students
   resources :teachers 
+  resources :pages
   root 'teachers#index'
   #root 'reinforcements#index'
   devise_for :users, controllers: {reinforcements: "reinforcements"}

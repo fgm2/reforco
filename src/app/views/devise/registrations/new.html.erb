@@ -13,8 +13,6 @@
     <%= javascript_include_tag 'login', 'data-turbolinks-track' => true %>
 
     <link rel="stylesheet" href="css/style.css">
-
-    
     
     
   </head>
@@ -40,6 +38,29 @@
             <%= devise_error_messages! %>
             
           <!--<form accept-charset="utf-8" action="<%= registration_path(resource_name)%>" method="POST" class="simform">-->
+          
+            <div class="sminputs">
+              <div class="input full">
+                    <%= f.label :name, "NOME", class: "string optional"  %>
+                    <%= f.text_field :name, class: "string optional" , size: 50, maxlength:255, autofocus: true, required: true, placeholder: "informe seu nome" %>
+              </div>
+            </div>
+            
+            <div class="sminputs">
+              <div class="input string optional">
+                <!--<%= label_tag :tipo %>-->
+                <%= label_tag :tipo, "Professor", :value => "prof"  %>
+                <%= radio_button_tag :tipo, true %>
+                
+              </div>
+              
+              <div class="input string optional">
+                <%= label_tag :tipo, "Aluno", :value => "aluno" %>
+                <%= radio_button_tag :tipo, false, :checked => true %>
+              </div>
+              
+            </div>
+          
             <div class="sminputs">
               <div class="input full">
                     <%= f.label :email, class: "string optional"  %>
@@ -52,13 +73,7 @@
               <div class="input string optional">
                   
                     <%= f.label :password, "SENHA", class: "string optional"   %>
-                    <!--<% if @minimum_password_length %>-->
-                    <!--<em>(<%= @minimum_password_length %> characters minimum)</em>-->
-                    <!--<% end %><br />-->
                     <%= f.password_field :password,  class: "string optional" ,  size: 50, maxlength:255,  autocomplete: "off", placeholder: "informe sua senha"%>
-                    
-                <!--<label class="string optional" for="user-pw">Senha *</label>-->
-                <!--<input class="string optional" maxlength="255" id="user-pw" placeholder="Senha" type="text" size="50" />-->
               </div>
               <div class="input string optional">
                   <%= f.label :password_confirmation, "CONFIRME A SENHA", class: "string optional"   %>
@@ -70,7 +85,7 @@
             
             <div class="actions simform__actions">
               <%= f.submit "CRIAR CONTA", class: "btn btn-success btn-block" %>
-              <span class="simform__actions-sidetext">Ao me cadastrar, confirmo que li e concordo com os <a class="special" href="#" target="_blank" role="link">Termos de Uso</a></span>
+              <span class="simform__actions-sidetext centered">Ao me cadastrar, confirmo que li e concordo com os <a class="special" href="#" target="_blank" role="link">Termos de Uso</a></span>
             </div>
             
             <!--<div class="simform__actions">-->
@@ -105,7 +120,7 @@
       </div>
       <div class="logmod__tab lgm-2">
         <div class="logmod__heading">
-          <span class="logmod__heading-subtitle">Informe seu e-mail e senha <strong>entrar</strong></span>
+          <span class="logmod__heading-subtitle">Informe seu e-mail e senha <strong>para entrar</strong></span>
         </div> 
         <div class="logmod__form">
             
@@ -125,7 +140,7 @@
             <div class="sminputs">
               <div class="input full">
                   
-                  <%= f.label :password, class: "string optional"  %>
+                  <%= f.label :password, "SENHA", class: "string optional"  %>
                   <%= f.password_field :password, class: "string optional" , autocomplete: "off" %>
                 <!--<label class="string optional" for="user-pw">Senha *</label>-->
                 <!--<input class="string optional" maxlength="255" id="user-pw" placeholder="Password" type="password" size="50" />-->
