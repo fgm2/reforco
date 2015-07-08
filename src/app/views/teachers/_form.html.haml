@@ -18,5 +18,5 @@
 					= f.simple_fields_for :courses do |course|
 						= render 'course_fields', f: course
 					.links
-						= link_to_add_association 'Adicione Disciplinas', f, :courses, class: "btn btn-default btn-xs add-button"
+					= link_to_add_association 'Adicione Disciplinas', f, :courses, class: "btn btn-default btn-xs add-button"
 	= f.button :submit, class: "btn btn-primary"

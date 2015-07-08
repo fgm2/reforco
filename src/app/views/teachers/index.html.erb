@@ -14,7 +14,7 @@
   <% @teachers.each do |teacher| %>
     <div class="col-sm-6 col-md-3">
       <div class= "thumbnail">
-        <%= link_to (image_tag teacher.user.avatar.url(:medium), class: 'avatar'), teacher %> <br>
+        <%= link_to (image_tag teacher.user.avatar.url(:thumb), class: 'avatar'), teacher %> <br>
         <blockquote><p> <%= teacher.formation %> </p>
         <footer> <%= teacher.user.name %> <br> <cite title="Source Title"><%= teacher.description %></cite></footer>
 </blockquote>
