@@ -20,7 +20,7 @@
           <% if user_signed_in? %>
             <!--<li><%= link_to "Professor", new_teacher_path, class: "active" %></li>-->
             <!--<li><%= link_to "Aluno", new_student_path, class: "active" %></li>-->
-            <li><%= link_to "Meu Perfil", edit_user_registration_path, class: "active" %></li>
+            <li><%= link_to "Meu Perfil", user_path(current_user.id), class: "active" %></li>
             <li><%= link_to 'Sair', destroy_user_session_path, :method => :delete, class: "active" %> </li>
           <% end %>
 
