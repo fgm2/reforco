@@ -25,6 +25,7 @@ $(document).ready(function() {
         autoPlay: true,
         slideSpeed : 300,
         paginationSpeed : 400,
+        paginationNumbers: true,
         singleItem:true   
     });
 });
