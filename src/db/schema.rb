@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150707232602) do
+ActiveRecord::Schema.define(version: 20150709021637) do
 
   create_table "area_of_knowledges", force: :cascade do |t|
     t.string   "name"
@@ -22,10 +22,13 @@ ActiveRecord::Schema.define(version: 20150707232602) do
   create_table "courses", force: :cascade do |t|
     t.string   "name"
     t.integer  "teacher_id"
+    t.integer  "matter_id"
+    t.float    "value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_index "courses", ["matter_id"], name: "index_courses_on_matter_id"
   add_index "courses", ["teacher_id"], name: "index_courses_on_teacher_id"
 
   create_table "matter_teacher_students", force: :cascade do |t|
@@ -44,6 +47,9 @@ ActiveRecord::Schema.define(version: 20150707232602) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "matter_teachers", ["matter_id"], name: "index_matter_teachers_on_matter_id"
+  add_index "matter_teachers", ["teacher_id"], name: "index_matter_teachers_on_teacher_id"
 
   create_table "matters", force: :cascade do |t|
     t.string   "name"
@@ -110,6 +116,7 @@ ActiveRecord::Schema.define(version: 20150707232602) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.boolean  "admin",                  default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

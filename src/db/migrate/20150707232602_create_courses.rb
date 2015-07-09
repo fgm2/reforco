@@ -3,7 +3,9 @@ class CreateCourses < ActiveRecord::Migration
     create_table :courses do |t|
       t.string :name
       t.belongs_to :teacher, index: true, foreign_key: true
-
+      t.belongs_to :matter, index: true, foreign_key: true
+      t.float :value
+      
       t.timestamps null: false
     end
   end

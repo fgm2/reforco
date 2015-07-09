@@ -76,4 +76,5 @@ class TeachersController < ApplicationController
        # redirect_to teachers_path(params[:id]), notice: 'Some message about not having access to perform that action'
       #end
     #end
+    
 end

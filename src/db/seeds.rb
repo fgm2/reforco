@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 users = [
-            {:name => 'admin', :email => 'admin@reforco.com',:password => '123456', :password_confirmation =>'123456'},
+            {:name => 'admin', :email => 'admin@reforco.com',:password => '123456', :password_confirmation =>'123456', :admin => true},
             {:name => 'Fabrício Matos', :email => 'fgm2@reforco.com',:password => '123456', :password_confirmation =>'123456'},
             {:name => 'Fabiano Matos', :email => 'fgm@reforco.com',:password => '123456', :password_confirmation =>'123456'},
             {:name => 'Rogério Luiz', :email => 'rlcsf@reforco.com',:password => '123456', :password_confirmation =>'123456'},

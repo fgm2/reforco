@@ -1,7 +1,7 @@
 class Student < ActiveRecord::Base
         belongs_to :user
         validates_uniqueness_of :user_id, :message => "Você já é um estudante"
-        has_many :AreaOfKnowledge
+        # has_many :AreaOfKnowledge
     # has_many :matter_teacher_student
     # has_many :matter_teacher, :through => :matter_teacher_student
     
@@ -29,12 +29,24 @@ class Student < ActiveRecord::Base
             configure :updated_at do
                 label 'Atualizado em'
             end
+            edit do
+              field :user
+              field :formation
+              field :description
+            #   field :areaOfKnowledge
+            end
             list do
               field :id
               field :user
               field :created_at
               field :updated_at
             end
+        end
+    end
+    
+    def name
+        if (!self.new_record?)
+            self.user.name
         end
     end
 end

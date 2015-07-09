@@ -9,4 +9,13 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :password, :password_confirmation, :name, :date_of_birth, :is_famale, :cpf, :fone, :whatsapp, :skype, :addrress, :state, :country, :avatar) }
   end
+  
+  def require_admin
+    # unless current_user && current_user.admin
+    unless current_user.admin
+      flash[:error] = "Acesso negado!!! Você não é um usuário administrador!!!"
+      redirect_to root_path
+    end
+  end
 end
+

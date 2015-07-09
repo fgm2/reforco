@@ -5,9 +5,12 @@ class User < ActiveRecord::Base
   # has_many :students, dependent: :destroy
   has_attached_file :avatar, styles: { medium: "300x300>"}#, :default_url => "/images/:style/missing.png"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
-         
+  
   RailsAdmin.config do |config|
         config.model "User" do
+            visible do
+                bindings[:controller].current_user.id == 1
+            end
             label "Usuário"
             label_plural "Usuários"
             configure :name do
@@ -74,6 +77,15 @@ class User < ActiveRecord::Base
               field :email
               field :created_at
               field :updated_at
+            end
+            edit do
+              field :name
+              field :avatar
+              field :scholarity
+              field :date_of_birth
+              field :addrress
+              field :state
+              field :country
             end
         end
     end

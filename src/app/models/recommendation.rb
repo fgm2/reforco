@@ -18,6 +18,16 @@ class Recommendation < ActiveRecord::Base
                 configure :updated_at do
                     label 'Atualizado em'
                 end
+                list do
+                    field :rating
+                    field :descripition
+                    field :created_at
+                    field :updated_at
+                end
+                edit do
+                    field :rating
+                    field :descripition
+                end
         end
     end
 end

@@ -1,8 +1,8 @@
 class CreateMatterTeachers < ActiveRecord::Migration
   def change
     create_table :matter_teachers do |t|
-      t.integer :matter_id
-      t.integer :teacher_id
+      t.references :matter, index: true, foreign_key: true
+      t.references :teacher, index: true, foreign_key: true
       t.float :value
 
       t.timestamps null: false

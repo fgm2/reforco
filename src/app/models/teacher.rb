@@ -1,6 +1,7 @@
 class Teacher < ActiveRecord::Base
     belongs_to :user
     validates_uniqueness_of :user_id, :message => "Você já é um professor"
+    
 #<<<<<<< HEAD
     # has_many :matter_teacher, :dependent => :destroy
     # has_many :matter, :through => :matter_teacher
@@ -12,16 +13,16 @@ class Teacher < ActiveRecord::Base
     # has_many :matter_teacher
     # has_many :matter, :through => :matter_teacher
     
-   RailsAdmin.config do |config|
+    RailsAdmin.config do |config|
         config.model "Teacher" do
             parent User
             label "Professor"
             label_plural "Professores"
-            configure :formation do
-                label 'Formação'
-            end
             configure :user do
                 label 'Usuário'
+            end
+            configure :formation do
+                label 'Formação'
             end
             configure :description do
                 label 'Descrição'
@@ -33,13 +34,34 @@ class Teacher < ActiveRecord::Base
                 label 'Atualizado em'
             end
             list do
+              include_fields_if do
+                name =~ /displayed/
+              end
+              fields :id do
+                #   label do
+                #       "#{label} (timestamp)"
+                #   end
+              end
               field :id
               field :user
               field :formation
               field :created_at
               field :updated_at
             end
+            edit do
+              field :user do
+                #   help 'selecione um usuário.'
+              end
+              field :formation
+            end
         end
     end 
-  
+    
+    def name
+        if (!self.new_record?)
+            self.user.name
+        end
+    end
+   
 end
+

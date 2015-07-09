@@ -1,7 +1,7 @@
 class Matter < ActiveRecord::Base
   belongs_to :areaOfKnowledge
-  has_many :matter_teacher, :dependent => :destroy
-  has_many :teacher, :through => :matter_teacher
+  # has_many :matter_teacher, :dependent => :destroy
+  # has_many :teacher, :through => :matter_teacher
   
   RailsAdmin.config do |config|
     config.model "Matter" do
@@ -21,6 +21,18 @@ class Matter < ActiveRecord::Base
       end
       configure :updated_at do
           label 'Atualizado em'
+      end
+      list do
+        field :name
+        field :descripition
+        field :areaOfKnowledge
+        field :created_at
+        field :updated_at
+      end
+      edit do
+        field :name
+        field :descripition
+        field :areaOfKnowledge
       end
     end
   end
