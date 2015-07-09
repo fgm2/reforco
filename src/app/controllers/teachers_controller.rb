@@ -23,12 +23,13 @@ class TeachersController < ApplicationController
       if t.user.id.to_s == id.to_s
         @create = false
         @t_id = t.id
-        redirect_to controller:'teachers', action: 'show', id: @t_id 
+        redirect_to controller:'teachers', action: 'show', id: @t_id
       end
     end
     if @create == true
       #redirect_to teachers_path
-      redirect_to students_path
+      @teacher = current_user.teachers.build
+      @teacher.user_id = current_user.id
       
     end
     
