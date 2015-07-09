@@ -1,0 +1,66 @@
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-4">
+        <%= image_tag @teacher.user.avatar.url(:medium), class: "avatar" %>
+        <div class="star-rating" data-score= <%= @avg_review %> ></div>
+        <em><%= "#{@recommendation.length} recommendation" %></em>
+        <div class="table-responsive">
+          <table class="table">
+            <tbody>
+              <tr>
+                <td><strong>Formação:</strong></td>
+                <td><%= @teacher.formation %></td>
+              </tr>
+              <tr>
+                <td><strong>Descrição:</strong></td>
+                <td><%= @teacher.description %></td>
+              </tr>
+              <tr>
+                <td><strong>Contato:</strong></td>
+                <td><%= @teacher.user.email %></td>
+              </tr>
+             </tbody>
+          </table>
+          </div>
+          <div class = "table-responsive">
+          	<table calss = "table">
+          		<tbody>
+          			<tr>
+          				<p><strong>Disciplinas Lecionadas:</strong></p>
+          				<% @teacher.courses.each do |course| %>
+          				<p><%= course.name %></p>
+          				<% end %>
+          			</tr>
+          		</tbody>
+          </table>
+         </div>
+      </div>
+      <div class="col-md-7 col-md-offset-1">
+        <% if @recommendation.blank? %>
+          <h3>No reviews just yet, would you like to add the first!</h3>
+          <%= link_to "recomende este professor", new_teacher_recommendation_path(@teacher), class: "btn btn-danger" %>
+          
+        <% else %>
+          <% @recommendation.each do |recommendation| %>
+          	<div class="reviews">
+              <p><%= recommendation.rating %></p>
+              <p><%= recommendation.descripition %></p>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+		
+<script>
+    $('.star-rating').raty({
+      path: '/assets/',
+      readOnly: true,
+      score: function() {
+            return $(this).attr('data-score');
+    }
+  });
+</script>

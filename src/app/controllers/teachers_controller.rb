@@ -10,7 +10,13 @@ class TeachersController < ApplicationController
 
  
   def show
-   
+      @recommendation = Recommendation.where(teacher_id: @teacher.id).order("created_at DESC")
+      
+    if @recommendantion.blank?
+      @avg_recommendantion = 0
+    else
+      @avg_recommendantion = @recommendantion.average(:rating).round(2)
+    end
   end
 
  
@@ -27,10 +33,9 @@ class TeachersController < ApplicationController
       end
     end
     if @create == true
-      #redirect_to teachers_path
-      @teacher = current_user.teachers.build
-      @teacher.user_id = current_user.id
-      
+       @teacher = current_user.teachers.build
+       @teacher.user_id = current_user.id
+
     end
     
   end
@@ -41,8 +46,9 @@ class TeachersController < ApplicationController
 
   
   def create
-    @teacher = current_user.teachers.build(teacher_params)
-
+      @teacher = current_user.teachers.build(teacher_params)
+      #@teacher = Teacher.new(teacher_params)
+      @teacher.user_id = current_user.id
     respond_to do |format|
       if @teacher.save
         format.html { redirect_to @teacher, notice: 'Teacher was successfully created.' }

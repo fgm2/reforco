@@ -2,12 +2,12 @@ Rails.application.routes.draw do
  
   resources :matter_teacher_students
   resources :matter_teachers
-  resources :recommendations
   resources :matters
   resources :area_of_knowledges
   resources :students
-  resources :teachers 
-  
+  resources :teachers do
+    resources :recommendations, except: [:show, :index]
+  end
 
   devise_for :users
   resources :users

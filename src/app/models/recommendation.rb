@@ -1,5 +1,6 @@
 class Recommendation < ActiveRecord::Base
-    
+    belongs_to :user
+    belongs_to :teacher
     RailsAdmin.config do |config|
         config.model "Recommendation" do
      
