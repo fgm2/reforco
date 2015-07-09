@@ -14,13 +14,16 @@
     
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-          <li><%= link_to "inicio", root_path,:method => :get, class: "active" %> </li>
+          <li><%= link_to "Início", root_path,:method => :get, class: "active" %> </li>
           <li><%= link_to "Professores", teachers_path, class: "active" %> </li>
-          <li><%= link_to "Aulas Disponiveis", "#", class: "active"%></li>
+          <li><%= link_to "Aulas Disponiveis", courses_path, class: "active"%></li>
           <% if user_signed_in? %>
             <!--<li><%= link_to "Professor", new_teacher_path, class: "active" %></li>-->
             <!--<li><%= link_to "Aluno", new_student_path, class: "active" %></li>-->
             <li><%= link_to "Meu Perfil", user_path(current_user.id), class: "active" %></li>
+            <% if current_user.admin? %>
+              <li><%= link_to 'Área Administrativa', rails_admin.dashboard_path, class: "active" %> </li>
+            <% end %>
             <li><%= link_to 'Sair', destroy_user_session_path, :method => :delete, class: "active" %> </li>
           <% end %>
 
