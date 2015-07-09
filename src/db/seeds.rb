@@ -23,18 +23,74 @@ end
 
 # --------------------
 
-# areaOfKnowledge = [
-#         {:name => 'Ciências Exatas e da Terra'},
-#         {:name => 'Ciências Biológicas'},
-#         {:name => 'Engenharias'},
-#         {:name => 'Ciências da Saúde'},
-#         {:name => 'Ciências Agrárias'},
-#         {:name => 'Ciências Sociais Aplicadas'},
-#         {:name => 'Ciências Humanas'},
-#         {:name => 'Linguística, Letras e Artes'},
-#         {:name => 'Outros'},
-#   	 ]
+teachers = [
+            {:formation => 'Tecnologo em Análise e Desenvolvimento de Sistemas', :user => User.find(2)},
+            {:formation => 'Tecnologo em Análise e Desenvolvimento de Sistemas', :user => User.find(3)},
+            {:formation => 'Bacharel em Sistemas de Informação', :user => User.find(4)},
+            {:formation => 'Bacharel em Matemática', :user => User.find(5)},
+  	    ]
 
-# areaOfKnowledge.each do |a|
-#   AreaOfKnowledge.create!(a)
-# end
+teachers.each do |t|
+  Teacher.create!(t)
+end
+
+# --------------------
+
+students = [
+            {:user => User.find(6)},
+            {:user => User.find(7)},
+            {:user => User.find(8)},
+  	    ]
+
+students.each do |s|
+  Student.create!(s)
+end
+
+# --------------------
+
+areaOfKnowledge = [
+        {:name => 'Ciências Exatas e da Terra'},
+        {:name => 'Ciências Biológicas'},
+        {:name => 'Engenharias'},
+        {:name => 'Ciências da Saúde'},
+        {:name => 'Ciências Agrárias'},
+        {:name => 'Ciências Sociais Aplicadas'},
+        {:name => 'Ciências Humanas'},
+        {:name => 'Linguística, Letras e Artes'},
+        {:name => 'Outros'},
+  	 ]
+
+areaOfKnowledge.each do |a|
+  AreaOfKnowledge.create!(a)
+end
+
+# --------------------
+
+matters = [
+    {:name => 'Português', :descripition =>'Aula de reforço de português', :areaOfKnowledge=> AreaOfKnowledge.find(8)},
+    {:name => 'Matemática', :descripition =>'Aula de reforço de Matemática', :areaOfKnowledge=> AreaOfKnowledge.find(1)},
+    {:name => 'Informática Básica', :descripition =>'Aula de reforço de Informática Básica',:areaOfKnowledge=> AreaOfKnowledge.find(1)},
+    {:name => 'Informática - Office', :descripition =>'Aula de reforço de Informática - Office', :areaOfKnowledge=> AreaOfKnowledge.find(1)},
+    {:name => 'Informática - POO', :descripition =>'Aula de reforço de Informática - POO', :areaOfKnowledge=> AreaOfKnowledge.find(1)},
+    {:name => 'Inglês Básico', :descripition =>'Aula de reforço de Inglês Básico', :areaOfKnowledge=> AreaOfKnowledge.find(8)},
+    {:name => 'Inglês Intermediário', :descripition =>'Aula de reforço de Inglês Intermediário', :areaOfKnowledge=> AreaOfKnowledge.find(8)},
+    {:name => 'Inglês Avançado', :descripition =>'Aula de reforço de Inglês Avançado', :areaOfKnowledge=> AreaOfKnowledge.find(8)},
+    ]
+
+matters.each do |m|
+  Matter.create!(m)
+end
+
+# --------------------
+
+recommendations = [
+    {:rating => 1, :descripition =>'Ruim'},
+    {:rating => 2, :descripition =>'Regular'},
+    {:rating => 3, :descripition =>'Bom'},
+    {:rating => 4, :descripition =>'Muito Bom'},
+    {:rating => 5, :descripition =>'Excelente'},
+    ]
+
+recommendations.each do |r|
+  Recommendation.create!(r)
+end
