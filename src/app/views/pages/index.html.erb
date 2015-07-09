@@ -2,32 +2,53 @@
       
     <div class="container-fluid">
 
-      <div class="jumbotron" >
-        <h1>Reforço</h1>
-        <p>Suas aulas de reforço agora com mais flexibilidade e qualidade!</p>
-        <p><a class="btn btn-primary btn-lg" href="teachers" role="button">Encontre seu professor &raquo;</a></p>
-        <p><a class="btn btn-primary btn-lg" href="Sobre o Reforço" role="button">Seja um professor &raquo;</a></p>
+      <div class="owl-carousel">
+        <div> 
+          <div class="jumbotron" >
+            <h1>Quer saber como podemos te ajudar?</h1>
+            <p>Suas aulas de reforço agora com mais flexibilidade e qualidade!</p>
+            <p><a class="btn btn-primary btn-lg" href="teachers" role="button">Encontre seu professor &raquo;</a></p>
+            <p><a class="btn btn-primary btn-lg" href="Sobre o Reforço" role="button">Seja um professor &raquo;</a></p>
+          </div> 
+      </div>
+        <div>
+          <div class="jumbotron" >
+            <h1>Aulas Particulares</h1>
+            <p>SOMOS O MAIOR PORTAL DE AULAS PARTICULARES DO BRASIL!</p>
+            <p><a class="btn btn-primary btn-lg" href="teachers" role="button">COM 7672 PROFESSORES DE QUALQUER MATÉRIA &raquo;</a></p>
+            <p><a class="btn btn-primary btn-lg" href="Sobre o Reforço" role="button">Entenda como funciona &raquo;</a></p>
+          </div> 
+        </div>
+        <div> 
+          <div class="jumbotron" >
+            <h1>Como Funciona</h1>
+            <p>Tenha aulas online com professores particulares de todo o Brasil!</p>
+            <!--<p><a class="btn btn-primary btn-lg" href="teachers" role="button">COM 7672 PROFESSORES DE QUALQUER MATÉRIA &raquo;</a></p>-->
+            <p><a class="btn btn-primary btn-lg" href="Sobre o Reforço" role="button">Duvidas Frequentes &raquo;</a></p>
+          </div>
+
+        </div>
       </div>
       
     </div>
 
     <div class="container">
-      
-<div class = "row">
-  <% @teachers.each do |teacher| %>
-    <div class="col-sm-6 col-md-3">
-      <div class= "thumbnail">
-        <%= link_to (image_tag teacher.user.avatar.url(:medium), class: 'avatar'), teacher %> <br>
-        <blockquote>
-          <p> <%= teacher.user.name %> </p>
-          <footer> <%= teacher.formation %> <br> <cite title="Source Title"><%= teacher.description %></cite></footer>
-        </blockquote>
-       
+      <h2><center>Conheça alguns de nossos Professores</center></h2>
+      <div class = "row">
+        <% @teachers.each do |teacher| %>
+          <div class="col-sm-6 col-md-3">
+            <div class= "thumbnail">
+              <%= link_to (image_tag teacher.user.avatar.url(:thumb), class: 'avatar'), teacher %> <br> thumb
+              <blockquote>
+                <p> <%= teacher.user.name %> </p>
+                <footer> <%= teacher.formation %> <br> <cite title="Source Title"><%= teacher.description %></cite></footer>
+              </blockquote>
+             
+            </div>
+            
+          </div>
+        <%end%>
       </div>
-      
-    </div>
-  <%end%>
-</div>
       
        
       <div class="row">

@@ -10,13 +10,29 @@ class TeachersController < ApplicationController
 
  
   def show
+   
   end
 
  
   def new
-    @teacher = current_user.teachers.build
-    @teacher.user_id = current_user.id
-
+    
+    @create = true   
+    id = current_user.id
+    @all_teacher = Teacher.all
+    @all_teacher.each do |t|
+      if t.user.id.to_s == id.to_s
+        @create = false
+        @t_id = t.id
+        redirect_to controller:'teachers', action: 'show', id: @t_id
+      end
+    end
+    if @create == true
+      #redirect_to teachers_path
+      @teacher = current_user.teachers.build
+      @teacher.user_id = current_user.id
+      
+    end
+    
   end
 
  

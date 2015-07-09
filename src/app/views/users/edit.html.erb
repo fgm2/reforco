@@ -1,6 +1,18 @@
-<h1>Editing User</h1>
+<% if (@user.id == current_user.id) %>
 
-<%= render 'form' %>
+    <h1>Editing User</h1>
+    
+    <%= render 'form' %>
+    
+    <%= link_to 'Show', @user %> |
+    <%= link_to 'Back', users_path %>
+<% else %>
+    <div class="container">
+        <div class="alert alert-danger fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Atenção!</strong> Você não tem permissão para realizar esta ação.
+        </div>
+        <%= link_to 'Voltar', :back %>
+    </div>
 
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+<% end %>

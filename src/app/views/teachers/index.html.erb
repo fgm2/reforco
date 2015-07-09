@@ -1,12 +1,5 @@
 <% if !user_signed_in? %>
-  <!--<div class= "jumbotron">-->
-  <!--  <h1 class="text-center"> Reforço</h1>-->
-  <!--    <div class = "container">-->
-  <!--      <p class="text-center"> Suas aulas de reforço agora com mais flexibilidade e qualidade!</p>-->
-  <!--     <%= button_to "Cadastre-se", new_user_registration_path, :class => "btn btn-primary btn-lg btn-block", :method => :get  %>-->
-  <!--      <button type="button" href=# class="btn btn-default btn-lg btn-block">Entenda como funciona</button>-->
-  <!--    </div>  -->
-  <!--</div>-->
+  
 <% end%>
 
 
@@ -14,6 +7,12 @@
   <% @teachers.each do |teacher| %>
     <div class="col-sm-6 col-md-3">
       <div class= "thumbnail">
+        
+       <!-- <%= link_to (image_tag teacher.user.avatar.url(:thumb), class: 'avatar'), teacher %> <br>
+        <blockquote><p> <%= teacher.formation %> </p>
+        <footer> <%= teacher.user.name %> <br> <cite title="Source Title"><%= teacher.description %></cite></footer>
+</blockquote>-->
+
         <%= link_to (image_tag teacher.user.avatar.url(:medium), class: 'avatar'), teacher %> <br>
         <blockquote>
           <p> <%= teacher.formation %> </p>

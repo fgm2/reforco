@@ -9,18 +9,18 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <%= link_to image_tag("logo.png", size: "160x55", alt: "Reforço WEB"), root_path, class: "navbar-brand" %>
+      <%= link_to image_tag("logo.png", size: "160x55", alt: "Reforço WEB"), root_path, :method => :get, class: "navbar-brand" %>
     </div
     
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-          <li><%= link_to "inicio", root_path, class: "active" %> </li>
+          <li><%= link_to "inicio", root_path,:method => :get, class: "active" %> </li>
           <li><%= link_to "Professores", teachers_path, class: "active" %> </li>
           <li><%= link_to "Aulas Disponiveis", "#", class: "active"%></li>
           <% if user_signed_in? %>
             <!--<li><%= link_to "Professor", new_teacher_path, class: "active" %></li>-->
             <!--<li><%= link_to "Aluno", new_student_path, class: "active" %></li>-->
-            <li><%= link_to "Meu Perfil", edit_user_registration_path, class: "active" %></li>
+            <li><%= link_to "Meu Perfil", user_path(current_user.id), class: "active" %></li>
             <li><%= link_to 'Sair', destroy_user_session_path, :method => :delete, class: "active" %> </li>
           <% end %>
 

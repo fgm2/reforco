@@ -1,6 +1,8 @@
- <h2> se ele ja tiver cadastrado como professor, mostra cadastro dele, <br>se n.. a foto de usuário e os campos>
- </h2>
+ <h2> </h2>
+
+<%= link_to (image_tag current_user.avatar.url(:thumb), class: 'avatar') %> <br>
 
 <%= render 'form' %>
+
 
 <%= link_to 'Back', teachers_path %>
