@@ -1,5 +1,11 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "owl.carousel";
+@import "owl.theme";
+
+
+// *= require owl.carousel
+// *= require owl.theme
 
 .register-form {
     width: 40%;

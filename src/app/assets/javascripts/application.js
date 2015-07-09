@@ -17,7 +17,14 @@
 //= require turbolinks
 //= require_tree .
 
+// usado para image slide na pagina inicial
+//= require owl.carousel
 
 $(document).ready(function() {
-    
+    $(".owl-carousel").owlCarousel({
+        autoPlay: true,
+        slideSpeed : 300,
+        paginationSpeed : 400,
+        singleItem:true   
+    });
 });
