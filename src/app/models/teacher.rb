@@ -32,6 +32,13 @@ class Teacher < ActiveRecord::Base
             configure :updated_at do
                 label 'Atualizado em'
             end
+            list do
+              field :id
+              field :user
+              field :formation
+              field :created_at
+              field :updated_at
+            end
         end
     end 
   

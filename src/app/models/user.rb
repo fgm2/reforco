@@ -34,6 +34,9 @@ class User < ActiveRecord::Base
             configure :password do
               label 'Senha'
             end
+            configure :avatar do
+              label 'Imagem do perfil'
+            end
             configure :password_confirmation do
               label 'Confirmação de senha'
             end
@@ -57,6 +60,12 @@ class User < ActiveRecord::Base
             end
             configure :last_sign_in_ip do
               label 'IP do último login'
+            end
+            configure :reset_password_sent_at do
+              label 'Redefinição de senha enviada em'
+            end
+            configure :remember_created_at do
+              label 'Redefinição de senha criada em'
             end
             
             list do
