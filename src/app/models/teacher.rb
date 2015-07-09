@@ -51,6 +51,7 @@ class Teacher < ActiveRecord::Base
                 #   help 'selecione um usuário.'
               end
               field :formation
+              field :description
             end
         end
     end 

@@ -23,6 +23,7 @@ class Matter < ActiveRecord::Base
           label 'Atualizado em'
       end
       list do
+        field :id
         field :name
         field :descripition
         field :areaOfKnowledge

@@ -1,7 +1,7 @@
 RailsAdmin.config do |config|
   
-  config.main_app_name = ["Reforço", "MPROF"]
-  config.main_app_name = Proc.new { |controller| [ "Reforço", "MPROF - #{controller.params[:action].try(:titleize)}" ] }
+  config.main_app_name = ["Reforço", "admin"]
+  config.main_app_name = Proc.new { |controller| [ "Reforço", "admin - #{controller.params[:action].try(:titleize)}" ] }
 
    config.actions do
     dashboard

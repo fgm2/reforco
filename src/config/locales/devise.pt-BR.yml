@@ -58,7 +58,7 @@ pt-BR:
   views:
   admin:
     home:
-      name: Home
+      name: Portal
     pagination:
       previous: "&laquo; Anterior"
       next: "Próximo &raquo;"

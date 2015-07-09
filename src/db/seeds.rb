@@ -69,18 +69,25 @@ end
 matters = [
     {:name => 'Português', :descripition =>'Aula de reforço de português', :areaOfKnowledge=> AreaOfKnowledge.find(8)},
     {:name => 'Matemática', :descripition =>'Aula de reforço de Matemática', :areaOfKnowledge=> AreaOfKnowledge.find(1)},
-    {:name => 'Informática Básica', :descripition =>'Aula de reforço de Informática Básica',:areaOfKnowledge=> AreaOfKnowledge.find(1)},
-    {:name => 'Informática - Office', :descripition =>'Aula de reforço de Informática - Office', :areaOfKnowledge=> AreaOfKnowledge.find(1)},
-    {:name => 'Informática - POO', :descripition =>'Aula de reforço de Informática - POO', :areaOfKnowledge=> AreaOfKnowledge.find(1)},
-    {:name => 'Inglês Básico', :descripition =>'Aula de reforço de Inglês Básico', :areaOfKnowledge=> AreaOfKnowledge.find(8)},
-    {:name => 'Inglês Intermediário', :descripition =>'Aula de reforço de Inglês Intermediário', :areaOfKnowledge=> AreaOfKnowledge.find(8)},
-    {:name => 'Inglês Avançado', :descripition =>'Aula de reforço de Inglês Avançado', :areaOfKnowledge=> AreaOfKnowledge.find(8)},
+    {:name => 'Informática', :descripition =>'Aula de reforço de Informática',:areaOfKnowledge=> AreaOfKnowledge.find(1)},
+    {:name => 'Inglês', :descripition =>'Aula de reforço de Inglês', :areaOfKnowledge=> AreaOfKnowledge.find(8)},
     ]
 
 matters.each do |m|
   Matter.create!(m)
 end
+# --------------------
 
+courses = [
+    {:name => 'Informática - Office', :matter =>Matter.find(3), :teacher=> Teacher.find(1)},
+    {:name => 'Informática - POO', :matter =>Matter.find(3), :teacher=> Teacher.find(2)},
+    {:name => 'Inglês Básico', :matter =>Matter.find(4), :teacher=> Teacher.find(2)},
+    {:name => 'Inglês Intermediário', :matter =>Matter.find(4), :teacher=> Teacher.find(3)},
+    ]
+
+courses.each do |c|
+  Course.create!(c)
+end
 # --------------------
 
 recommendations = [

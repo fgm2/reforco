@@ -10,8 +10,9 @@ class User < ActiveRecord::Base
   
   RailsAdmin.config do |config|
         config.model "User" do
+            navigation_label 'Básico'
             visible do
-                bindings[:controller].current_user.id == 1
+                bindings[:controller].current_user.admin
             end
             label "Usuário"
             label_plural "Usuários"
@@ -82,6 +83,9 @@ class User < ActiveRecord::Base
             end
             edit do
               field :name
+              field :email
+              field :password
+              field :password_confirmation
               field :avatar
               field :scholarity
               field :date_of_birth

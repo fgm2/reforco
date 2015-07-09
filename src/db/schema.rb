@@ -32,10 +32,9 @@ ActiveRecord::Schema.define(version: 20150709021637) do
   add_index "courses", ["teacher_id"], name: "index_courses_on_teacher_id"
 
   create_table "matter_teacher_students", force: :cascade do |t|
-    t.integer  "matter_id"
+    t.integer  "course_id"
     t.integer  "student_id"
-    t.integer  "teacher_id"
-    t.integer  "many"
+    t.integer  "hours"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -5,8 +5,8 @@
 <table>
   <thead>
     <tr>
-      <th>Names</th>
-      <th>Cpf</th>
+      <th><% RailsAdmin.config.model('User').field(:name).label%></th>
+      <th><% RailsAdmin.config.model('User').field(:cpf).label %></th>
       <th>Scholarity</th>
       <th>Fone</th>
       <th>Whatsapp</th>

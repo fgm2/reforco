@@ -12,52 +12,52 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br>
+    <%= f.label RailsAdmin.config.model('User').field(:name).label %><br>
     <%= f.text_field :name %>
   </div>
+  <div></div>
+    <%= f.label RailsAdmin.config.model('User').field(:avatar).label%><br />
+    <%= f.file_field :avatar %>
+  </div>
   <div class="field">
-    <%= f.label :cpf %><br>
+    <%= f.label RailsAdmin.config.model('User').field(:cpf).label %><br>
     <%= f.text_field :cpf %>
   </div>
   <div class="field">
-    <%= f.label :scholarity %><br>
+    <%= f.label RailsAdmin.config.model('User').field(:scholarity).label %><br>
     <%= f.text_field :scholarity %>
   </div>
   <div class="field">
-    <%= f.label :fone %><br>
+    <%= f.label RailsAdmin.config.model('User').field(:fone).label %><br>
     <%= f.text_field :fone %>
   </div>
   <div class="field">
-    <%= f.label :whatsapp %><br>
+    <%= f.label RailsAdmin.config.model('User').field(:whatsapp).label %><br>
     <%= f.text_field :whatsapp %>
   </div>
   <div class="field">
-    <%= f.label :skype %><br>
+    <%= f.label RailsAdmin.config.model('User').field(:skype).label %><br>
     <%= f.text_field :skype %>
   </div>
   <div class="field">
-    <%= f.label :addrress %><br>
+    <%= f.label RailsAdmin.config.model('User').field(:addrress).label %><br>
     <%= f.text_field :addrress %>
   </div>
   <div class="field">
-    <%= f.label :state %><br>
+    <%= f.label RailsAdmin.config.model('User').field(:state).label %><br>
     <%= f.text_field :state %>
   </div>
   <div class="field">
-    <%= f.label :country %><br>
+    <%= f.label RailsAdmin.config.model('User').field(:country).label %><br>
     <%= f.text_field :country %>
   </div>
   <div class="field">
-    <%= f.label :date_of_birth %><br>
+    <%= f.label RailsAdmin.config.model('User').field(:date_of_birth).label %><br>
     <%= f.date_select :date_of_birth %>
   </div>
   <div class="field">
-    <%= f.label :created_at %><br>
+    <%= f.label RailsAdmin.config.model('User').field(:created_at).label %><br>
     <%= f.datetime_select :created_at %>
-  </div>
-  <div></div>
-    <%= f.label :avatar %><br />
-    <%= f.file_field :avatar %>
   </div>
   <div class="actions">
     <%= f.submit %>

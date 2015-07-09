@@ -2,6 +2,7 @@ class Course < ActiveRecord::Base
     
     belongs_to :matter
     belongs_to :teacher
+    # validates_uniqueness_of :matter, :teacher, :message => "Você já cadastrou esssa aula!"
   
   RailsAdmin.config do |config|
         config.model "Course" do
