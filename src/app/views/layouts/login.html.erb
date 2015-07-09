@@ -1,0 +1,172 @@
+
+      <div id="modal1">
+        <div id="modal2">
+          <!--<span class="logmod__close">Close</span>-->
+        
+        
+        <div class="logmod__container rf-hide">
+      <ul class="logmod__tabs">
+        <li data-tabtar="lgm-2" class="current"><a href="#">Entrar</a></li>
+        <li data-tabtar="lgm-1"><a href="#">Cadastrar</a></li>
+      </ul>
+      <div class="logmod__tab-wrapper">
+      <div class="logmod__tab lgm-1">
+        <div class="logmod__heading">
+          <span class="logmod__heading-subtitle">Informe seus dados pessoais <strong>para criar uma conta</strong></span>
+        </div>
+        <div class="logmod__form">
+            
+            <form role="form" class="form-horizontal simform" id="new_user" enctype="multipart/form-data" action="/users" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="jQmmkNXKhvYTyoPGAM78Nuqjm119g9xd7/VMt/1GFnOe8x7w3UaBpjBBCaxwk7BJ/m3fFCxyeYbPNs0xhnc+Vw==">
+            
+            
+          <!--<form accept-charset="utf-8" action="/users" method="POST" class="simform">-->
+          
+            <div class="sminputs">
+              <div class="input full">
+                    <label class="string optional" for="user_name">NOME</label>
+                    <input class="string optional" size="50" maxlength="255" autofocus="autofocus" required="required" placeholder="informe seu nome" type="text" name="user[name]" id="user_name">
+              </div>
+            </div>
+            
+            <div class="sminputs">
+              <div class="input string optional">
+                <!--<label for="tipo">Tipo</label>-->
+                <label value="prof" for="tipo">Professor</label>
+                <input type="radio" name="tipo" id="tipo_true" value="true">
+                
+              </div>
+              
+              <div class="input string optional">
+                <label value="aluno" for="tipo">Aluno</label>
+                <input type="radio" name="tipo" id="tipo_false" value="false" checked="checked">
+              </div>
+              
+            </div>
+          
+            <div class="sminputs">
+              <div class="input full">
+                    <label class="string optional" for="user_email">Email</label>
+                    <input class="string optional" size="50" maxlength="255" autofocus="autofocus" required="required" placeholder="informe seu e-mail" type="email" value="" name="user[email]" id="user_email">
+                <!--<label class="string optional" for="user-name">Email*</label>-->
+                <!--<input class="string optional" maxlength="255" id="user-email" placeholder="Email" type="email" size="50" />-->
+              </div>
+            </div>
+            <div class="sminputs">
+              <div class="input string optional">
+                  
+                    <label class="string optional" for="user_password">SENHA</label>
+                    <input class="string optional" size="50" maxlength="255" autocomplete="off" placeholder="informe sua senha" type="password" name="user[password]" id="user_password">
+              </div>
+              <div class="input string optional">
+                  <label class="string optional" for="user_password_confirmation">CONFIRME A SENHA</label>
+                  <input class="string optional" autocomplete="off" placeholder="confirme sua senha" type="password" name="user[password_confirmation]" id="user_password_confirmation">
+                <!--<label class="string optional" for="user-pw-repeat">Comfirme a senha *</label>-->
+                <!--<input class="string optional" maxlength="255" id="user-pw-repeat" placeholder="confirme a senha" type="text" size="50" />-->
+              </div>
+            </div>
+            
+            <div class="actions simform__actions">
+              <input type="submit" name="commit" value="CRIAR CONTA" class="btn btn-success btn-block">
+              <span class="simform__actions-sidetext centered">Ao me cadastrar, confirmo que li e concordo com os <a class="special" href="/pages/termos" target="_blank" role="link">Termos de Uso</a></span>
+            </div>
+            
+            <!--<div class="simform__actions">-->
+            <!--  <input class="sumbit" name="commit" type="sumbit" value="CRIAR CONTA" />-->
+            <!--  <span class="simform__actions-sidetext">Ao me cadastrar, confirmo que li e concordo com os <a class="special" href="#" target="_blank" role="link">Termos de Uso</a></span>-->
+            <!--</div> -->
+          <!--</form>-->
+          
+</form>        </div> 
+        <!--<div class="logmod__alter">-->
+        <!--  <div class="logmod__alter-container">-->
+        <!--    <a href="#" class="connect facebook">-->
+        <!--      <div class="connect__icon">-->
+        <!--        <i class="fa fa-facebook"></i>-->
+        <!--      </div>-->
+        <!--      <div class="connect__context">-->
+        <!--        <span>Criar conta usando o <strong>Facebook</strong></span>-->
+        <!--      </div>-->
+        <!--    </a>-->
+              
+        <!--    <a href="#" class="connect googleplus">-->
+        <!--      <div class="connect__icon">-->
+        <!--        <i class="fa fa-google-plus"></i>-->
+        <!--      </div>-->
+        <!--      <div class="connect__context">-->
+        <!--        <span>Criar conta usando o <strong>Google+</strong></span>-->
+        <!--      </div>-->
+        <!--    </a>-->
+        <!--  </div>-->
+        <!--</div>-->
+      </div>
+      <div class="logmod__tab lgm-2 show">
+        <div class="logmod__heading">
+          <span class="logmod__heading-subtitle">Informe seu e-mail e senha <strong>para entrar</strong></span>
+        </div> 
+        <div class="logmod__form">
+            
+            <form role="form" class="simform" id="new_user" enctype="multipart/form-data" action="/users/sign_in" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="jQmmkNXKhvYTyoPGAM78Nuqjm119g9xd7/VMt/1GFnOe8x7w3UaBpjBBCaxwk7BJ/m3fFCxyeYbPNs0xhnc+Vw==">
+            
+          <!--<form accept-charset="utf-8" action="/users/sign_in.user" method="POST" class="simform">-->
+          
+            <div class="sminputs">
+              <div class="input full">
+                  <label class="string optional" for="user_email">Email</label>
+                  <input class="string optional" autofocus="autofocus" type="email" value="" name="user[email]" id="user_email">
+                  
+                <!--<label class="string optional" for="user-name">Email*</label>-->
+                <!--<input class="string optional" maxlength="255" id="user-email" placeholder="Email" type="email" size="50" />-->
+              </div>
+            </div>
+            <div class="sminputs">
+              <div class="input full">
+                  
+                  <label class="string optional" for="user_password">SENHA</label>
+                  <input class="string optional" autocomplete="off" type="password" name="user[password]" id="user_password">
+                <!--<label class="string optional" for="user-pw">Senha *</label>-->
+                <!--<input class="string optional" maxlength="255" id="user-pw" placeholder="Password" type="password" size="50" />-->
+                						<span class="hide-password">Show</span>
+              </div>
+            </div>
+            <div class="simform__actions">
+                
+                      <input name="user[remember_me]" type="hidden" value="0"><input class="string optional" type="checkbox" value="1" name="user[remember_me]" id="user_remember_me">
+                      <label class="string optional" for="user_remember_me">Remember me</label>
+                
+                  <div class="simform__actions">
+                    <input type="submit" name="commit" value="ENTRAR" class="btn btn-success btn-block">
+                  </div>
+                  
+              <!--<input class="sumbit" name="commit" type="sumbit" value="ENTRAR" />-->
+              <span class="simform__actions-sidetext"><a class="special" role="link" href="#">Esqueceu sua senha?<br>Clique aqui</a></span>
+            </div> 
+          <!--</form>-->
+</form>        </div> 
+        <!--<div class="logmod__alter">-->
+        <!--  <div class="logmod__alter-container">-->
+        <!--    <a href="#" class="connect facebook">-->
+        <!--      <div class="connect__icon">-->
+        <!--        <i class="fa fa-facebook"></i>-->
+        <!--      </div>-->
+        <!--      <div class="connect__context">-->
+        <!--        <span>Login com o <strong>Facebook</strong></span>-->
+        <!--      </div>-->
+        <!--    </a>-->
+        <!--    <a href="#" class="connect googleplus">-->
+        <!--      <div class="connect__icon">-->
+        <!--        <i class="fa fa-google-plus"></i>-->
+        <!--      </div>-->
+        <!--      <div class="connect__context">-->
+        <!--        <span>Login com o <strong>Google+</strong></span>-->
+        <!--      </div>-->
+        <!--    </a>-->
+        <!--  </div>-->
+        <!--</div>-->
+          </div>
+      </div>
+    </div>
+        
+        
+        
+        </div>
+      </div>

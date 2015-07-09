@@ -3,6 +3,11 @@
 <% end%>
 
 
+<% content_for :header do %>
+  <%= javascript_include_tag 'application' %>  
+<% end %>
+
+
 <div class = "row">
   <% @teachers.each do |teacher| %>
     <div class="col-sm-6 col-md-3">

@@ -28,4 +28,51 @@ $(document).ready(function() {
         paginationNumbers: true,
         singleItem:true   
     });
+    
+    
+     $(function() {
+
+$('#btnentrar').click(function(event) {
+    $('#modal1').addClass("logmod");
+    $('#modal2').addClass("logmod__wrapper");
+    $('.logmod__container').removeClass("rf-hide"); 
+    $('.logmod__close').focusin();
+	event.preventDefault();
+
+		$('.logmod').dialog({					
+			width: 600,
+            heigth: 600,
+			modal: true,
+			closeOnEscape: true,
+			dialogClass: ".rf-hide",
+			fadeIn: true,
+            //   buttons: [
+            //     { click: function() {
+            //           event.preventDefault();
+            //     $('#modal1').removeClass("logmod");
+            //     $('#modal2').removeClass("logmod__wrapper");
+            //     $('.logmod__container').addClass("rf-hide"); 
+            //         $( this ).dialog( "close" );
+            //       }
+            //     }
+            //   ]
+			close: function(event, ui) {
+			    event.preventDefault();
+                $('#modal1').removeClass("logmod");
+                $('#modal2').removeClass("logmod__wrapper");
+                $('.logmod__container').addClass("rf-hide"); 
+                $('.logmod').dialog('close');
+				}
+			});
+			
+		$(window).bind('keyup',function(e){
+            if(e.keyCode == 27) {
+                $('.logmod').dialog('close');
+                $('.logmod__container').fadeOut();
+            }
+        })
+    }); //close click
+});
+    
+    
 });
