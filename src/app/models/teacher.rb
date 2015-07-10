@@ -32,9 +32,6 @@ class Teacher < ActiveRecord::Base
                 label 'Atualizado em'
             end
             list do
-              include_fields_if do
-                name =~ /displayed/
-              end
               fields :id do
                 #   label do
                 #       "#{label} (timestamp)"
