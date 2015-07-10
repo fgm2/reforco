@@ -27,7 +27,7 @@
             
            <%= link_to (image_tag course.teacher.user.avatar.url(:thumb), class: 'avatar'), course.teacher %> <br>
             
-            <a href="<%= course.teacher %>" >
+            <a href="<%= teacher_path(course.teacher) %>" >
               <blockquote>
                   <p> <%= course.name %> </p>
                   <footer> 
