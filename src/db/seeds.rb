@@ -24,10 +24,10 @@ end
 # --------------------
 
 teachers = [
-            {:formation => 'Tecnologo em Análise e Desenvolvimento de Sistemas', :user => User.find(2), :description => 'Grande esperiência como professor.' },
-            {:formation => 'Tecnologo em Análise e Desenvolvimento de Sistemas', :user => User.find(3), :description => 'Apaixonado por dar aula e ensinar.'},
-            {:formation => 'Bacharel em Sistemas de Informação', :user => User.find(4), :description => 'Um especialista em tudo que é tecnologico.'},
-            {:formation => 'Bacharel em Matemática', :user => User.find(5), :description => 'A matemática está em tudo. Basta vc olhar.'},
+            {:university => 'Instituto Federal do Norte de Minas Gerais', :formation => 'Tecnologo em Análise e Desenvolvimento de Sistemas', :user => User.find(2), :description => 'Grande esperiência como professor.' },
+            {:university => 'Instituto Federal do Norte de Minas Gerais', :formation => 'Tecnologo em Análise e Desenvolvimento de Sistemas', :user => User.find(3), :description => 'Apaixonado por dar aula e ensinar.'},
+            {:university => 'Universidade Estadual de Montes Claros', :formation => 'Bacharel em Sistemas de Informação', :user => User.find(4), :description => 'Um especialista em tudo que é tecnologico.'},
+            {:university => 'Universidade Estadual de Montes Claros', :formation => 'Bacharel em Matemática', :user => User.find(5), :description => 'A matemática está em tudo. Basta vc olhar.'},
   	    ]
 
 teachers.each do |t|
