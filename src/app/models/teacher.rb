@@ -25,6 +25,9 @@ class Teacher < ActiveRecord::Base
             configure :description do
                 label 'Descrição'
             end
+            configure :university do
+                label 'Universidade'
+            end
             configure :created_at do
                 label 'Criado em'
             end
@@ -32,9 +35,6 @@ class Teacher < ActiveRecord::Base
                 label 'Atualizado em'
             end
             list do
-              include_fields_if do
-                name =~ /displayed/
-              end
               fields :id do
                 #   label do
                 #       "#{label} (timestamp)"
@@ -42,6 +42,7 @@ class Teacher < ActiveRecord::Base
               end
               field :id
               field :user
+              field :university
               field :formation
               field :created_at
               field :updated_at
@@ -51,6 +52,7 @@ class Teacher < ActiveRecord::Base
                 #   help 'selecione um usuário.'
               end
               field :formation
+              field :university
               field :description
             end
         end

@@ -7,7 +7,9 @@ class CreateUsers < ActiveRecord::Migration
       t.string :fone
       t.string :whatsapp
       t.string :skype
+      t.string :gender
       t.string :addrress
+      t.string :city
       t.string :state
       t.string :country
       t.date :date_of_birth

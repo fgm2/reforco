@@ -1,25 +1,57 @@
-<p id="notice"><%= notice %></p>
+<% content_for :header do %>
+  <%= javascript_include_tag 'application' %>  
+<% end %>
 
-<h1>Listing Courses</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="container">
+  
+  <p id="notice"><%= notice %></p>
+  
+  
+  <% if user_signed_in? %>
+  
+    <div class = "row">
+      <h3>Suas Aulas Contratadas</h3>
+    </div>
+    
+  <% end %>
+  
+  
+    <div class = "row">
+      <h3> Aulas em Destaque</h3>
+      <% @courses.each do |course| %>
+      
+        <div class="col-sm-6 col-md-3">
+          
+          <div class= "thumbnail">
+            
+           <%= link_to (image_tag course.teacher.user.avatar.url(:thumb), class: 'avatar'), course.teacher %> <br>
+            
+            <a href="<%= teacher_path(course.teacher) %>" >
+              <blockquote>
+                  <p> <%= course.name %> </p>
+                  <footer> 
+                      Prof.º <%= course.teacher.user.name %> <br> 
+                      <!--<cite title="Source Title"><%= course.teacher.formation %></cite> <br/>-->
+                  </footer>
+              </blockquote>
+            </a>
+            
+            <div class="container center-block">
+                <%= "R$" '%.2f' % course.value.to_f %> <br/>
+                <%= link_to "Agendar aula", "#", class: "btn btn-success" %>
+            </div>
+           
+          </div>
+          
+        </div>
+      <%end%>
+    </div>
+  
+  
+  
+  <br>
+  
+  <%= link_to 'New Course', new_course_path %>
 
-  <tbody>
-    <% @courses.each do |course| %>
-      <tr>
-        <td><%= link_to 'Show', course %></td>
-        <td><%= link_to 'Edit', edit_course_path(course) %></td>
-        <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Course', new_course_path %>
+</div>

@@ -39,22 +39,14 @@ ActiveRecord::Schema.define(version: 20150709021637) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "matter_teachers", force: :cascade do |t|
-    t.integer  "matter_id"
-    t.integer  "teacher_id"
-    t.float    "value"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "matter_teachers", ["matter_id"], name: "index_matter_teachers_on_matter_id"
-  add_index "matter_teachers", ["teacher_id"], name: "index_matter_teachers_on_teacher_id"
+  add_index "matter_teacher_students", ["course_id"], name: "index_matter_teacher_students_on_course_id"
+  add_index "matter_teacher_students", ["student_id"], name: "index_matter_teacher_students_on_student_id"
 
   create_table "matters", force: :cascade do |t|
     t.string   "name"
     t.text     "descripition"
-    t.datetime "created_at",         null: false
     t.integer  "areaOfKnowledge_id"
+    t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
   end
 
@@ -68,21 +60,21 @@ ActiveRecord::Schema.define(version: 20150709021637) do
   end
 
   create_table "students", force: :cascade do |t|
-    t.datetime "created_at",  null: false
-    t.integer  "user_id"
-    t.datetime "updated_at",  null: false
     t.text     "description"
-    t.text     "formation"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   add_index "students", ["user_id"], name: "index_students_on_user_id"
 
   create_table "teachers", force: :cascade do |t|
     t.string   "formation"
-    t.datetime "created_at",  null: false
-    t.integer  "user_id"
-    t.datetime "updated_at",  null: false
+    t.string   "university"
     t.text     "description"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   add_index "teachers", ["user_id"], name: "index_teachers_on_user_id"
@@ -94,7 +86,9 @@ ActiveRecord::Schema.define(version: 20150709021637) do
     t.string   "fone"
     t.string   "whatsapp"
     t.string   "skype"
+    t.string   "gender"
     t.string   "addrress"
+    t.string   "city"
     t.string   "state"
     t.string   "country"
     t.date     "date_of_birth"
@@ -110,7 +104,6 @@ ActiveRecord::Schema.define(version: 20150709021637) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.boolean  "is_female",              default: false
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
