@@ -4,22 +4,42 @@
 <title>Reforço</title>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    
+    <%= stylesheet_link_tag 'login', media: 'all', 'data-turbolinks-track' => true  %>
+    <%= javascript_include_tag 'login', 'data-turbolinks-track' => true %>
+    
     <%= csrf_meta_tags %>
 
 </head>
 
 <body>
+    
+    <% content_for :header do %>
+      <script type="text/javascript">
+        $(function() {
+          $('user_rating_positve').click(function() {
+            $('some_div').show();
+          }
+        });
+      </script>
+    <% end %>
+    
+    
     <div id="page">
         <%= render 'shared/navbar' %>
+        
+        <%= render file: 'layouts/login.html' %>
+        
         <div class = "content">
             <% flash.each do |name, msg| %>
                 <%= content_tag(:div, msg, class: "alert alert-info") %>
             <% end %>
-            
             <%= yield %>
             
         </div>
         <%= render 'shared/footer' %>
+        
+        <%= yield :header %> <!-- js files --->
     </div>
 </body>
 </html>
