@@ -8,27 +8,22 @@
     
   <% end%>
   
-  <div class = "row">
-    <% @teachers.each do |teacher| %>
-      <div class="col-sm-6 col-md-3">
-        <div class= "thumbnail">
-          
-         <!-- <%= link_to (image_tag teacher.user.avatar.url(:thumb), class: 'avatar'), teacher %> <br>
-          <blockquote><p> <%= teacher.formation %> </p>
-          <footer> <%= teacher.user.name %> <br> <cite title="Source Title"><%= teacher.description %></cite></footer>
-  </blockquote>-->
   
-          <%= link_to (image_tag teacher.user.avatar.url(:medium), class: 'avatar'), teacher %> <br>
-          <blockquote>
-            <p> <%= teacher.formation %> </p>
-            <footer> <%= teacher.user.name %> <br> <cite title="Source Title"><%= teacher.description %></cite></footer>
-          </blockquote>
-         
-        </div>
-        
+  <h2><span class="glyphicon glyphicon-name"></span>Professores</h2>
+      <div class = "row">
+        <% @teachers.each do |teacher| %>
+          <div class="col-sm-6 col-md-3">
+            <div class= "thumbnail">
+              <%= link_to (image_tag teacher.user.avatar.url(:thumb), class: 'avatar'), teacher %> <br> <!-- thumb -->
+              <blockquote>
+                <p> <%= teacher.user.name %> </p>
+                <footer> <%= teacher.formation %> <br> <cite title="Source Title"><%= teacher.description %></cite></footer>
+              </blockquote>
+            </div>
+            
+          </div>
+        <%end%>
       </div>
-    <%end%>
-  </div>
   
 
 </div>
