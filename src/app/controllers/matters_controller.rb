@@ -4,6 +4,7 @@ class MattersController < ApplicationController
   # GET /matters
   # GET /matters.json
   def index
+    @area_of_knowledges = AreaOfKnowledge.all.order(:name)
     @matters = Matter.all
   end
 

@@ -67,10 +67,12 @@ end
 # --------------------
 
 matters = [
-    {:name => 'Português', :descripition =>'Aula de reforço de português', :areaOfKnowledge=> AreaOfKnowledge.find(8)},
-    {:name => 'Matemática', :descripition =>'Aula de reforço de Matemática', :areaOfKnowledge=> AreaOfKnowledge.find(1)},
-    {:name => 'Informática', :descripition =>'Aula de reforço de Informática',:areaOfKnowledge=> AreaOfKnowledge.find(1)},
-    {:name => 'Inglês', :descripition =>'Aula de reforço de Inglês', :areaOfKnowledge=> AreaOfKnowledge.find(8)},
+    {:name => 'Português', :descripition =>'Aula de português.', :areaOfKnowledge=> AreaOfKnowledge.find(8)},
+    {:name => 'Matemática', :descripition =>'Aula de Matemática.', :areaOfKnowledge=> AreaOfKnowledge.find(1)},
+    {:name => 'Informática', :descripition =>'Aula de Informática.',:areaOfKnowledge=> AreaOfKnowledge.find(1)},
+    {:name => 'Inglês', :descripition =>'Aula de reforço de Inglês.', :areaOfKnowledge=> AreaOfKnowledge.find(8)},
+    {:name => 'Álgebra', :descripition =>'Aula de álgebra', :areaOfKnowledge=> AreaOfKnowledge.find(1)},
+    {:name => 'Análise Combinatória, probabilidade e estatística', :descripition =>'Aula de Análise Combinatória, probabilidade e estatística.', :areaOfKnowledge=> AreaOfKnowledge.find(1)},
     ]
 
 matters.each do |m|
