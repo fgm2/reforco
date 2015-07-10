@@ -5,14 +5,7 @@ class RecommendationsController < ApplicationController
 
   # GET /recommendations
   # GET /recommendations.json
-  def index
-    @recommendations = Recommendation.all
-  end
-
-  # GET /recommendations/1
-  # GET /recommendations/1.json
-  def show
-  end
+ 
 
   # GET /recommendations/new
   def new

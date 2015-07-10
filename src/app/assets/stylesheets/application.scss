@@ -1,6 +1,13 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+.reviews {
+	padding: 15px 0;
+	border-bottom: 1px solid #EAEAEA;
+	.star-rating {
+		padding-bottom: 8px;
+	}
+}
 .register-form {
     width: 40%;
     height: 20%;
