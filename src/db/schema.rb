@@ -42,17 +42,6 @@ ActiveRecord::Schema.define(version: 20150709021637) do
   add_index "matter_teacher_students", ["course_id"], name: "index_matter_teacher_students_on_course_id"
   add_index "matter_teacher_students", ["student_id"], name: "index_matter_teacher_students_on_student_id"
 
-  create_table "matter_teachers", force: :cascade do |t|
-    t.integer  "matter_id"
-    t.integer  "teacher_id"
-    t.float    "value"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "matter_teachers", ["matter_id"], name: "index_matter_teachers_on_matter_id"
-  add_index "matter_teachers", ["teacher_id"], name: "index_matter_teachers_on_teacher_id"
-
   create_table "matters", force: :cascade do |t|
     t.string   "name"
     t.text     "descripition"
@@ -71,7 +60,7 @@ ActiveRecord::Schema.define(version: 20150709021637) do
   end
 
   create_table "students", force: :cascade do |t|
-    t.string   "description"
+    t.text     "description"
     t.integer  "user_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
@@ -81,7 +70,8 @@ ActiveRecord::Schema.define(version: 20150709021637) do
 
   create_table "teachers", force: :cascade do |t|
     t.string   "formation"
-    t.string   "description"
+    t.string   "university"
+    t.text     "description"
     t.integer  "user_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false

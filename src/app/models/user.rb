@@ -11,9 +11,9 @@ class User < ActiveRecord::Base
   RailsAdmin.config do |config|
         config.model "User" do
             navigation_label 'Básico'
-            visible do
-                bindings[:controller].current_user.admin
-            end
+            # visible do
+            #     bindings[:controller].current_user.admin
+            # end
             label "Usuário"
             label_plural "Usuários"
             configure :name do

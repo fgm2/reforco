@@ -2,8 +2,6 @@ class Student < ActiveRecord::Base
         belongs_to :user
         validates_uniqueness_of :user_id, :message => "Você já é um estudante"
         # has_many :AreaOfKnowledge
-    # has_many :matter_teacher_student
-    # has_many :matter_teacher, :through => :matter_teacher_student
     
     # accepts_nested_attributes_for :AreaOfKnowledge, 
     #                              reject_if: proc{ |attributes| attributes ['name'].blank?},
@@ -20,9 +18,6 @@ class Student < ActiveRecord::Base
             configure :description do
                 label 'Descrição'
             end
-            configure :formation do
-                label 'Formação'
-            end
             configure :created_at do
                 label 'Criado em'
             end
@@ -31,7 +26,6 @@ class Student < ActiveRecord::Base
             end
             edit do
               field :user
-              field :formation
               field :description
             #   field :areaOfKnowledge
             end
