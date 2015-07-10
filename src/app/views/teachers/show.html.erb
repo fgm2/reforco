@@ -4,8 +4,8 @@
     <div class="row">
       <div class="col-md-4">
         <%= image_tag @teacher.user.avatar.url(:medium), class: "avatar" %>
-        <div class="star-rating" data-score= <%= @avg_recommendantion %> ></div>
-        <em><%= "#{@recommendation.length} recommendations" %></em>
+        <div class="star-rating" data-score= <%= @avg_recommendation %> ></div>
+        <em><%= "#{@recommendations.length} Avaliações" %></em>
         <div class="table-responsive">
           <table class="table">
             <tbody>
@@ -39,12 +39,12 @@
          </div>
       </div>
       <div class="col-md-7 col-md-offset-1">
-        <% if @recommendation.blank? %>
+        <% if @recommendations.blank? %>
           <h3>No reviews just yet, would you like to add the first!</h3>
           <%= link_to "recomende este professor", new_teacher_recommendation_path(@teacher), class: "btn btn-danger" %>
           
         <% else %>
-          <% @recommendation.each do |recommendation| %>
+          <% @recommendations.each do |recommendation| %>
           	<div class="reviews">
           	  <div class="star-rating" data-score= <%= recommendation.rating %> ></div>
               <p><%= recommendation.descripition %></p>

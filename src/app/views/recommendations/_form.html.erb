@@ -12,25 +12,20 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :rating %><br>
-    <%= f.number_field :rating %>
-   <div id="star-rating"></div>
+     <div id="star-rating"></div>
   </div>
   <div class="field">
     <%= f.label :descripition %><br>
     <%= f.text_area :descripition %>
   </div>
-  <div class="field">
-    <%= f.label :created_at %><br>
-    <%= f.datetime_select :created_at %>
-  </div>
+ 
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
 
-<script>
-    $('.star-rating').raty({
+<script >
+    $('#star-rating').raty({
       path: '/assets/',
       scoreName: 'recommendation[rating]'
     });

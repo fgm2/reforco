@@ -10,12 +10,12 @@ class TeachersController < ApplicationController
 
  
   def show
-      @recommendation = Recommendation.where(teacher_id: @teacher.id).order("created_at DESC")
+      @recommendations = Recommendation.where(teacher_id: @teacher.id).order("created_at DESC")
       
-    if @recommendantion.blank?
-      @avg_recommendantion = 0
+    if @recommendations.blank?
+      @avg_recommendation = 0
     else
-      @avg_recommendantion = @recommendantion.average(:rating).round(2)
+      @avg_recommendation = @recommendations.average(:rating).round(2)
     end
   end
 
