@@ -1,62 +1,91 @@
+<div class="container"></div>
+
+<div class="container">
+
 <p id="notice"><%= notice %></p>
+<div class= "row">
+  
+  <dic class= "col-md-12">
+    <h1><%= @user.name %></h1>
+  </dic>
+  
+  <div class= "col-md-3">
+    
+    <div class= "panel panel-default">
+      <div class="panel-heading">
+        <!--<h3 class="panel-title">Foto</h3>-->
+      </div>
+      <div class="panel-body">
+        <div class="container">
+         <img class= "avatar" src="<%= @user.avatar %>" class="img-responsive">
+        </div>
+      </div>
+    </div>
+    
+    <div class= "panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Contatos</h3>
+      </div>
+      <div class="panel-body">
+        <div class="container">
+          <d1>
+            <p>
+              <dt>Telefone:</dt>
+              <dd><%= @user.fone %></dd>
+            </p>
+            <p>
+              <dt>Whatsapp:</dt>
+              <dd><%= @user.whatsapp %></dd>
+            </p>
+            <p>
+              <dt>Skype:</dt>
+              <dd><%= @user.skype %></dd>
+            </p>
+          </d1>  
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Dados Gerais</h3>
+      </div>
+      <div class="panel-body">
+        <p>
+          <dt>Data de Nascimento</dt>
+          <dd><%= @user.date_of_birth %></dd>
+        </p>
+        <p>
+          <dt>Cpf:</dt>
+          <dd><%= @user.cpf %></dd>
+        </p>
+        <p>
+          <dt>Escolaridade</dt>
+          <dd><%= @user.scholarity %></dd>
+        </p>
+        
+        <dt>Endereço</dt>
+          <dd>
+            <address>
+              <%= @user.addrress %><br>
+              <%= @user.country %>, <%= @user.state %><br>
+            </address>  
+        </dd>
+      </div>
+    </div>
+  </div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
+</div>
+  
+<div class="container">  
 
-<p>
-  <strong>Cpf:</strong>
-  <%= @user.cpf %>
-</p>
+  <% if (@user.id == current_user.id ) %>
+    <%= link_to 'Edit', edit_user_path(@user), class:"btn btn-primary btn-lg active"%> |
+  <% end %>  
 
-<p>
-  <strong>Scholarity:</strong>
-  <%= @user.scholarity %>
-</p>
+  <%= link_to 'Back', users_path, class:"btn btn-default btn-lg active" %>
 
-<p>
-  <strong>Fone:</strong>
-  <%= @user.fone %>
-</p>
-
-<p>
-  <strong>Whatsapp:</strong>
-  <%= @user.whatsapp %>
-</p>
-
-<p>
-  <strong>Skype:</strong>
-  <%= @user.skype %>
-</p>
-
-<p>
-  <strong>Addrress:</strong>
-  <%= @user.addrress %>
-</p>
-
-<p>
-  <strong>State:</strong>
-  <%= @user.state %>
-</p>
-
-<p>
-  <strong>Country:</strong>
-  <%= @user.country %>
-</p>
-
-<p>
-  <strong>Date of birth:</strong>
-  <%= @user.date_of_birth %>
-</p>
-
-<p>
-  <strong>Created at:</strong>
-  <%= @user.created_at %>
-</p>
-
-<% if (@user.id == current_user.id ) %>
-  <%= link_to 'Edit', edit_user_path(@user) %> |
-<% end %>  
-
-<%= link_to 'Back', users_path %>
+</div>
