@@ -6,8 +6,8 @@ class Course < ActiveRecord::Base
   
   RailsAdmin.config do |config|
         config.model "Course" do
-            label "Aula oferecida"
-            label_plural "Aulas oferecidas"
+            label "Aula Oferecida"
+            label_plural "Aulas Oferecidas"
             
             configure :name do
               label 'Nome'
