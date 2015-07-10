@@ -2,60 +2,56 @@
   <%= javascript_include_tag 'application' %>  
 <% end %>
 
-<p id="notice"><%= notice %></p>
 
-
-<% if user_signed_in? %>
+<div class="container">
   
-  <div class = "row">
-    <h3>Suas Aulas Contratadas</h3>
-    
-  </div>
+  <p id="notice"><%= notice %></p>
   
   
-<% end %>
-
-
-  <div class = "row">
-    
-    <h3> Aulas em Destaque</h3>
-    
-    <% @courses.each do |course| %>
-      <div class="col-sm-6 col-md-3">
-        <div class= "thumbnail">
-          
-         <%= link_to (image_tag course.teacher.user.avatar.url(:thumb), class: 'avatar'), course.teacher %> <br>
-          <blockquote>
-              <p> <%= course.name %> </p>
-              <footer> 
-                  Prof.º <%= course.teacher.user.name %> <br> 
-                  <cite title="Source Title"><%= course.teacher.formation %></cite> <br/>
-                  R$<%= course.value %>
-              </footer>
-              <div class="container rfbtAgendar">
-                <%= link_to "Agendar aula", "#", class: "btn btn-success" %>
-              </div>
-          </blockquote>
-         
-        </div>
-        
-      </div>
-    <%end%>
-  </div>
+  <% if user_signed_in? %>
   
-  <div class="container">
-    <div class="row">
-        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5" style="background-color:red;">Span 5</div>
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="background-color:blue">Span 3</div>
-        <div class="col-lg-2 col-md-2 col-sm-3 col-xs-2" style="padding:0px">
-            <div class="short-div" style="background-color:green">Span 2</div>
-            <div class="short-div" style="background-color:purple">Span 2</div>
+    <div class = "row">
+      <h3>Suas Aulas Contratadas</h3>
     </div>
-    <div class="col-lg-2 col-md-2 col-sm-3 col-xs-2" style="background-color:yellow">Span 2</div>
+    
+  <% end %>
+  
+  
+    <div class = "row">
+      <h3> Aulas em Destaque</h3>
+      <% @courses.each do |course| %>
+      
+        <div class="col-sm-6 col-md-3">
+          
+          <div class= "thumbnail">
+            
+           <%= link_to (image_tag course.teacher.user.avatar.url(:thumb), class: 'avatar'), course.teacher %> <br>
+            
+            <a href="<%= course.teacher %>" >
+              <blockquote>
+                  <p> <%= course.name %> </p>
+                  <footer> 
+                      Prof.º <%= course.teacher.user.name %> <br> 
+                      <!--<cite title="Source Title"><%= course.teacher.formation %></cite> <br/>-->
+                  </footer>
+              </blockquote>
+            </a>
+            
+            <div class="container center-block">
+                <%= "R$" '%.2f' % course.value.to_f %> <br/>
+                <%= link_to "Agendar aula", "#", class: "btn btn-success" %>
+            </div>
+           
+          </div>
+          
+        </div>
+      <%end%>
+    </div>
+  
+  
+  
+  <br>
+  
+  <%= link_to 'New Course', new_course_path %>
+
 </div>
-
-
-
-<br>
-
-<%= link_to 'New Course', new_course_path %>
