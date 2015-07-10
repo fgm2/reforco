@@ -1,40 +1,34 @@
-<% if !user_signed_in? %>
-  
-<% end%>
-
-
 <% content_for :header do %>
-  <%= javascript_include_tag 'application' %>  
+    <%= javascript_include_tag 'application' %>  
 <% end %>
 
+<div class="container">
 
-<div class = "row">
-  <% @teachers.each do |teacher| %>
-    <div class="col-sm-6 col-md-3">
-      <div class= "thumbnail">
-        
-       <!-- <%= link_to (image_tag teacher.user.avatar.url(:thumb), class: 'avatar'), teacher %> <br>
-        <blockquote><p> <%= teacher.formation %> </p>
-        <footer> <%= teacher.user.name %> <br> <cite title="Source Title"><%= teacher.description %></cite></footer>
-</blockquote>-->
-
-        <%= link_to (image_tag teacher.user.avatar.url(:medium), class: 'avatar'), teacher %> <br>
-        <blockquote>
-          <p> <%= teacher.formation %> </p>
+  <% if !user_signed_in? %>
+    
+  <% end%>
+  
+  <div class = "row">
+    <% @teachers.each do |teacher| %>
+      <div class="col-sm-6 col-md-3">
+        <div class= "thumbnail">
+          
+         <!-- <%= link_to (image_tag teacher.user.avatar.url(:thumb), class: 'avatar'), teacher %> <br>
+          <blockquote><p> <%= teacher.formation %> </p>
           <footer> <%= teacher.user.name %> <br> <cite title="Source Title"><%= teacher.description %></cite></footer>
-        </blockquote>
-       
+  </blockquote>-->
+  
+          <%= link_to (image_tag teacher.user.avatar.url(:medium), class: 'avatar'), teacher %> <br>
+          <blockquote>
+            <p> <%= teacher.formation %> </p>
+            <footer> <%= teacher.user.name %> <br> <cite title="Source Title"><%= teacher.description %></cite></footer>
+          </blockquote>
+         
+        </div>
+        
       </div>
-      
-    </div>
-  <%end%>
+    <%end%>
+  </div>
+  
+
 </div>
-
-
-
-
-
-
-
-
-
