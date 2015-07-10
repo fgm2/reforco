@@ -1,0 +1,154 @@
+
+<% if user_signed_in? %>
+  
+ <ul class="nav nav-tabs">
+  <li class="active"><a href="#">Visualizar</a></li>
+  <li><a href="#">Editar</a></li>
+</ul>
+  
+<% end %>
+
+
+<div class="container">
+		
+		<div class="row">
+			
+			<div class="col-md-12">
+				<h1> <%= @teacher.name %> </h1>
+			</div>
+			
+			<div class="col-md-3">
+				
+				<div class="panel panel-default">
+		            <div class="panel-heading">
+		            	<!--<h3 class="panel-title">Foto</h3>-->
+					</div>
+					<div class="panel-body">
+						<div class="container">
+							<%= link_to (image_tag @teacher.user.avatar.url(:medium), class: 'avatar img-thumbnail'), "#" %>
+						</div>
+					</div>
+				</div>
+				
+				<div class="panel panel-default">
+		            <div class="panel-heading">
+		            	<h3 class="panel-title">Contatos</h3>
+					</div>
+					<div class="panel-body">
+						<div class="container">
+							<p>e-mail: <%= @teacher.user.email %> </p>
+							<p>Telefone: <%= @teacher.user.fone %> </p>
+						</div>
+					</div>
+				</div>
+				
+				
+			</div>
+			<div class="col-md-6">
+				<div class="panel panel-default">
+		                    <div class="panel-heading">
+		                        <h3 class="panel-title">Detalhes</h3>
+		                    </div>
+		                    <div class="panel-body">
+		                        <h3><%= @teacher.formation %></h3>
+		                        <p>
+		                        </p><div class="price">
+		                            Unicamp
+		                        </div><p></p>
+		                        <h3>Sobre o professor</h3>
+		
+		                        <p>
+		                            <%= @teacher.description %>
+		                        </p> <br>
+		                        <div>
+		<!--                        <p style='float:left;'><i title='Recomendações Positivas' class='fa fa-thumbs-o-up' ></i> 1</p>
+		                            <p style='float:left;'>&nbsp;<i title='Recomendações Negativas' class='fa fa-thumbs-o-down'></i> 0</p>-->
+		                            <p align="right"> &nbsp;&nbsp;&nbsp;<i title="Quantidade de aulas dadas" class="fa fa-graduation-cap"></i>
+		                                3</p>
+		                        </div>
+		                    </div>
+		                </div>
+				
+			</div>
+			
+			<div class="col-md-3">
+				
+					<div class="panel panel-default">
+						
+			            <div class="panel-heading">
+			            	<h3 class="panel-title">Aulas Disponíveis</h3>
+						</div> <!--panel-heading-->
+						
+						<div class="panel-body">
+							
+							<div class="row">
+								<% @aulas.each do |aula| %>
+								
+									<div class="col-md-12">
+										<%= link_to aula.name, aula %>
+									</div>
+
+								<% end %>
+								
+							</div>
+						</div>
+					</div> <!--panel-->
+				
+			</div>
+		
+		</div> <!--row 1-->
+		
+		<div class="row">
+			
+			<div class="col-md-9">
+				<div class="panel panel-default">
+		            <div class="panel-heading">
+		            	<h3 class="panel-title">Estatisticas</h3>
+					</div>
+					<div class="panel-body">
+						
+						
+						
+						
+						<div class="row">
+                            <div class="col-sm-4">
+                                <div class="value">
+                                    <h1 class="count">
+                                        <%= @aulas_realizadas.count %>
+                                    </h1>
+                                    <p>Quantidade de Aulas</p>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <div class="value">
+                                    
+                                    <h1 class="count">
+          	                         	<%= @horas_aulas %>
+											
+                                    </h1>
+                                    <p>Tempo de Aula (HH:MM:SS)</p>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <div class="value">
+                                    <h1 class="count">
+                                        100.00                                        %
+                                    </h1>
+                                    <p>Percentual de Avaliações Positivas</p>
+                                </div>
+                            </div>
+                        </div>
+						
+						
+						
+						
+						
+					</div>
+				</div>
+			</div>
+			
+		</div> <!--row2-->
+		
+</div>  <!--container-->
