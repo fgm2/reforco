@@ -15,9 +15,9 @@
 		<div class="col-md-4">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-	  			  	<h4> <%= link_to (ak.name), ak %> </h4>
+					<% @matter_of_ak = Matter.where( "areaOfKnowledge_id = ? ", ak.id) %>
+	  			  	<h4> <%= link_to (ak.name), ak %> <span class="badge"> <%= @matter_of_ak.count %> </span> </h4>
 	  			</div>
-	  			<% @matter_of_ak = Matter.where( "areaOfKnowledge_id = ? ", ak.id) %>
 	  			<div class="panel-body">
 					<div class="container">
 		        		<% @matter_of_ak.each_with_index do |materias, index| %>
