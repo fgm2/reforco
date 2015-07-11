@@ -1,0 +1,57 @@
+<% content_for :header do %>
+  <%= javascript_include_tag 'application' %>  
+<% end %>
+
+
+<div class="container">
+  
+  <p id="notice"><%= notice %></p>
+  
+  
+  <% if user_signed_in? %>
+  
+    <!--<div class = "row">-->
+    <!--  <h3>Suas Aulas Contratadas</h3>-->
+    <!--</div>-->
+    
+  <% end %>
+  
+  
+    <div class = "row">
+        <div class="col-sm-6 col-md-12">
+          <h3> Novo Agendamento com <%= @prof.user.name %></h3>
+        </div>
+      
+        <div class="col-sm-6 col-md-2">
+            <%= image_tag @curso.teacher.user.avatar.url(:thumb), class: 'avatar' %>
+        
+        </div>
+        <div class="col-sm-6 col-md-3">
+            
+            <form role="form">
+              <div class="form-group">
+                <label for="horas">Duração da Aula:</label>
+                <select class="form-control" id="materias" name="duracao">
+                    <option value="" selected="selected">Selecione uma duração...</option>
+                    <option value="1">1 hora</option>
+                    <option value="2">3 horas</option>
+                    <option value="3">3 horas</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="pwd">Password:</label>
+                <input type="password" class="form-control" id="pwd">
+              </div>
+              <div class="checkbox">
+                <label><input type="checkbox"> Remember me</label>
+              </div>
+              <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+
+        </div>
+          
+    </div>
+    
+    <hr>
+
+</div>

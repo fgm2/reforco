@@ -60,6 +60,12 @@ class CoursesController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def agendamento
+    @curso = Course.find(params[:course_id])
+    @prof = @curso.teacher
+    render "courses/agendamento"
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
