@@ -21,7 +21,8 @@
 	  			<div class="panel-body">
 					<div class="container">
 		        		<% @matter_of_ak.each_with_index do |materias, index| %>
-		  			  		<%= link_to (materias.name), materias %>
+							<% courses_of_matter = Course.where( "matter_id = ? ", materias.id) %>
+		  			  		<%= link_to (materias.name) , materias %> <span class="badge"> <%= courses_of_matter.count %> </span> 
 		  			  		<% if @matter_of_ak.last %> <br> <% end %>
 		  			  	<% end %>
 					</div>
