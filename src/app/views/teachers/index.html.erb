@@ -1,6 +1,7 @@
 <% content_for :header do %>
-    <%= javascript_include_tag 'application' %>  
+    <%= javascript_include_tag 'application' %>
 <% end %>
+
 
 <div class="container">
 
@@ -8,22 +9,112 @@
     
   <% end%>
   
-  
-  <h2><span class="glyphicon glyphicon-name"></span>Professores</h2>
+  <div class="row">
+      <div class="col-md-12">
+          <h1>Professores</h1>
+          <hr>
+      </div>
       <div class = "row">
-        <% @teachers.each do |teacher| %>
-          <div class="col-sm-6 col-md-3">
-            <div class= "thumbnail">
-              <%= link_to (image_tag teacher.user.avatar.url(:thumb), class: 'avatar'), teacher %> <br> <!-- thumb -->
-              <blockquote>
-                <p> <%= teacher.user.name %> </p>
-                <footer> <%= teacher.formation %> <br> <cite title="Source Title"><%= teacher.description %></cite></footer>
-              </blockquote>
+        
+        <div class="col-md-2">
+          
+          <p class="text-justify">Encontramos <strong><%= @teachers.count %> professores cadastrados</strong> que atendem seus critérios de pesquisa.</p>
+          
+          <hr>
+          
+          <form role="form" method: "GET">
+            <div class="form-group">
+              <label for="sel1">Área de Conhecimento</label>
+              <%= collection_select(:area, :id, @areas, :id, :name,{prompt: "Selecione uma área"}, {class: "form-control"}) %>
+            </div>
+            <div class="form-group">
+              <label for="sel2">Matéria</label>
+              <%= collection_select(:materia, :id, @materias, :id, :name,{prompt: "Selecione uma matéria"}, {class: "form-control"}) %>
             </div>
             
-          </div>
-        <%end%>
+            <%= button_to "Filtrar", "", {class: "btn btn-success btn-block" } %>
+            <!--<%= button_tag "Checkout", data: { disable_with: "Please wait...", class: "btn btn-success btn-block" } %>-->
+          </form>
+          
+          
+        </div>
+        
+         <div class="col-sm-6 col-md-10">
+          <div class="row">
+            <% @teachers.each do |teacher| %>
+              
+              <a href="<%= teacher_path(teacher.id) %>">
+                <div class="col-sm-6 col-md-3" style="padding-bottom: 10px;">
+                  
+                  <div class="row">
+                    
+                    
+                <!--    <div class="panel panel-default">-->
+          		    <!--        <div class="panel-heading">-->
+          		    <!--        	<h3 class="panel-title"><%= teacher.user.name %></h3>-->
+          					 <!--     </div>-->
+              		<!--			<div class="panel-body">-->
+              		<!--				<div class="container">-->
+              						  
+              		<!--					<%= link_to (image_tag teacher.user.avatar.url(:thumb), class: 'avatar', alt: teacher.name), teacher %>-->
+              		<!--					<span class="label label-success">-->
+                <!--                <span class="glyphicon glyphicon-thumbs-up"></span> -->
+                <!--                   <span class="badge">7</span>-->
+                <!--             </span>-->
+                <!--            <span class="label label-danger">-->
+                <!--              <span class="glyphicon glyphicon-thumbs-down"></span> -->
+                <!--                 <span class="badge">3</span>-->
+                <!--            </span>-->
+                            
+              		<!--				</div>-->
+              		<!--			</div>-->
+          				  <!--</div>-->
+                    
+                    <div class="col-md-6">
+                      <div class= "container">
+                        <%= link_to (image_tag teacher.user.avatar.url(:thumb), class: 'avatar', alt: teacher.name, style: "width: 75x; height: 75px;"), teacher %>   
+                      </div>
+                    </div>
+                    
+                    <div class="col-md-6 text-center">
+                      <div class="row" >
+                        <span class="label label-primary"><%= teacher.user.name %></span>
+                      </div>
+                      
+                      <div class="row">
+                         <div class="col-md-6">
+                             <span class="label label-success">
+                                <span class="glyphicon glyphicon-thumbs-up"></span> 
+                                   <span class="badge">7</span>
+                             </span>
+                         </div>
+                         
+                         <div class="col-md-6">   
+                           <span class="label label-danger">
+                            <span class="glyphicon glyphicon-thumbs-down"></span> 
+                               <span class="badge">3</span>
+                         </span>
+                         </div>
+                         
+                      </div>
+                      
+                    </div>
+                    
+                  </div>
+                </div>
+              </a>
+              <%end%>
+            
+            </div>
+            
+            <hr>
+            
+          </div>  
+            
       </div>
-  
+      
+      
+      
+  </div> <!--row-->
 
-</div>
+</div> <!--container-->

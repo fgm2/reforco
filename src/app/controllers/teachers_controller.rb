@@ -5,7 +5,26 @@ class TeachersController < ApplicationController
 
  
   def index
-    @teachers = Teacher.all
+    
+    if (params[:materia]) && (params[:materia][:id])
+      
+        materia_id = params[:materia][:id] if  !params[:materia][:id].nil?
+        @teachers  = Teacher.joins('LEFT OUTER JOIN courses ON teachers.id = courses.teacher_id').where("courses.id IN (?)", 
+              Course.where("matter_id =  ?",materia_id).select(:id))
+    end
+    if (params[:area]) && (params[:area][:id])
+      area_id = params[:area][:id] if !params[:area][:id].nil?
+        @areas = AreaOfKnowledge.joins(' JOIN matters ON area_of_knowledges.id = matters.areaOfKnowledge_id').distinct
+        @materias = Matter.where("matters.areaOfKnowledge_id = ? ", area_id )
+        @teachers  = Teacher.joins('LEFT OUTER JOIN courses ON teachers.id = courses.teacher_id').where("courses.id IN (?)", 
+              Course.where("matter_id IN (?) ", Matter.where("matters.areaOfKnowledge_id = ? ", area_id).select(:id) ).select(:id))
+    end
+      
+      @teachers ||= Teacher.all
+      @areas ||= AreaOfKnowledge.joins(' JOIN matters ON area_of_knowledges.id = matters.areaOfKnowledge_id').distinct
+      @materias ||= Matter.all
+    
+    
   end
 
  
