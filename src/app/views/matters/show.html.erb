@@ -4,12 +4,12 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 	  			  	<h4> Matéria: <b><%= @matter.name %></b> </h4>
-	  			  	<p> Quantidade de Cursos relacionados: <b><%= @courses.count %></b></p>
+	  			  	<p> Quantidade de aulas relacionadas: <b><%= @courses.count %></b></p>
 	  		</div>
   			<div class="panel-body">
   				<div class="container">
   	        		<% @courses.each_with_index do |c, index| %>
-  	  			  		Curso: <%= link_to (c.name), c %> 
+  	  			  		Aula: <%= link_to (c.name), c %> 
   	  			  		<p>Prof. <%= link_to (c.teacher.name), c.teacher %> - 
   	  			  	  Valor por Hora: <b><%=  "R$" '%.2f' %c.value.to_f  %></b>   <%= link_to "Agendar aula", "#", class: "btn btn-success" %></p>
   	  			  		<% if @courses.last %> <br> <% end %>
@@ -25,7 +25,7 @@
 	  			  	<br>
 	  			  	<h5> Matéria: <b><%= @matter.name %></b> </h5>
 	  			  	<h5> Área do conhecimento: <b><%= @matter.areaOfKnowledge.name %></b> </h5>
-	  			  	<p> Quantidade de cursos: <b><%= @courses.count %></b></p>
+	  			  	<p> Quantidade de aulas: <b><%= @courses.count %></b></p>
 	  			  	<p> Quantidade de professores: <b><%= @teachers.count %></b></p>
 	  	</div>
 	  </div>
