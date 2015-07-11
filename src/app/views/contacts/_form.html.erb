@@ -10,28 +10,31 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :subject %><br>
-    <%= f.text_field :subject %>
-  </div>
-  <div class="field">
-    <%= f.label :message %><br>
-    <%= f.text_area :message %>
-  </div>
-  <div class="field">
-    <%= f.label :created_at %><br>
-    <%= f.datetime_select :created_at %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="container">
+	  <div class="row">
+	    <div class="col-md-4" aling="center">
+			  <div class="panel panel-default">
+				  <div class="panel-heading">
+				    <div class="form-group">
+              <label>Nome</label>
+              <input type="text" class="form-control" name="contact[name]" id="contact_name">
+            </div>
+            <div class="form-group">
+              <label >E-mail</label>
+              <input type="email" class="form-control" name="contact[email]" id="contact_email">
+            </div>
+            <div class="form-group">
+              <label >Assunto</label>
+              <input type="text" class="form-control" name="contact[subject]" id="contact_subject">
+            </div>
+            <div class="form-group">
+              <label >Mensagem</label>
+              <textarea class="form-control" name="contact[message]" id="contact_message">  </textarea>
+            </div>
+              <button type="submit" class="btn btn-primary">Enviar</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 <% end %>
