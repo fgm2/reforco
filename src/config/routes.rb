@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
  
+  resources :contacts
+  resources :contacts
   resources :matter_teacher_students
   resources :matter_teachers
   resources :recommendations
