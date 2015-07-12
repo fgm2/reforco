@@ -17,8 +17,9 @@ class StudentsController < ApplicationController
 
   # GET /students/new
   def new
-    @student = current_user.students.build
-    @student.user_id = current_user.id
+    @student = Student.new
+    # @student = current_user.students.build
+    # @student.user_id = current_user.id
   end
 
   # GET /students/1/edit
@@ -28,7 +29,8 @@ class StudentsController < ApplicationController
   # POST /students
   # POST /students.json
   def create
-    @student =current_user.students.build(student_params)
+    @student = Student.new(student_params)
+    # @student =current_user.students.build(student_params)
 
     respond_to do |format|
       if @student.save
