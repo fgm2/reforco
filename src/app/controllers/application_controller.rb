@@ -1,4 +1,9 @@
 class ApplicationController < ActionController::Base
+  # Prevent CSRF attacks by raising an exception.
+  # For APIs, you may want to use :null_session instead.
+  protect_from_forgery with: :exception
+  before_filter :configure_permitted_parameters, if: :devise_controller?
+  
   
   def is_student(id)
     Student.where("user_id = ? ", id).select(:id).count == 1
@@ -8,15 +13,18 @@ class ApplicationController < ActionController::Base
     Teacher.where("user_id = ? ", id).select(:id).count == 1
   end
   
+  def agendamentos_path
+      "/cursos/agendamento/"
+  end
+  
+  def agendamento_path(id)
+      "/cursos/agendamento/#{id}"
+  end
+  
   helper_method :is_student
   helper_method :is_teacher
-  
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :exception
-  before_filter :configure_permitted_parameters, if: :devise_controller?
-
-
+  helper_method :agendamentos_path
+  helper_method :agendamento_path
   
   protected
 
