@@ -67,14 +67,14 @@
         <div class="col-sm-6 col-md-6">
             
             
-            <form role="form" method="POST" action="">
+            <form role="form" method="POST" action="<%= "/courses/agendamento" %>">
             
             <div class="row">
             
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="horas">Duração da Aula:</label>
-                  <select class="form-control" id="materias" name="duracao">
+                  <select class="form-control" id="duracao" name="duracao">
                       <option value="" selected="selected">Selecione uma duração...</option>
                       <option value="1">1 hora</option>
                       <option value="2">2 horas</option>
@@ -85,13 +85,13 @@
                 
                 <div class="form-group">
                   <label for="date">informe as possíveis datas:</label>
-                  <input type="date" class="form-control" id="date1">
+                  <input type="date" class="form-control" id="date1" name="date1">
                 </div>
                 <div class="form-group">
-                  <input type="date" class="form-control" id="date2">
+                  <input type="date" class="form-control" id="date2" name="date2">
                 </div>
                 <div class="form-group">
-                  <input type="date" class="form-control" id="date3">
+                  <input type="date" class="form-control" id="date3" name="date3">
                 </div>
 
               </div>
@@ -105,6 +105,9 @@
               </div>
               
               <div class="row">
+                <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
+                <input id="user_id" name="user_id" type="hidden" value="<%= current_user.id %>" >
+                <input  id="id_curso" name="id_curso" type="hidden" value="<%= @curso.id %>" >
                 <button type="submit" class="btn btn-success btn-block" style="  width: 90%; margin-left: 30px;" >
                     Agendar Aula
                 </button>
