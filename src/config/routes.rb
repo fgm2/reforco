@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
- 
+  
+  get '/Search/' => 'searches#search'
+  post '/Search/' => 'searches#result'
+  
   resources :contacts
-  resources :contacts  # repetido??
   resources :matter_teacher_students
   resources :matter_teachers
   resources :recommendations

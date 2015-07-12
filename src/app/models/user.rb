@@ -95,4 +95,9 @@ class User < ActiveRecord::Base
             end
         end
     end
+    
+  def self.search(search)
+    search_condition = "%" + search + "%"
+    where('name LIKE ? OR cpf LIKE ?', search_condition, search_condition)
+  end
 end
