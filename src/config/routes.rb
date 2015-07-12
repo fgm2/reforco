@@ -10,8 +10,9 @@ Rails.application.routes.draw do
   resources :students
   resources :teachers
   
-  get "/courses/agendamento" => "courses#agendamento"
-  get "/courses/agendamento/:course_id" => "courses#agendamento"
+  # rotas personalizadas - Agendamento de Aulas
+  get   "/courses/agendamento/:course_id" => "courses#agendamento"
+  post  "/courses/agendamento/:course_id" => "courses#agendamento_save"
   resources :courses 
   
 
