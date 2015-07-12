@@ -62,11 +62,16 @@ ActiveRecord::Schema.define(version: 20150711051441) do
   add_index "matters", ["areaOfKnowledge_id"], name: "index_matters_on_areaOfKnowledge_id"
 
   create_table "recommendations", force: :cascade do |t|
-    t.integer  "rating"
+    t.boolean  "rating"
     t.text     "descripition"
+    t.integer  "course_id"
+    t.integer  "student_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
+
+  add_index "recommendations", ["course_id"], name: "index_recommendations_on_course_id"
+  add_index "recommendations", ["student_id"], name: "index_recommendations_on_student_id"
 
   create_table "students", force: :cascade do |t|
     t.text     "description"

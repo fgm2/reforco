@@ -1,4 +1,6 @@
 class Recommendation < ActiveRecord::Base
+    belongs_to :course
+    belongs_to :student
     
     RailsAdmin.config do |config|
         config.model "Recommendation" do
@@ -12,6 +14,12 @@ class Recommendation < ActiveRecord::Base
                 configure :descripition do
                     label 'Descrição'
                 end
+                configure :course do
+                    label 'Aula'
+                end
+                configure :student do
+                    label 'Aluno'
+                end
                 configure :created_at do
                     label 'Criado em'
                 end
@@ -21,12 +29,16 @@ class Recommendation < ActiveRecord::Base
                 list do
                     field :rating
                     field :descripition
+                    field :course
+                    field :student
                     field :created_at
                     field :updated_at
                 end
                 edit do
                     field :rating
                     field :descripition
+                    field :course
+                    field :student
                 end
         end
     end
