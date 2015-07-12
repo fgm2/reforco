@@ -1,7 +1,7 @@
 class MatterTeacherStudent < ActiveRecord::Base
       belongs_to :course  # Course.exists?(:course =>self.course)
       belongs_to :student # Course.exists?(:student =>self.student)
-      validates :course, uniqueness: {scope: :student, :message => " Prezado aluno, você já contratou este curso!"}
+    #   validates :course, uniqueness: {scope: :student, :message => " Prezado aluno, você já contratou este curso!"}
 
  
       RailsAdmin.config do |config|
