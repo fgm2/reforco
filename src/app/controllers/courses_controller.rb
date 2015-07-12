@@ -9,7 +9,7 @@ class CoursesController < ApplicationController
     
     @courses = Course.where("id NOT IN (?) ", @destaques.select(:id).distinct)
     
-    if is_student(current_user.id)
+    if ( (user_signed_in?) and (is_student(current_user.id)) )
     # if @aluno.valid?
       @aluno = Student.where("user_id = ? ",current_user.id).first
       @suas_aulas = MatterTeacherStudent.where("student_id = ? ", @aluno.id )
@@ -77,7 +77,11 @@ class CoursesController < ApplicationController
   def agendamento
     @curso = Course.find(params[:course_id])
     @prof = @curso.teacher
-    @aluno = Student.where("user_id = ? ", current_user.id)
+    if (user_signed_in?)
+      @aluno = Student.where("user_id = ? ", current_user.id)
+    else
+      @aluno = nil
+    end
     # render "courses/agendamento"
   end
   
