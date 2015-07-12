@@ -2,7 +2,7 @@ class Recommendation < ActiveRecord::Base
     belongs_to :course
     belongs_to :student
     validates :course, uniqueness: {scope: :student, :message => " Prezado aluno, você já recomendou este curso!" } 
-    validates :rating, inclusion: { in: %w(0 1), message: "%{value} não é válido! Informe 0 ou 1" }
+    # validates :rating, inclusion: { in: %w(0 1), message: "%{value} não é válido! Informe 0 ou 1" }
  
     # validate :existCourse
 
