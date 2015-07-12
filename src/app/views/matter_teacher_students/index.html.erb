@@ -5,10 +5,8 @@
 <table>
   <thead>
     <tr>
-      <th>Matter</th>
-      <th>Teacher</th>
+      <th>Course</th>
       <th>Student</th>
-      <th>Many</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,10 +14,8 @@
   <tbody>
     <% @matter_teacher_students.each do |matter_teacher_student| %>
       <tr>
-        <td><%= matter_teacher_student.matter_id %></td>
-        <td><%= matter_teacher_student.teacher_id %></td>
-        <td><%= matter_teacher_student.student_id %></td>
-        <td><%= matter_teacher_student.many %></td>
+        <td><%= matter_teacher_student.course.name %></td>
+        <td><%= matter_teacher_student.student.name %></td>
         <td><%= link_to 'Show', matter_teacher_student %></td>
         <td><%= link_to 'Edit', edit_matter_teacher_student_path(matter_teacher_student) %></td>
         <td><%= link_to 'Destroy', matter_teacher_student, method: :delete, data: { confirm: 'Are you sure?' } %></td>
