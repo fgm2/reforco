@@ -164,10 +164,10 @@ end
 # --------------------
 
 recommendations = [
-    {:rating => true, :descripition =>'Ótima aula', :course => Course.find(1), :student => Student.find(1)},
-    {:rating => true, :descripition =>'Muito bom mesmo. recomendo!', :course => Course.find(2), :student => Student.find(2)},
-    {:rating => false, :descripition =>'Não gostei do material nem da didatica.', :course => Course.find(4), :student => Student.find(3)},
-    {:rating => true, :descripition =>'Melhor impossivel.', :course => Course.find(4), :student => Student.find(1)},
+    {:rating => 1, :descripition =>'Ótima aula', :course => Course.find(1), :student => Student.find(1)},
+    {:rating => 1, :descripition =>'Muito bom mesmo. recomendo!', :course => Course.find(2), :student => Student.find(2)},
+    {:rating => 0, :descripition =>'Não gostei do material nem da didatica.', :course => Course.find(4), :student => Student.find(3)},
+    {:rating => 1, :descripition =>'Melhor impossivel.', :course => Course.find(4), :student => Student.find(1)},
     ]
 
 recommendations.each do |r|
