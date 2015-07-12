@@ -16,7 +16,9 @@
       <ul class="nav navbar-nav">
           <li><%= link_to "Início", root_path,:method => :get, class: "active" %> </li>
           <li><%= link_to "Professores", teachers_path, class: "active" %> </li>
-          <li><%= link_to "Aulas Disponiveis", courses_path, class: "active"%></li>
+          <li><%= link_to "Materias", "/matters/", class: "active"%></li>
+          <li><%= link_to "Aulas", "/cursos/", class: "active"%></li>
+          
           <% if user_signed_in? %>
             <!--<li><%= link_to "Professor", new_teacher_path, class: "active" %></li>-->
             <!--<li><%= link_to "Aluno", new_student_path, class: "active" %></li>-->

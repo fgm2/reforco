@@ -4,12 +4,28 @@ class CoursesController < ApplicationController
   # GET /courses
   # GET /courses.json
   def index
-    @courses = Course.all
+    
+    @destaques =  Course.order("RANDOM()").limit(4).distinct
+    
+    @courses = Course.where("id NOT IN (?) ", @destaques.select(:id).distinct)
+    
+    if ( (user_signed_in?) and (is_student(current_user.id)) )
+    # if @aluno.valid?
+      @aluno = Student.where("user_id = ? ",current_user.id).first
+      @suas_aulas = MatterTeacherStudent.where("student_id = ? ", @aluno.id )
+    else
+      @suas_aulas = nil
+    end
   end
 
   # GET /courses/1
   # GET /courses/1.json
   def show
+    # @curso = Course.find(params[:id])
+    # @alunos_id = MatterTeacherStudent.where("course_id = ? ", @course.id ).select(:student_id)
+    # @alunos = Student.where("id IN (?) ", @alunos_id )
+    @alunos = Student.joins("JOIN matter_teacher_students ON students.id = matter_teacher_students.student_id ").
+                      where("matter_teacher_students.course_id = ?", @course.id)
   end
 
   # GET /courses/new
@@ -66,8 +82,12 @@ class CoursesController < ApplicationController
   def agendamento
     @curso = Course.find(params[:course_id])
     @prof = @curso.teacher
-    @aluno = Student.where("user_id = ? ", current_user.id)
-    render "courses/agendamento"
+    if (user_signed_in?)
+      @aluno = Student.where("user_id = ? ", current_user.id)
+    else
+      @aluno = nil
+    end
+    # render "courses/agendamento"
   end
   
   # POST /courses/agendamento/
