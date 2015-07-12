@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
   
   def index
-    @teachers = Teacher.all
+    @teachers = Teacher.all.limit(4)
   end
   
   def show
