@@ -21,6 +21,11 @@ class CoursesController < ApplicationController
   # GET /courses/1
   # GET /courses/1.json
   def show
+    # @curso = Course.find(params[:id])
+    # @alunos_id = MatterTeacherStudent.where("course_id = ? ", @course.id ).select(:student_id)
+    # @alunos = Student.where("id IN (?) ", @alunos_id )
+    @alunos = Student.joins("JOIN matter_teacher_students ON students.id = matter_teacher_students.student_id ").
+                      where("matter_teacher_students.course_id = ?", @course.id)
   end
 
   # GET /courses/new
