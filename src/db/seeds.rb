@@ -139,8 +139,8 @@ end
 # --------------------
 
 courses = [
-    {:name => 'Informática - Office', :matter =>Matter.find(15), :teacher=> Teacher.find(1), :value => 50},
-    {:name => 'Informática - POO', :matter =>Matter.find(15), :teacher=> Teacher.find(2), :value => 65},
+    {:name => 'LibreOffice Básico', :matter =>Matter.find(15), :teacher=> Teacher.find(1), :value => 50},
+    {:name => 'Programação Orientada a Objetos', :matter =>Matter.find(15), :teacher=> Teacher.find(2), :value => 65},
     {:name => 'Inglês Básico', :matter =>Matter.find(41), :teacher=> Teacher.find(2), :value => 44},
     {:name => 'Inglês Intermediário', :matter =>Matter.find(41), :teacher=> Teacher.find(3), :value => 85},
     ]
@@ -164,11 +164,10 @@ end
 # --------------------
 
 recommendations = [
-    {:rating => 1, :descripition =>'Ruim'},
-    {:rating => 2, :descripition =>'Regular'},
-    {:rating => 3, :descripition =>'Bom'},
-    {:rating => 4, :descripition =>'Muito Bom'},
-    {:rating => 5, :descripition =>'Excelente'},
+    {:rating => true, :descripition =>'Ótima aula', :course => Course.find(1), :student => Student.find(1)},
+    {:rating => true, :descripition =>'Muito bom mesmo. recomendo!', :course => Course.find(2), :student => Student.find(2)},
+    {:rating => false, :descripition =>'Não gostei do material nem da didatica.', :course => Course.find(4), :student => Student.find(3)},
+    {:rating => true, :descripition =>'Melhor impossivel.', :course => Course.find(4), :student => Student.find(1)},
     ]
 
 recommendations.each do |r|
