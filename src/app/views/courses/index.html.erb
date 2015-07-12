@@ -12,28 +12,21 @@
       <div class="row">
       <% if is_teacher(current_user.id) %>
       
+           <div class = "col-md-12">
+               <%= render "teacher" %>
+           </div> <!--col-md-12-->   
+           
       <% else %>
       
           <% if is_student(current_user.id) %>
       
               <div class = "col-md-12">
-                
-                <div class="well">
-                  <h1>Suas Aulas Contratadas</h1>
-                
-                  <% if !@suas_aulas.nil? %>
-                      <% @suas_aulas.each do |aulas| %>
-                       <%= link_to(aulas.name, "/courses/agendamento/#{aulas.course.id}") %> <br>
-                      <% end %>
-                  <% end %>
-                  
-                  </div>   <!--well-->
+                 <%= render "student" %>
               </div> <!--col-md-12-->
           <% end %>
-          <!--if is_student-->
+
           
       <% end %>
-      <!--if is_teacher-->
     </div>
   <% end %>
   <!--if user_signed_in-->
@@ -52,9 +45,9 @@
           
           <div class= "thumbnail"  style= " height: 248px;">
             
-           <%= link_to (image_tag course.teacher.user.avatar.url(:thumb), class: 'avatar', style: "width: 75x; height: 75px;" ), course.teacher %> <br>
+           <%= link_to (image_tag course.teacher.user.avatar.url(:thumb), class: 'avatar', style: "width: 75x; height: 75px;" ), course_path(course.id) %> <br>
             
-            <a href="<%= teacher_path(course.teacher) %>" >
+            <a href="<%= course_path(course.id) %>" >
               <blockquote>
                 <div class="small"
                   <p> <%= course.name %> </p>
@@ -67,10 +60,10 @@
             </a>
             
             <div class="content text-center">
-                <strong><%= "R$" '%.2f' % course.value.to_f %> </strong> <br/>
+                <strong><%= "R$" '%.2f' % course.value.to_f %> </strong> / hora <br/>
                <form role="form">
                   <div class="form-group">
-                    <%= link_to "Agendar aula", "/courses/agendamento/#{course.id}", class: "btn btn-success", style:"padding: 1px 74px;" %>
+                    <%= link_to "Agendamento", "#{agendamento_path(course.id)}", class: "btn btn-success", style:"padding: 1px 74px;" %>
                    <!--new_matter_teacher_student_path-->
                   </div>
                 </form>
@@ -95,7 +88,7 @@
             <div class"well">
                 <div class="col-md-6">
                   <div class= "thumbnail">
-                     <%= link_to (image_tag course.teacher.user.avatar.url(:thumb), class: 'avatar', size: "50x50"), "/courses/agendamento/#{course.id}" %> <br>
+                     <%= link_to (image_tag course.teacher.user.avatar.url(:thumb), class: 'avatar', size: "50x50"), course_path(course.id) %> <br>
                   </div>
                 </div>
                 <div class="col-md-6 small">
@@ -115,17 +108,5 @@
     </div>
       
 </div>
-    
-    
-      
-       
-       
- 
-  
- 
-  
-  <!--<% if current_user.admin? %>-->
-  <!--  <%= link_to 'Novo Curso', new_course_path %>-->
-  <!--<% end %>-->
 
 </div>

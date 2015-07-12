@@ -19,17 +19,25 @@
   
     <div class = "row">
         <div class="col-sm-6 col-md-12">
-          <h3> Novo Agendamento: <h5><%= "#{@curso.name} , #{@prof.user.name}" %></h5></h3>
+          <h1> Novo Agendamento: <h5><%= "#{@curso.name} , #{@prof.user.name}" %></h5></h1>
           <hr>
         </div>
       
         <div class="col-sm-6 col-md-2">
-            <%= image_tag @curso.teacher.user.avatar.url(:thumb), class: 'avatar' %>
-            <h4 class="text-center">
-                <%= "#{@prof.user.name}" %>
-            </h4>
+            <div class="thumbnail">
+              <%= image_tag @curso.teacher.user.avatar.url(:thumb), class: 'avatar', style: "width: 75x; height: 75px;" %>
+            </div>
             
-            <div class="row">
+
+                <div class="well">
+                  
+                    <h4 class="text-center">
+                        <%= "#{@prof.user.name}" %>
+                    </h4>
+                  
+                  
+                  
+                    <div class="row">
                          <div class="col-md-6">
                              <span class="label label-success">
                                 <span class="glyphicon glyphicon-thumbs-up"></span> 
@@ -45,12 +53,15 @@
                          </div>
                          
                       </div>
+                      
+                      
+                </div>
         
         </div>
         <div class="col-sm-6 col-md-3">
           
             <div class="well">
-              <strong>Curso: </strong><%= @curso.name %> <br>
+              <h4><strong><%= @curso.name %></strong></h4>
               
               <strong>Valor (hora): </strong> <%= "R$" '%.2f' % @curso.value.to_f %>
             </div>
