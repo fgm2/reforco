@@ -139,10 +139,10 @@ end
 # --------------------
 
 courses = [
-    {:name => 'LibreOffice Básico', :matter =>Matter.find(15), :teacher=> Teacher.find(1), :value => 50},
-    {:name => 'Programação Orientada a Objetos', :matter =>Matter.find(15), :teacher=> Teacher.find(2), :value => 65},
-    {:name => 'Inglês Básico', :matter =>Matter.find(41), :teacher=> Teacher.find(2), :value => 44},
-    {:name => 'Inglês Intermediário', :matter =>Matter.find(41), :teacher=> Teacher.find(3), :value => 85},
+    {:name => 'LibreOffice Básico', :matter =>Matter.find(15), :teacher=> Teacher.find(1), :description => 'Curso básico da suit de escritório LibreOffice.', :value => 21},
+    {:name => 'Programação Orientada a Objetos', :matter =>Matter.find(15), :teacher=> Teacher.find(2), :description => 'Curso sobre todas as caracteristicas básicas e avançadas de Programação Orientada a Objetos.', :value => 18},
+    {:name => 'Inglês Básico', :matter =>Matter.find(41), :teacher=> Teacher.find(2),  :description => 'Curso básico de inglês.',:value => 23},
+    {:name => 'Inglês Intermediário', :matter =>Matter.find(41), :teacher=> Teacher.find(3), :description => 'Curso de inglês intermediário', :value => 85},
     ]
 
 courses.each do |c|
