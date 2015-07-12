@@ -4,7 +4,18 @@ class CoursesController < ApplicationController
   # GET /courses
   # GET /courses.json
   def index
-    @courses = Course.all
+    
+    @destaques =  Course.order("RANDOM()").limit(4).distinct
+    
+    @courses = Course.where("id NOT IN (?) ", @destaques.select(:id).distinct)
+    
+    if is_student(current_user.id)
+    # if @aluno.valid?
+      @aluno = Student.where("user_id = ? ",current_user.id).first
+      @suas_aulas = MatterTeacherStudent.where("student_id = ? ", @aluno.id )
+    else
+      @suas_aulas = nil
+    end
   end
 
   # GET /courses/1
@@ -67,7 +78,7 @@ class CoursesController < ApplicationController
     @curso = Course.find(params[:course_id])
     @prof = @curso.teacher
     @aluno = Student.where("user_id = ? ", current_user.id)
-    render "courses/agendamento"
+    # render "courses/agendamento"
   end
   
   # POST /courses/agendamento/
