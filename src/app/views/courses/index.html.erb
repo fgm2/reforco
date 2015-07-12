@@ -37,9 +37,17 @@
               </blockquote>
             </a>
             
+            
+           
+            
             <div class="container center-block">
                 <%= "R$" '%.2f' % course.value.to_f %> <br/>
-                <%= link_to "Agendar aula", "#", class: "btn btn-success" %>
+               <form role="form">
+                  <div class="form-group">
+                    <%= link_to "Agendar aula", "/courses/agendamento/#{course.id}", class: "btn btn-success", style:"padding: 1px 74px;" %>
+                   <!--new_matter_teacher_student_path-->
+                  </div>
+                </form>
             </div>
            
           </div>

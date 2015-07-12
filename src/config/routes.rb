@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
  
   resources :contacts
-  resources :contacts
+  resources :contacts  # repetido??
   resources :matter_teacher_students
   resources :matter_teachers
   resources :recommendations
@@ -9,6 +9,10 @@ Rails.application.routes.draw do
   resources :area_of_knowledges
   resources :students
   resources :teachers
+  
+  # rotas personalizadas - Agendamento de Aulas
+  get   "/courses/agendamento/:course_id" => "courses#agendamento"
+  post  "/courses/agendamento/" => "courses#agendamento_save"
   resources :courses 
   
 

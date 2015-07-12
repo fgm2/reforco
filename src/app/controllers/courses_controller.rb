@@ -60,6 +60,38 @@ class CoursesController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  
+  # GET /courses/agendamento/:course_id
+  def agendamento
+    @curso = Course.find(params[:course_id])
+    @prof = @curso.teacher
+    @aluno = Student.where("user_id = ? ", current_user.id)
+    render "courses/agendamento"
+  end
+  
+  # POST /courses/agendamento/
+  def agendamento_save
+
+    horas = params[:duracao]
+    @user = User.find(params[:user_id])
+    @aluno = Student.where("user_id = ?", @user.id).first
+    @curso = Course.find(params[:id_curso])
+    
+    @agendamento = MatterTeacherStudent.new
+    @agendamento.course_id = @curso.id
+    @agendamento.student_id = @aluno.id
+    @agendamento.hours = horas
+    
+    
+    if @agendamento.save
+      redirect_to action: 'index', notice: 'Agendamento criado com sucesso.'
+    else
+      redirect_to  action: 'index', notice: 'Erro na criação do agendamento'
+    end
+      
+  end
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.
