@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   resources :courses 
   
 
-  devise_for :users
+  devise_for :users, :controllers => {:registrations => "registrations"}
   resources :users
   
   # paginas personalizadas
