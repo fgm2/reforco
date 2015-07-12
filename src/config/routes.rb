@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
  
   resources :contacts
-  resources :contacts  # repetido??
   resources :matter_teacher_students
   resources :matter_teachers
   resources :recommendations
@@ -11,8 +10,12 @@ Rails.application.routes.draw do
   resources :teachers
   
   # rotas personalizadas - Agendamento de Aulas
-  get   "/courses/agendamento/:course_id" => "courses#agendamento"
-  post  "/courses/agendamento/" => "courses#agendamento_save"
+  get   "/cursos/agendamento/:course_id" => "courses#agendamento"
+  post  "/cursos/agendamento/" => "courses#agendamento_save"
+  get   "/cursos/:id" => "courses#show"
+  
+  # reescrita da URL do RESOURCE. Ajuda esconder demais metodos aos conhecedores de REST
+  get "/cursos/" => "courses#index"
   resources :courses 
   
 
