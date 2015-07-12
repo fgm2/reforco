@@ -1,0 +1,7 @@
+<ul>
+  <% if  !@users.nil? %>
+      <% @users.each do |s| %>
+          <li><%= link_to s.name, user_path(s.id)  %></li>
+      <% end %>
+  <% end %>
+</ul>
