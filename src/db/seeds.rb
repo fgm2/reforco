@@ -24,7 +24,7 @@ end
 # --------------------
 
 teachers = [
-            {:university => 'Instituto Federal do Norte de Minas Gerais', :formation => 'Tecnologo em Análise e Desenvolvimento de Sistemas', :user => User.find(2), :description => 'Grande esperiência como professor.' },
+            {:university => 'Instituto Federal do Norte de Minas Gerais', :formation => 'Tecnologo em Análise e Desenvolvimento de Sistemas', :user => User.find(2), :description => 'Grande experiência como professor.' },
             {:university => 'Instituto Federal do Norte de Minas Gerais', :formation => 'Tecnologo em Análise e Desenvolvimento de Sistemas', :user => User.find(3), :description => 'Apaixonado por dar aula e ensinar.'},
             {:university => 'Universidade Estadual de Montes Claros', :formation => 'Bacharel em Sistemas de Informação', :user => User.find(4), :description => 'Um especialista em tudo que é tecnologico.'},
             {:university => 'Universidade Estadual de Montes Claros', :formation => 'Bacharel em Matemática', :user => User.find(5), :description => 'A matemática está em tudo. Basta vc olhar.'},
@@ -151,23 +151,23 @@ end
 
 # --------------------
 
-matterTeacherStudent = [
-    { :course => Course.find(1), :student => Student.find(1), :hours => 4},
-    { :course => Course.find(2), :student => Student.find(2), :hours => 14},
-    { :course => Course.find(3), :student => Student.find(3), :hours => 2},
-    { :course => Course.find(4), :student => Student.find(1), :hours => 10},
+enrollments = [
+    { :course => Course.find(1), :student => Student.find(1), :hours => 4, :evaluation => true},
+    { :course => Course.find(2), :student => Student.find(2), :hours => 14, :evaluation => true},
+    { :course => Course.find(3), :student => Student.find(3), :hours => 2, :evaluation => true},
+    { :course => Course.find(4), :student => Student.find(1), :hours => 10, :evaluation => true},
     ]
 
-matterTeacherStudent.each do |m|
-  MatterTeacherStudent.create!(m)
+enrollments.each do |e|
+  Enrollment.create!(e)
 end
 # --------------------
 
 recommendations = [
-    {:rating => 1, :descripition =>'Ótima aula', :course => Course.find(1), :student => Student.find(1)},
-    {:rating => 1, :descripition =>'Muito bom mesmo. recomendo!', :course => Course.find(2), :student => Student.find(2)},
-    {:rating => 0, :descripition =>'Não gostei do material nem da didatica.', :course => Course.find(4), :student => Student.find(3)},
-    {:rating => 1, :descripition =>'Melhor impossivel.', :course => Course.find(4), :student => Student.find(1)},
+    {:rating => 1, :description =>'Ótima aula', :course => Course.find(1), :student => Student.find(1)},
+    {:rating => 1, :description =>'Muito bom mesmo. recomendo!', :course => Course.find(2), :student => Student.find(2)},
+    {:rating => 0, :description =>'Não gostei do material nem da didatica.', :course => Course.find(4), :student => Student.find(3)},
+    {:rating => 1, :description =>'Melhor impossivel.', :course => Course.find(4), :student => Student.find(1)},
     ]
 
 recommendations.each do |r|

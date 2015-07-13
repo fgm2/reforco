@@ -1,11 +1,10 @@
-class CreateRecommendations < ActiveRecord::Migration
+class CreateEnrollments < ActiveRecord::Migration
   def change
-    create_table :recommendations do |t|
-      t.integer :rating
-      t.text :description
+    create_table :enrollments do |t|
       t.references :course, index: true, foreign_key: true
       t.references :student, index: true, foreign_key: true
-      t.datetime :created_at
+      t.integer :hours
+      t.boolean :evaluation
 
       t.timestamps null: false
     end
