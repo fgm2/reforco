@@ -112,6 +112,14 @@ class CoursesController < ApplicationController
       
   end
   
+  
+  def recomendacao
+    
+    if user_signed_in?
+      @recomendacoes = Recommendation.all
+    end
+  end
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.
