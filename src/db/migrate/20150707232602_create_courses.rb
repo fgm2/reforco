@@ -6,7 +6,6 @@ class CreateCourses < ActiveRecord::Migration
       t.belongs_to :matter, index: true, foreign_key: true
       t.text :description
       t.float :value
-      t.boolean :evaluation
       
       t.timestamps null: false
     end
