@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  course_id: 
+  student_id: 
+  hours: 1
+  evaluation: false
+
+two:
+  course_id: 
+  student_id: 
+  hours: 1
+  evaluation: false
