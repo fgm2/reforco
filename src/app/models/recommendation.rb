@@ -32,6 +32,9 @@ class Recommendation < ActiveRecord::Base
                 configure :student do
                     label 'Aluno'
                 end
+                configure :course_date do
+                    label 'Data do Curso'
+                end
                 configure :created_at do
                     label 'Criado em'
                 end
@@ -43,6 +46,7 @@ class Recommendation < ActiveRecord::Base
                     field :description
                     field :course
                     field :student
+                    field :course_date
                     field :created_at
                     field :updated_at
                 end
