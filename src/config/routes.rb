@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   resources :users
   
   # paginas personalizadas
+  get "/pages/como-funciona" => "pages#funcionamento"
   get "/pages/sobre" => "pages#sobre"
   get "/pages/termos" => "pages#termos"
   
