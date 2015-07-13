@@ -2,111 +2,33 @@
   <%= javascript_include_tag 'application' %>  
 <% end %>
 
-
 <div class="container">
-  
-  <p id="notice"><%= notice %></p>
-  
-  
-  <% if user_signed_in? %>
-      <div class="row">
-      <% if is_teacher(current_user.id) %>
-      
-           <div class = "col-md-12">
-               <%= render "teacher" %>
-           </div> <!--col-md-12-->   
-           
-      <% else %>
-      
-          <% if is_student(current_user.id) %>
-      
-              <div class = "col-md-12">
-                 <%= render "student" %>
-              </div> <!--col-md-12-->
-          <% end %>
-
-          
-      <% end %>
-    </div>
-  <% end %>
-  <!--if user_signed_in-->
-  
-  
-    <div class = "row">
-      
-      <div class="col-md-12">
-          <h1>Aulas em Destaque</h1>
-          <hr>
-      </div>
-      
-      <% @destaques.each do |course| %>
-      
-        <div class="col-sm-6 col-md-3">
-          
-          <div class= "thumbnail"  style= " height: 248px;">
-            
-           <%= link_to (image_tag course.teacher.user.avatar.url(:thumb), class: 'avatar', style: "width: 75x; height: 75px;" ), course_path(course.id) %> <br>
-            
-            <a href="<%= course_path(course.id) %>" >
-              <blockquote>
-                <div class="small"
-                  <p> <%= course.name %> </p>
-                  <footer> 
-                      Prof.º <%= course.teacher.user.name %> <br> 
-                      <!--<cite title="Source Title"><%= course.teacher.formation %></cite> <br/>-->
-                  </footer>
-                </div>
-              </blockquote>
-            </a>
-            
-            <div class="content text-center">
-                <strong><%= "R$" '%.2f' % course.value.to_f %> </strong> / hora <br/>
-               <form role="form">
-                  <div class="form-group">
-                    <%= link_to "Agendamento", "#{agendamento_path(course.id)}", class: "btn btn-success", style:"padding: 1px 74px;" %>
-                   <!--new_matter_teacher_student_path-->
-                  </div>
-                </form>
-            </div>
-           
-          </div>
-          
-        </div>
-      <%end%>
-      
-    </div>     <!--row-->
-    
+    <p id="notice"><%= notice %></p>
     <div class="row">
-      <!--<div class="col-sm-6 col-md-3">-->
-        
-      <!--</div>-->
-      
-      <% @courses.each do |course| %>
-      <div class="col-sm-6 col-md-2">
-        
-          <div class"row">
-            <div class"well">
-                <div class="col-md-6">
-                  <div class= "thumbnail">
-                     <%= link_to (image_tag course.teacher.user.avatar.url(:thumb), class: 'avatar', size: "50x50"), course_path(course.id) %> <br>
-                  </div>
-                </div>
-                <div class="col-md-6 small">
-                    <p> <%= course.name %> </p>
-                    <%= "R$" '%.2f' % course.value.to_f %>
-                </div>
-            </div>
-        </div>
+        <% if user_signed_in? %>
           
-      </div>
-      <% end %>
+            <% if is_teacher(current_user.id) %>
+                <div class = "col-md-12">
+                    <%= render partial: "courses/home/teacher" %> 
+                </div> <!--col-md-12--> 
+            <% else %>
+                <% if is_student(current_user.id) %>
+                    <div class = "col-md-12">
+                        <%= render partial: "courses/home/student" %>
+                    </div> <!--col-md-12-->
+                <% end %>  <!--if student-->
+            <% end %> <!--if teacher-->
+            
+             <div class = "col-md-12">
+                  <%= render partial: "courses/home/all_users" %>
+             </div> <!--col-md-12-->
+           
+        <% end %> <!--if user_signed_in-->
         
-      <div class="col-md-12">
-           <hr>          
-      </div>
+        <div class = "col-md-12">
+            <%= render partial: "courses/home/public" %>
+        </div> <!--col-md-12-->
         
-    </div>
-      
-</div>
-
-</div>
+    </div> <!--row-->
+    
+</div> <!--container-->
