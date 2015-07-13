@@ -16,4 +16,8 @@ class PagesController < ApplicationController
     # render 'pages/termos'
   end
   
+  def funcionamento
+    render 'pages/como-funciona'
+  end
+  
 end
