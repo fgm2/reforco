@@ -8,23 +8,23 @@
             <h1>Quer saber como podemos te ajudar?</h1>
             <p>Suas aulas de reforço agora com mais flexibilidade e qualidade!</p>
             <p><a class="btn btn-primary btn-lg" href="teachers" role="button">Encontre seu professor &raquo;</a></p>
-            <p><a class="btn btn-primary btn-lg" href="Sobre o Reforço" role="button">Seja um professor &raquo;</a></p>
+            <p><a class="btn btn-primary btn-lg" href="#" role="button">Seja um professor &raquo;</a></p>
           </div> 
       </div>
         <div>
           <div class="jumbotron" >
             <h1>Aulas Particulares</h1>
-            <p>SOMOS O MAIOR PORTAL DE AULAS PARTICULARES DO BRASIL!</p>
-            <p><a class="btn btn-primary btn-lg" href="teachers" role="button">COM 7672 PROFESSORES DE QUALQUER MATÉRIA &raquo;</a></p>
-            <p><a class="btn btn-primary btn-lg" href="Sobre o Reforço" role="button">Entenda como funciona &raquo;</a></p>
+            <p>Somos um dos maiores portais de aulas particulares do Brasil!</p>
+            <p><a class="btn btn-primary btn-lg" href="teachers" role="button">Com um total de <%= @teachers.count %> professores cadastrados em diferentes matérias &raquo;</a></p>
+            <p><a class="btn btn-primary btn-lg" href="<%= root_url %>pages/sobre" role="button">Veja quem somos &raquo;</a></p>
           </div> 
         </div>
         <div> 
           <div class="jumbotron" >
             <h1>Como Funciona</h1>
-            <p>Tenha aulas online com professores particulares de todo o Brasil!</p>
+            <p>Tenha aulas com professores particulares de todo o Brasil!</p>
             <!--<p><a class="btn btn-primary btn-lg" href="teachers" role="button">COM 7672 PROFESSORES DE QUALQUER MATÉRIA &raquo;</a></p>-->
-            <p><a class="btn btn-primary btn-lg" href="Sobre o Reforço" role="button">Duvidas Frequentes &raquo;</a></p>
+            <p><a class="btn btn-primary btn-lg" href="<%= root_url %>pages/como-funciona" role="button">Entenda como funcionamos &raquo;</a></p>
           </div>
 
         </div>
@@ -74,7 +74,7 @@
         <div class="col-md-4">
           <h2>Conheça-nos</h2>
           <p>O portal Reforço, busca ligar pessoas professores e alunos que buscam independẽncia e flexibilidade no aprendizado. As aulas de reforço permite um atendimento exclusivo que faz toda a adiferença na sua carreira.</p>
-          <p><a class="btn btn-default" href="/pages/sobre" role="button">Saiba mais &raquo;</a></p>
+          <p><a class="btn btn-default" href="<%= root_url %>/pages/sobre" role="button">Saiba mais &raquo;</a></p>
         </div>
       </div>
      
