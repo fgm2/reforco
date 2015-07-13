@@ -21,10 +21,15 @@ class ApplicationController < ActionController::Base
       "/cursos/agendamento/#{id}"
   end
   
+  def recomendacao_path(id)
+      "/cursos/agendamento/recomendacao/#{id}"
+  end
+  
   helper_method :is_student
   helper_method :is_teacher
   helper_method :agendamentos_path
   helper_method :agendamento_path
+  helper_method :recomendacao_path
   
   protected
 
