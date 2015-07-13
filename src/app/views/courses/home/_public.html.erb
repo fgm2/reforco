@@ -9,20 +9,21 @@ PUBLIC (Without login)
       
         <div class="col-sm-6 col-md-3">
           
-          <div class= "thumbnail"  style= " height: 248px;">
+          <div class= "thumbnail"  style= " height: 265px;">
             
-           <%= link_to (image_tag course.teacher.user.avatar.url(:thumb), class: 'avatar', style: "width: 75x; height: 75px;" ), course_path(course.id) %> <br>
+           <%= link_to (image_tag course.teacher.user.avatar.url(:thumb), 
+                     alt: course.teacher.user.name, 
+                     class: 'avatar', style: "width: 75x; height: 75px;" ), course_path(course.id) %> <br>
             
             <a href="<%= course_path(course.id) %>" >
-              <blockquote>
-                <div class="small"
-                  <p> <%= course.name %> </p>
-                  <footer> 
+              <div class="alert alert-info text-center small">
+                  <strong> <%= course.name %> </strong>
+                  <div class="small">
                       Prof.º <%= course.teacher.user.name %> <br> 
-                      <!--<cite title="Source Title"><%= course.teacher.formation %></cite> <br/>-->
-                  </footer>
-                </div>
-              </blockquote>
+                      <%= course.teacher.formation %>
+                  </div>
+              </div>
+              
             </a>
             
             <div class="content text-center">
@@ -34,7 +35,7 @@ PUBLIC (Without login)
                   </div>
                 </form>
             </div>
-           
+            
           </div> <!--div tumbanail-->
           
         </div> <!--div col-->

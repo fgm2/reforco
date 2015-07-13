@@ -6,7 +6,6 @@ class CoursesController < ApplicationController
   def index
     
     @destaques =  Course.order("RANDOM()").limit(4).distinct
-    
     @courses = Course.where("id NOT IN (?) ", @destaques.select(:id).distinct)
     
     if ( (user_signed_in?) and (is_student(current_user.id)) )
@@ -114,6 +113,14 @@ class CoursesController < ApplicationController
   
   
   def recomendacao
+    
+    if user_signed_in?
+      @recomendacoes = Recommendation.all
+    end
+  end
+  
+  # POST /courses/agendamento/recomendacao
+  def recomendacao_save
     
     if user_signed_in?
       @recomendacoes = Recommendation.all

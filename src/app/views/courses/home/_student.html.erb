@@ -1,10 +1,66 @@
 <div class="well">
-  <h1>Minhas Aulas</h1>
-    FOR STUDENTS
-  <% if !@suas_aulas.nil? %>
-      <% @suas_aulas.each do |aulas| %>
-       <%= link_to(aulas.name, agendamento_path(aulas.course.id) ) %> <br>
-      <% end %>
-  <% end %>
+  
+  <div class="row">
+  
+      <div class="col-md-12">
+      
+            <h1>Minhas Aulas</h1>
+              FOR STUDENTS
+
+      </div>
+      
+      
+      <div class="col-md-12">
+        
+          <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Curso</th>
+                    <th>Data da aula</th>
+                    <th>Avaliação</th>
+                    <th>Opção</th>
+                    <th>Enviar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    
+                <% @suas_aulas.each do |rec|   %>
+                  <tr>
+                    <td> 
+                        <%= link_to(rec.name, curso_path(rec.course.id) ) %> <br>
+                    </td>
+                    <td> <%= rec.course.created_at %> </td>
+                    
+                    
+                    <% if (rec.name) %>
+                          <td>
+                                <span class="glyphicon glyphicon-thumbs-up"></span>
+                          </td>
+                    <% else %>
+                          <form method="post">
+                              <td>
+                                  <div class="form-group">
+                                    <select class="form-control" name='avaliacao' id="sel1">
+                                      <option value="1">Gostei</option>
+                                      <option value="0">Não Gostei</option>
+                                    </select>
+                                  </div>
+                              </td>
+                              <td>
+                                  <%= link_to "avaliar", recomendacao_path(rec.course.id), method:"post", class: "btn btn-success" %>
+                              </td>
+                          </form>
+                          
+                    <% end %>
+                  </tr>
+                <% end %>
+                </tbody>
+            </table>
+        
+        
+      </div>
+      
+  
+  </div> <!--row-->
   
 </div>   <!--well-->
