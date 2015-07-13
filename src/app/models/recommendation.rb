@@ -23,7 +23,7 @@ class Recommendation < ActiveRecord::Base
                 configure :rating do
                     label 'Avaliação'
                 end
-                configure :descripition do
+                configure :description do
                     label 'Descrição'
                 end
                 configure :course do
@@ -40,7 +40,7 @@ class Recommendation < ActiveRecord::Base
                 end
                 list do
                     field :rating
-                    field :descripition
+                    field :description
                     field :course
                     field :student
                     field :created_at
@@ -48,7 +48,7 @@ class Recommendation < ActiveRecord::Base
                 end
                 edit do
                     field :rating
-                    field :descripition
+                    field :description
                     field :course
                     field :student
                 end
