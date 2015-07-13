@@ -1,6 +1,6 @@
 <div class="well">
   <h1>Minhas Aulas</h1>
-
+    FOR STUDENTS
   <% if !@suas_aulas.nil? %>
       <% @suas_aulas.each do |aulas| %>
        <%= link_to(aulas.name, agendamento_path(aulas.course.id) ) %> <br>
