@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150711051441) do
+ActiveRecord::Schema.define(version: 20150713211604) do
 
   create_table "area_of_knowledges", force: :cascade do |t|
     t.string   "name"
@@ -32,24 +32,27 @@ ActiveRecord::Schema.define(version: 20150711051441) do
     t.string   "name"
     t.integer  "teacher_id"
     t.integer  "matter_id"
+    t.text     "description"
     t.float    "value"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.boolean  "evaluation"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   add_index "courses", ["matter_id"], name: "index_courses_on_matter_id"
   add_index "courses", ["teacher_id"], name: "index_courses_on_teacher_id"
 
-  create_table "matter_teacher_students", force: :cascade do |t|
+  create_table "enrollments", force: :cascade do |t|
     t.integer  "course_id"
     t.integer  "student_id"
     t.integer  "hours"
+    t.boolean  "evaluation"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "matter_teacher_students", ["course_id"], name: "index_matter_teacher_students_on_course_id"
-  add_index "matter_teacher_students", ["student_id"], name: "index_matter_teacher_students_on_student_id"
+  add_index "enrollments", ["course_id"], name: "index_enrollments_on_course_id"
+  add_index "enrollments", ["student_id"], name: "index_enrollments_on_student_id"
 
   create_table "matters", force: :cascade do |t|
     t.string   "name"
@@ -63,11 +66,12 @@ ActiveRecord::Schema.define(version: 20150711051441) do
 
   create_table "recommendations", force: :cascade do |t|
     t.integer  "rating"
-    t.text     "descripition"
+    t.text     "description"
     t.integer  "course_id"
     t.integer  "student_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "course_date"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   add_index "recommendations", ["course_id"], name: "index_recommendations_on_course_id"

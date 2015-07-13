@@ -11,7 +11,11 @@ class CoursesController < ApplicationController
     if ( (user_signed_in?) and (is_student(current_user.id)) )
     # if @aluno.valid?
       @aluno = Student.where("user_id = ? ",current_user.id).first
-      @suas_aulas = MatterTeacherStudent.where("student_id = ? ", @aluno.id )
+      @suas_aulas = Enrollment.where("student_id = ? ", @aluno.id )
+      
+      # @recomendacoes = Recommendation.where("course_id IN (?) AND student_id = ?", @suas_aulas.select(:id), @aluno.id)
+      
+      @recomendacoes = Recommendation.where("course_id IN (?) AND student_id = ?", @suas_aulas.select(:id), @aluno.id)
     else
       @suas_aulas = nil
     end
@@ -97,7 +101,8 @@ class CoursesController < ApplicationController
     @aluno = Student.where("user_id = ?", @user.id).first
     @curso = Course.find(params[:id_curso])
     
-    @agendamento = MatterTeacherStudent.new
+    # @agendamento = MatterTeacherStudent.new
+    @agendamento = Enrollment.new
     @agendamento.course_id = @curso.id
     @agendamento.student_id = @aluno.id
     @agendamento.hours = horas
@@ -122,9 +127,35 @@ class CoursesController < ApplicationController
   # POST /courses/agendamento/recomendacao
   def recomendacao_save
     
-    if user_signed_in?
-      @recomendacoes = Recommendation.all
+    avaliacao = params[:avaliacao]
+    course_id = params[:course_id]
+    comentario = params[:comentario]
+    user_id = params[:user_id]
+    
+    @user = User.find(user_id)
+    @aluno = Student.where("user_id = ?", @user.id).first
+    @curso = Course.find(course_id)
+    
+    @recomendacao = Recommendation.new
+    @recomendacao.rating = avaliacao
+    @recomendacao.descripition = comentario
+    
+    @recomendacao.student_id = @aluno.id
+    @recomendacao.course_id = @curso.id
+    
+    
+    
+    if @recomendacao.save
+      if @curso.update( evaluation: true )
+          redirect_to action: 'index', notice: 'Recomendação salva.'
+      else
+          # redirect_to action: 'index', notice: 'Erro na criação do agendamento.'
+      end
+      # redirect_to action: 'index', notice: 'Agendamento criado com sucesso.'
+    else
+      redirect_to  action: 'index', notice: 'Erro ao salvar a Recomendacao.'
     end
+    
   end
   
 
