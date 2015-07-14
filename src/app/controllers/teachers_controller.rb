@@ -30,6 +30,10 @@ class TeachersController < ApplicationController
       @teachers ||= Teacher.all
       @areas ||= AreaOfKnowledge.joins(' JOIN matters ON area_of_knowledges.id = matters.areaOfKnowledge_id').distinct
       @materias ||= Matter.all
+      
+      @cursos ||= Course.all
+      @matriculas ||= Enrollment.all
+      @recomendacoes ||= Recommendation.all
     
     
   end
@@ -38,13 +42,30 @@ class TeachersController < ApplicationController
   def show
 
     @aulas = Course.where( "teacher_id = ? ", @teacher.id)
-    
+
     @aulas_realizadas = Enrollment.where("course_id in ( ? )", @aulas.select { |aula| aula.id} )
    
     @horas_aulas = 0
     @aulas_realizadas.each do |aula|
       @horas_aulas = @horas_aulas + aula.hours 
 		end
+		
+		@cursos ||= Course.all
+    @matriculas ||= Enrollment.all
+    @recomendacoes ||= Recommendation.all
+		
+		@positivas = @recomendacoes.where("rating = 1 AND enrollment_id IN (?) ",
+                                            @matriculas.where("course_id IN (?)",
+                                              @cursos.where("teacher_id = ? ", @teacher.id).select(:id)
+                                                  ).select(:id) 
+                                                    ).count
+		
+		@negativas = @recomendacoes.where("rating = 0 AND enrollment_id IN (?) ",
+                                            @matriculas.where("course_id IN (?)",
+                                              @cursos.where("teacher_id = ? ",@teacher.id).select(:id)
+                                              ).select(:id)).count
+                                                    
+    @porcentagem = (@positivas*100)/(@positivas+@negativas)
    
   end
 

@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   get   "/cursos/agendamento/:course_id" => "courses#agendamento"
   post  "/cursos/agendamento/" => "courses#agendamento_save"
   get   "/cursos/:id" => "courses#show"
+  get   "/cursos/agendamento/recomendacao/:course_id" => "courses#recomendacao"
+  post  "/cursos/agendamento/recomendacao"    => "courses#recomendacao_save"
   
   # reescrita da URL do RESOURCE. Ajuda esconder demais metodos aos conhecedores de REST
   get "/cursos/" => "courses#index"

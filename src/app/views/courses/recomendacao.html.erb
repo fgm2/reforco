@@ -1,0 +1,70 @@
+<% content_for :header do %>
+  <%= javascript_include_tag 'application' %>  
+<% end %>
+
+<div class="container">
+    
+    <div class="row">
+        
+        <div class="col-md-12">
+            <p id="notice"><%= notice %></p>
+        </div>
+        
+        
+         <div class="col-md-12">  
+              <% if user_signed_in? %>
+                    <div class = "row">
+                      <h3>Recomendações</h3>
+                      <hr>
+                    </div>
+              <% end %>
+        </div>
+        
+        <div class="col-md-12">
+            <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Curso</th>
+                    <th>Data da aula</th>
+                    <th>Gostou</th>
+                    <th>Pendente</th>
+                    <th>Não gostei</th>
+                    <th>Opção</th>
+                    <th>Enviar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    
+                <% @recomendacoes.each do |rec|   %>
+                  <tr>
+                    <td> <%= rec.course.name %> </td>
+                    <td> <%= rec.course.created_at %> </td>
+                    <td>
+                        <span class="glyphicon glyphicon-thumbs-up"></span>
+                    </td>
+                    <td>
+                        <span class="glyphicon glyphicon-thumbs-link"></span>
+                    </td>
+                    <td>
+                        <span class="glyphicon glyphicon-thumbs-down"></span>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                          <select class="form-control" id="sel1">
+                            <option>Gostei</option>
+                            <option>Não Gostei</option>
+                          </select>
+                        </div>
+                    </td>
+                    <td>
+                        <span class="glyphicon glyphicon-thumbs-down"></span>
+                    </td>
+                  </tr>
+                <% end %>
+                </tbody>
+            </table>
+        </div>
+         
+    </div>  <!--row-->
+    
+</div> <!--container-->

@@ -1,0 +1,106 @@
+<div class="well">
+  
+  <div class="row">
+  
+      <div class="col-md-12">
+      
+            <h1>Minhas Aulas</h1>
+              FOR STUDENTS
+
+      </div>
+      
+      
+      <div class="col-md-12">
+        
+        
+        <form method="post" role="form" name="form-recomendacao" action="<%= recomendacao_path %>">
+        
+          <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Curso</th>
+                    <th>Data da aula</th>
+                    <th>Horas</th>
+                    <th>Comentário</th>
+                    <th>Avaliação</th>
+                    <th>Opção</th>
+                    <!--<th>Enviar</th>-->
+                  </tr>
+                </thead>
+                <tbody>
+                    
+                <% @suas_aulas.each do |rec|   %>
+                
+                
+                 
+                
+                  <tr>
+                    <td> 
+                        <%= link_to(rec.name, curso_path(rec.course.id) ) %> <br>
+                    </td>
+                    <td> <%= rec.course.created_at %> </td>
+                    
+                    <td> <%= rec.hours %> </td>
+                    
+                    
+                     <% if ( rec.evaluation  ) %>
+                          <td>
+                            <%= @recomendacoes.select(:description).where("enrollment_id = (?)", rec.id).take.description %>
+                          </td>
+                    
+                    
+                          <td>
+                                <% if (@recomendacoes.select(:rating).where("enrollment_id = (?)", rec.id).take.rating == 0 ) %>
+                                    <span class="glyphicon glyphicon-thumbs-down"></span>
+                                <% else %>
+                                    <span class="glyphicon glyphicon-thumbs-up"></span>
+                                 <% end %>
+                          </td>
+                          
+                          <td>
+                              Curso Avaliado!
+                          </td>
+                          
+                    <% else %>
+                         
+                            
+                                  <td>
+                                        <div class="form-group">
+                                          <%= text_field_tag( :comentario, nil, placeholder: "Comentário sobre a aula", class: "form-control" ) %>
+                                        </div>
+                                  </td>
+                                
+                                  <td>
+                                      <div class="form-group">
+                                        <select class="form-control" name='avaliacao' id="sel1">
+                                          <option value="1">Gostei</option>
+                                          <option value="0">Não Gostei</option>
+                                        </select>
+                                        <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
+                                        <%= hidden_field_tag(:course_id, rec.course.id) %>
+                                        <%= hidden_field_tag(:user_id, current_user.id) %>
+                                      </div>
+                                  </td>
+                                  <td>
+                                      
+                                    
+                                      <%= button_tag("Avaliar", method: "post", action: recomendacao_path, class: "btn btn-success"  ) %>
+                                  </td>
+                          
+                          
+                    <% end %>
+                  </tr>
+                  
+                  
+                <% end %>
+                </tbody>
+            </table>
+        
+          </form>
+        
+      </div>
+      
+  
+  </div> <!--row-->
+  
+</div>   <!--well-->
