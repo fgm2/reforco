@@ -48,28 +48,6 @@
                   
                   <div class="row">
                     
-                    
-                <!--    <div class="panel panel-default">-->
-          		    <!--        <div class="panel-heading">-->
-          		    <!--        	<h3 class="panel-title"><%= teacher.user.name %></h3>-->
-          					 <!--     </div>-->
-              		<!--			<div class="panel-body">-->
-              		<!--				<div class="container">-->
-              						  
-              		<!--					<%= link_to (image_tag teacher.user.avatar.url(:thumb), class: 'avatar', alt: teacher.name), teacher %>-->
-              		<!--					<span class="label label-success">-->
-                <!--                <span class="glyphicon glyphicon-thumbs-up"></span> -->
-                <!--                   <span class="badge">7</span>-->
-                <!--             </span>-->
-                <!--            <span class="label label-danger">-->
-                <!--              <span class="glyphicon glyphicon-thumbs-down"></span> -->
-                <!--                 <span class="badge">3</span>-->
-                <!--            </span>-->
-                            
-              		<!--				</div>-->
-              		<!--			</div>-->
-          				  <!--</div>-->
-                    
                     <div class="col-md-6">
                       <div class= "container">
                         <%= link_to (image_tag teacher.user.avatar.url(:thumb), class: 'avatar', alt: teacher.name, style: "width: 75x; height: 75px;"), teacher %>   
@@ -85,14 +63,29 @@
                          <div class="col-md-6">
                              <span class="label label-success">
                                 <span class="glyphicon glyphicon-thumbs-up"></span> 
-                                   <span class="badge">7</span>
+                                   <span class="badge">
+                                     
+                                      <%=  @recomendacoes.where("rating = 1 AND enrollment_id IN (?) ",
+                                            @matriculas.where("course_id IN (?)",
+                                              @cursos.where("teacher_id = ? ",teacher.id).select(:id)
+                                                  ).select(:id) 
+                                                    ).count %>
+                                            
+                                            
+                                    </span>
                              </span>
                          </div>
                          
                          <div class="col-md-6">   
                            <span class="label label-danger">
                             <span class="glyphicon glyphicon-thumbs-down"></span> 
-                               <span class="badge">3</span>
+                               <span class="badge">
+                                   <%=  @recomendacoes.where("rating = 0 AND enrollment_id IN (?) ",
+                                            @matriculas.where("course_id IN (?)",
+                                              @cursos.where("teacher_id = ? ",teacher.id).select(:id)
+                                                  ).select(:id) 
+                                                    ).count %>
+                               </span>
                          </span>
                          </div>
                          

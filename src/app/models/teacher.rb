@@ -45,6 +45,7 @@ class Teacher < ActiveRecord::Base
               field :user
               field :university
               field :formation
+              field :university
               field :created_at
               field :updated_at
             end
