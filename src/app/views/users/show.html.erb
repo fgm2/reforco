@@ -1,62 +1,93 @@
 <p id="notice"><%= notice %></p>
+<% if (@user.id == current_user.id) %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
+    <h1>Meu perfil</h1>
+    
+    <% if user_signed_in? %>
+      <ul class="nav nav-tabs">
+        <li class="active"> <%= link_to 'Visualizar', @user %></li>
+        <li> <%= link_to 'Editar', edit_user_path(@user) %></li>
+      </ul> 
+    <% end %>
+<%end%>
 
-<p>
-  <strong>Cpf:</strong>
-  <%= @user.cpf %>
-</p>
+<div class="container">
+    <div class="row">
+        <h2> Meu perfil</h2>
 
-<p>
-  <strong>Scholarity:</strong>
-  <%= @user.scholarity %>
-</p>
-
-<p>
-  <strong>Fone:</strong>
-  <%= @user.fone %>
-</p>
-
-<p>
-  <strong>Whatsapp:</strong>
-  <%= @user.whatsapp %>
-</p>
-
-<p>
-  <strong>Skype:</strong>
-  <%= @user.skype %>
-</p>
-
-<p>
-  <strong>Addrress:</strong>
-  <%= @user.addrress %>
-</p>
-
-<p>
-  <strong>State:</strong>
-  <%= @user.state %>
-</p>
-
-<p>
-  <strong>Country:</strong>
-  <%= @user.country %>
-</p>
-
-<p>
-  <strong>Date of birth:</strong>
-  <%= @user.date_of_birth %>
-</p>
-
-<p>
-  <strong>Created at:</strong>
-  <%= @user.created_at %>
-</p>
-
-<% if (@user.id == current_user.id ) %>
-  <%= link_to 'Edit', edit_user_path(@user) %> |
-<% end %>  
-
-<%= link_to 'Back', users_path %>
+    </div>
+    <div class="row">
+        <div class="row well">
+            <p><strong>DADOS DO USUÁRIO</strong></p>
+            <hr>
+            <div class="col-md-6">
+                <div class="col-md-3">
+                    <%= (image_tag current_user.avatar.url(:thumb), class: 'avatar') %> <br>
+                </div>
+                <div class="col-md-9">
+                    <div class="form-group">
+                        <label for="name">Nome:</label>
+                        <input type="text" disabled class="form-control" id="name" name="user[name]" value="<%= current_user.name %>">
+                    </div>
+                    <div class="form-group">
+                        <label for="escolaridade">Escolaridade:</label>
+                        <input type="text" disabled class="form-control" id="scholarity" name="user[scholarity]" value="<%= current_user.scholarity %>">
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Endereço:</label>
+                        <input type="text" disabled class="form-control" id="address" name="user[address]" value="<%= current_user.addrress %>">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="state">Estado:</label>
+                            <input type="text" disabled class="form-control" id="state" name="user[state]" value="<%= current_user.state %>">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="country">País:</label>
+                            <input type="text" disabled class="form-control" id="country" name="user[country]" value="<%= current_user.country %>">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="col-md-12 well">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="country">Data de Nascimento:</label>
+                                <input type="date" disabled class="form-control" id="date_of_brith" name="user[[date_of_brith]" value="<%= current_user.date_of_birth %>">
+                            </div>
+                            <div class="form-group">
+                                <label for="cpf">CPF:</label>
+                                <input type="text" disabled  class="form-control" id="cpf" name="user[cpf]" value="<%= current_user.cpf %>">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="fone">Telefone:</label>
+                                <input type="text" disabled class="form-control" id="fone" name="user[fone]" value="<%= current_user.fone %>">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">E-mail:</label>
+                                <input type="text" disabled class="form-control" id="email" name="user[email]" value="<%= current_user.email %>">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 well">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="whatsapp">Whatsapp:</label>
+                                <input type="text" disabled class="form-control" id="whatsapp" name="user[whatsapp]" value="<%= current_user.whatsapp %>">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="skype">Skype:</label>
+                                <input type="text" disabled class="form-control" id="skype" name="user[skype]" value="<%= current_user.skype %>">
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
