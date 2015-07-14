@@ -9,11 +9,9 @@
         <li> <%= link_to 'Editar', edit_user_path(@user) %></li>
       </ul> 
     <% end %>
-<%end%>
-
-<div class="container">
+    
+    <div class="container">
     <div class="row">
-        <h2> Meu perfil</h2>
 
     </div>
     <div class="row">
@@ -91,3 +89,14 @@
             </div>
         </div>
     </div>
+    
+<% else %>
+    <div class="container">
+        <div class="alert alert-danger fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Atenção!</strong> Você não tem permissão para realizar esta ação.
+        </div>
+
+    </div>
+
+<% end %>

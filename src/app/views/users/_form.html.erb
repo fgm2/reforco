@@ -60,12 +60,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-12" align="center">
-                        <%= button_tag "Enviar", :name => "commit",:class => "btn btn-success btn-block", :type => 'submit', :controller => 'Users', :action=>'update'%>
-                        <!--<button type="submit" class="btn btn-success btn-block" style="width: 90%; margin-left: 30px;" align="center" >-->
-                        <!--Salvar as alterações!-->
-                        <!--</button>-->
-                    </div>
                 </div>
                 <div class="col-md-6">
                     <div class="col-md-12 well">
@@ -107,6 +101,12 @@
                         <%= hidden_field_tag "user[id]", current_user.id -%>
                         <%= hidden_field_tag :id, current_user.id -%>
                         <%= hidden_field_tag :authenticity_token, form_authenticity_token -%> 
+                </div>
+                <div class="col-md-12" align="center">
+                    <%= button_tag "Enviar", :name => "commit",:class => "btn btn-success btn-block", :type => 'submit', :controller => 'Users', :action=>'update'%>
+                    <!--<button type="submit" class="btn btn-success btn-block" style="width: 90%; margin-left: 30px;" align="center" >-->
+                    <!--Salvar as alterações!-->
+                    <!--</button>-->
                 </div>
             </div>
         </form>
