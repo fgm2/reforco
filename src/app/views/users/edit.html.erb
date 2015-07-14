@@ -1,18 +1,22 @@
 <% if (@user.id == current_user.id) %>
 
-    <h1>Editing User</h1>
+    <h1>Editando meu perfil</h1>
     
-    <%= render 'form' %>
-    
-    <%= link_to 'Show', @user %> |
-    <%= link_to 'Back', users_path %>
+    <% if user_signed_in? %>
+  <ul class="nav nav-tabs">
+    <li> <%= link_to 'Visualizar', @user %></li>
+    <li class="active"><a href="#">Editar</a></li>
+  </ul>
+<% end %>
+
+     <%= render 'form' %>
 <% else %>
     <div class="container">
         <div class="alert alert-danger fade in">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
             <strong>Atenção!</strong> Você não tem permissão para realizar esta ação.
         </div>
-        <%= link_to 'Voltar', :back %>
+
     </div>
 
 <% end %>

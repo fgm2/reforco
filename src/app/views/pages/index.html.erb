@@ -8,7 +8,7 @@
             <h1>Quer saber como podemos te ajudar?</h1>
             <p>Suas aulas de reforço agora com mais flexibilidade e qualidade!</p>
             <p><a class="btn btn-primary btn-lg" href="teachers" role="button">Encontre seu professor &raquo;</a></p>
-            <p><a class="btn btn-primary btn-lg" href="#" role="button">Seja um professor &raquo;</a></p>
+            <p><a class="btn btn-primary btn-lg" href="<%= new_teacher_path %>" role="button">Seja um professor &raquo;</a></p>
           </div> 
       </div>
         <div>
@@ -57,7 +57,7 @@
           <p>Se você é um professor, cadastre-se e comece a receber propostas de todo o mundo. A nossa base conta com milhões de alunos de todo o mundo em busca de profissionais como você.</p>
           
           <p>
-            <%= link_to "Comece agora »", new_user_registration_path, class: "btn btn-default"%>
+            <%= link_to "Comece agora »", new_teacher_path , class: "btn btn-default"%>
           </p>
           
         </div>
@@ -66,7 +66,7 @@
           <p>Em busca de orientações diversificadas de profissionais de todo o mundo, que possam lhe atender de forma exclusiva? Encontre sua melhor opção hoje mesmo </p>
           
           <p>
-            <%= link_to "Encontre seu professor »", new_user_registration_path, class: "btn btn-default"%>
+            <%= link_to "Encontre seu professor »", teachers_path, class: "btn btn-default"%>
           </p>
           
           <!--<p><a class="btn btn-default" href="matter_teachers" role="button">Encontre seu professor &raquo;</a></p>-->
@@ -74,7 +74,7 @@
         <div class="col-md-4">
           <h2>Conheça-nos</h2>
           <p>O portal Reforço, busca ligar pessoas professores e alunos que buscam independẽncia e flexibilidade no aprendizado. As aulas de reforço permite um atendimento exclusivo que faz toda a adiferença na sua carreira.</p>
-          <p><a class="btn btn-default" href="<%= root_url %>/pages/sobre" role="button">Saiba mais &raquo;</a></p>
+          <p><a class="btn btn-default" href="<%= root_url %>pages/sobre" role="button">Saiba mais &raquo;</a></p>
         </div>
       </div>
      
