@@ -23,9 +23,9 @@
           <div class="jumbotron" >
             <h1>Como Funciona</h1>
             <p>Tenha aulas com professores particulares de todo o Brasil!</p>
-            <!--<p><a class="btn btn-primary btn-lg" href="teachers" role="button">COM 7672 PROFESSORES DE QUALQUER MATÉRIA &raquo;</a></p>-->
             <p><a class="btn btn-primary btn-lg" href="<%= root_url %>pages/como-funciona" role="button">Entenda como funcionamos &raquo;</a></p>
-          </div>
+            <p><a class="btn btn-primary btn-lg" href="<%= root_url %>contacts/new" role="button">Fale conosco &raquo;</a></p>
+          </div> 
 
         </div>
       </div>
@@ -52,7 +52,7 @@
       
        
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-4 text-justify">
           <h2>Seja um Professor</h2>
           <p>Se você é um professor, cadastre-se e comece a receber propostas de todo o mundo. A nossa base conta com milhões de alunos de todo o mundo em busca de profissionais como você.</p>
           
@@ -61,17 +61,14 @@
           </p>
           
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 text-justify">
           <h2>Aluno</h2>
           <p>Em busca de orientações diversificadas de profissionais de todo o mundo, que possam lhe atender de forma exclusiva? Encontre sua melhor opção hoje mesmo </p>
-          
           <p>
             <%= link_to "Encontre seu professor »", teachers_path, class: "btn btn-default"%>
           </p>
-          
-          <!--<p><a class="btn btn-default" href="matter_teachers" role="button">Encontre seu professor &raquo;</a></p>-->
        </div>
-        <div class="col-md-4">
+        <div class="col-md-4 text-justify">
           <h2>Conheça-nos</h2>
           <p>O portal Reforço, busca ligar pessoas professores e alunos que buscam independẽncia e flexibilidade no aprendizado. As aulas de reforço permite um atendimento exclusivo que faz toda a adiferença na sua carreira.</p>
           <p><a class="btn btn-default" href="<%= root_url %>pages/sobre" role="button">Saiba mais &raquo;</a></p>
