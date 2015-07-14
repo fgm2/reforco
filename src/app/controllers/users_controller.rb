@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!
-  before_filter :require_admin, except: [:show, :edit]
+  before_filter :require_admin, except: [:show, :edit, :update]
 
   # GET /users
   # GET /users.json
@@ -47,7 +47,7 @@ class UsersController < ApplicationController
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
-        format.html { render :edit }
+        format.html { render :edit,   flash[:notice] = 'Erro ao raliza updated.' }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
@@ -71,6 +71,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :cpf, :scholarity, :fone, :whatsapp, :skype, :addrress, :state, :country, :date_of_birth, :created_at)
+      params.require(:user).permit(:name, :cpf, :scholarity, :fone, :whatsapp, :skype, :addrress, :state, :country, :date_of_birth, :created_at, :avatar)
     end
 end
