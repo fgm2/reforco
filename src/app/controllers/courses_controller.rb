@@ -25,9 +25,6 @@ class CoursesController < ApplicationController
     @alunos = Student.joins("JOIN enrollments ON students.id = enrollments.student_id ").
                       where("enrollments.course_id = ?", @course.id)
                       
-                      
-                      
-                      
     @cursos ||= Course.all
     @matriculas ||= Enrollment.all
     @recomendacoes ||= Recommendation.all
