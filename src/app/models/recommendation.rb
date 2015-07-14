@@ -1,7 +1,6 @@
 class Recommendation < ActiveRecord::Base
-    belongs_to :course
-    belongs_to :student
-    validates :course, uniqueness: {scope: :student, :message => " Prezado aluno, você já recomendou este curso!" } 
+    belongs_to :enrollment
+    # validates :course, uniqueness: {scope: :student, :message => " Prezado aluno, você já recomendou este curso!" } 
     # validates :rating, inclusion: { in: %w(0 1), message: "%{value} não é válido! Informe 0 ou 1" }
  
     # validate :existCourse
@@ -26,11 +25,8 @@ class Recommendation < ActiveRecord::Base
                 configure :description do
                     label 'Descrição'
                 end
-                configure :course do
-                    label 'Aula'
-                end
-                configure :student do
-                    label 'Aluno'
+                configure :enrollment do
+                    label 'Matricula'
                 end
                 configure :course_date do
                     label 'Data do Curso'
@@ -44,8 +40,7 @@ class Recommendation < ActiveRecord::Base
                 list do
                     field :rating
                     field :description
-                    field :course
-                    field :student
+                    field :enrollment
                     field :course_date
                     field :created_at
                     field :updated_at
@@ -53,8 +48,7 @@ class Recommendation < ActiveRecord::Base
                 edit do
                     field :rating
                     field :description
-                    field :course
-                    field :student
+                    field :enrollment
                 end
         end
     end
