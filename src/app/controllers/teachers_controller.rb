@@ -39,7 +39,7 @@ class TeachersController < ApplicationController
 
     @aulas = Course.where( "teacher_id = ? ", @teacher.id)
     
-    @aulas_realizadas = MatterTeacherStudent.where("course_id in ( ? )", @aulas.select { |aula| aula.id} )
+    @aulas_realizadas = Enrollment.where("course_id in ( ? )", @aulas.select { |aula| aula.id} )
    
     @horas_aulas = 0
     @aulas_realizadas.each do |aula|
@@ -50,23 +50,31 @@ class TeachersController < ApplicationController
 
  
   def new
+    @teacher = Teacher.all
+    if ( @teacher.find_by( user_id: current_user.id ) )
+       flash[:notice] = "Olá #{current_user.name}, Você já é um professor!"
+       redirect_to teacher_path(@teacher.find_by(user_id: current_user.id))
+    else
+      @teacher = Teacher.new
+      @teacher.user = User.find(current_user.id)
+    end  
     
-    @create = true   
-    id = current_user.id
-    @all_teacher = Teacher.all
-    @all_teacher.each do |t|
-      if t.user.id.to_s == id.to_s
-        @create = false
-        @t_id = t.id
-        redirect_to controller:'teachers', action: 'show', id: @t_id
-      end
-    end
-    if @create == true
-      #redirect_to teachers_path
-      @teacher = current_user.teachers.build
-      @teacher.user_id = current_user.id
+    # @create = true   
+    # id = current_user.id
+    # @all_teacher = Teacher.all
+    # @all_teacher.each do |t|
+    #   if t.user.id.to_s == id.to_s
+    #     @create = false
+    #     @t_id = t.id
+    #     redirect_to controller:'teachers', action: 'show', id: @t_id
+    #   end
+    # end
+    # if @create == true
+    #   #redirect_to teachers_path
+    #   @teacher = current_user.teachers.build
+    #   @teacher.user_id = current_user.id
       
-    end
+    # end
     
   end
 
@@ -76,7 +84,8 @@ class TeachersController < ApplicationController
 
   
   def create
-    @teacher = current_user.teachers.build(teacher_params)
+    @teacher = Teacher.new(teacher_params)
+    @teacher.user = User.find(current_user.id)
 
     respond_to do |format|
       if @teacher.save
@@ -118,7 +127,7 @@ class TeachersController < ApplicationController
     end
 
     def teacher_params
-      params.require(:teacher).permit(:formation, :description, courses_attributes: [:id, :name, :_destroy])
+      params.require(:teacher).permit(:formation, :university, :description,  courses_attributes: [:id, :name, :_destroy], users_attributes: [:name, :cpf, :scholarity, :fone, :whatsapp, :skype, :addrress, :state, :country, :date_of_birth])
     end
     ## para tomar um action em caso de duplicidades
     #def find_teacher
