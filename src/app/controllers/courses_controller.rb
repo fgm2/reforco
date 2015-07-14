@@ -24,6 +24,22 @@ class CoursesController < ApplicationController
   def show
     @alunos = Student.joins("JOIN enrollments ON students.id = enrollments.student_id ").
                       where("enrollments.course_id = ?", @course.id)
+                      
+    @cursos ||= Course.all
+    @matriculas ||= Enrollment.all
+    @recomendacoes ||= Recommendation.all
+		
+		@positivas = @recomendacoes.where("rating = 1 AND enrollment_id IN (?) ",
+                                            @matriculas.where("course_id = (?)",
+                                              @course.id).select(:id)).count
+		
+		@negativas = @recomendacoes.where("rating = 0 AND enrollment_id IN (?) ",
+                                            @matriculas.where("course_id IN (?)",
+                                             @course.id).select(:id)).count
+                                                    
+    @porcentagem = (@positivas*100)/(@positivas+@negativas)                  
+    
+                      
   end
 
   # GET /courses/new

@@ -19,6 +19,7 @@
 			
 			<div class="col-md-12">
 				<h1> <%= @teacher.name %> </h1>
+				<hr>
 			</div>
 			
 			<div class="col-md-3">
@@ -67,8 +68,9 @@
 		                        <div>
 		<!--                        <p style='float:left;'><i title='Recomendações Positivas' class='fa fa-thumbs-o-up' ></i> 1</p>
 		                            <p style='float:left;'>&nbsp;<i title='Recomendações Negativas' class='fa fa-thumbs-o-down'></i> 0</p>-->
-		                            <p align="right"> &nbsp;&nbsp;&nbsp;<i title="Quantidade de aulas dadas" class="fa fa-graduation-cap"></i>
-		                                3</p>
+		                            <!--<p align="right"> &nbsp;&nbsp;&nbsp;<i title="Quantidade de aulas dadas" class="fa fa-graduation-cap"></i>-->
+		                            <!--    3</p>-->
+		                            <!--<br/><br/>-->
 		                        </div>
 		                    </div>
 		                </div>
@@ -80,7 +82,7 @@
 					<div class="panel panel-default">
 						
 			            <div class="panel-heading">
-			            	<h3 class="panel-title"><strong>Aulas Disponíveis</strong></h3>
+			            	<h3 class="panel-title"><strong>Cursos que Leciona</strong></h3>
 						</div> <!--panel-heading-->
 						
 						<div class="panel-body">
@@ -115,17 +117,17 @@
 						
 						
 						<div class="row">
-                            <div class="col-sm-4">
-                                <div class="value">
+                            <div class="col-sm-4 col-md-4">
+                                <div class="text-center">
                                     <h1 class="count">
                                         <%= @aulas_realizadas.count %>
                                     </h1>
-                                    <p>Quantidade de Aulas</p>
+                                    <p>Aulas Realizadas</p>
                                 </div>
                             </div>
 
-                            <div class="col-sm-4">
-                                <div class="value">
+                            <div class="col-sm-4 col-md-4">
+                                <div class="text-center">
                                     
                                     <h1 class="count">
           	                         	<%= @horas_aulas %>
@@ -135,10 +137,10 @@
                                 </div>
                             </div>
 
-                            <div class="col-sm-4">
-                                <div class="value">
+                            <div class="col-sm-4 col-md-4">
+                                <div class="text-center">
                                     <h1 class="count">
-                                        100.00                                        %
+                                        <%= @porcentagem.to_f %> %
                                     </h1>
                                     <p>Percentual de Avaliações Positivas</p>
                                 </div>
