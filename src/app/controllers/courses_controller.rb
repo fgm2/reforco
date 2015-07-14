@@ -12,10 +12,8 @@ class CoursesController < ApplicationController
     # if @aluno.valid?
       @aluno = Student.where("user_id = ? ",current_user.id).first
       @suas_aulas = Enrollment.where("student_id = ? ", @aluno.id )
+      @recomendacoes = Recommendation.where("enrollment_id IN (?)", @suas_aulas.select(:id))
       
-      # @recomendacoes = Recommendation.where("course_id IN (?) AND student_id = ?", @suas_aulas.select(:id), @aluno.id)
-      
-      @recomendacoes = Recommendation.where("course_id IN (?) AND student_id = ?", @suas_aulas.select(:id), @aluno.id)
     else
       @suas_aulas = nil
     end
@@ -24,11 +22,8 @@ class CoursesController < ApplicationController
   # GET /courses/1
   # GET /courses/1.json
   def show
-    # @curso = Course.find(params[:id])
-    # @alunos_id = MatterTeacherStudent.where("course_id = ? ", @course.id ).select(:student_id)
-    # @alunos = Student.where("id IN (?) ", @alunos_id )
-    @alunos = Student.joins("JOIN matter_teacher_students ON students.id = matter_teacher_students.student_id ").
-                      where("matter_teacher_students.course_id = ?", @course.id)
+    @alunos = Student.joins("JOIN enrollments ON students.id = enrollments.student_id ").
+                      where("enrollments.course_id = ?", @course.id)
   end
 
   # GET /courses/new
@@ -119,37 +114,44 @@ class CoursesController < ApplicationController
   
   def recomendacao
     
-    if user_signed_in?
+    if ( (user_signed_in?) and (is_student(current_user.id)) )
+      @aluno = Student.where("user_id = ? ",current_user.id).first
       @recomendacoes = Recommendation.all
+      @matriculas = Enrollment.where("student_id = ?", @aluno.id)
+                  
     end
+    
   end
   
   # POST /courses/agendamento/recomendacao
   def recomendacao_save
     
     avaliacao = params[:avaliacao]
-    course_id = params[:course_id]
     comentario = params[:comentario]
     user_id = params[:user_id]
+    course_id = params[:course_id]
     
     @user = User.find(user_id)
     @aluno = Student.where("user_id = ?", @user.id).first
     @curso = Course.find(course_id)
     
+    @matricula = Enrollment.where("course_id = ? ", @curso.id ).
+                            where("student_id = ?", @aluno.id).
+                            where("evaluation IS NULL ").first
+    
+    
     @recomendacao = Recommendation.new
     @recomendacao.rating = avaliacao
-    @recomendacao.descripition = comentario
-    
-    @recomendacao.student_id = @aluno.id
-    @recomendacao.course_id = @curso.id
-    
+    @recomendacao.description = comentario
+    @recomendacao.enrollment_id = @matricula.id
+    @recomendacao.course_date = @matricula.created_at
     
     
     if @recomendacao.save
-      if @curso.update( evaluation: true )
+      if @matricula.update( evaluation: true )
           redirect_to action: 'index', notice: 'Recomendação salva.'
       else
-          # redirect_to action: 'index', notice: 'Erro na criação do agendamento.'
+          redirect_to action: 'index', notice: 'Erro ao atualizar o matricula.'
       end
       # redirect_to action: 'index', notice: 'Agendamento criado com sucesso.'
     else
