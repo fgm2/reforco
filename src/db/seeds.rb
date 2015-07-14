@@ -24,7 +24,7 @@ end
 # --------------------
 
 teachers = [
-            {:university => 'Instituto Federal do Norte de Minas Gerais', :formation => 'Tecnologo em Análise e Desenvolvimento de Sistemas', :user => User.find(2), :description => 'Grande esperiência como professor.' },
+            {:university => 'Instituto Federal do Norte de Minas Gerais', :formation => 'Tecnologo em Análise e Desenvolvimento de Sistemas', :user => User.find(2), :description => 'Grande experiência como professor.' },
             {:university => 'Instituto Federal do Norte de Minas Gerais', :formation => 'Tecnologo em Análise e Desenvolvimento de Sistemas', :user => User.find(3), :description => 'Apaixonado por dar aula e ensinar.'},
             {:university => 'Universidade Estadual de Montes Claros', :formation => 'Bacharel em Sistemas de Informação', :user => User.find(4), :description => 'Um especialista em tudo que é tecnologico.'},
             {:university => 'Universidade Estadual de Montes Claros', :formation => 'Bacharel em Matemática', :user => User.find(5), :description => 'A matemática está em tudo. Basta vc olhar.'},
@@ -151,23 +151,25 @@ end
 
 # --------------------
 
-matterTeacherStudent = [
-    { :course => Course.find(1), :student => Student.find(1), :hours => 4},
-    { :course => Course.find(2), :student => Student.find(2), :hours => 14},
-    { :course => Course.find(3), :student => Student.find(3), :hours => 2},
-    { :course => Course.find(4), :student => Student.find(1), :hours => 10},
+# enrollments = Enrollment.all
+# enrollments.find(1).update_attribute :created_at, (rand*10).days.ago
+enrollments = [
+    { :course => Course.find(1), :student => Student.find(1), :hours => 4,  :evaluation => true, :created_at =>'20140630070135'},
+    { :course => Course.find(2), :student => Student.find(2), :hours => 14, :evaluation => true, :created_at =>'20141127140244'},
+    { :course => Course.find(3), :student => Student.find(3), :hours => 2,  :evaluation => true, :created_at =>'20150110120531'},
+    { :course => Course.find(4), :student => Student.find(1), :hours => 10, :evaluation => true, :created_at =>'20150713100000'},
     ]
 
-matterTeacherStudent.each do |m|
-  MatterTeacherStudent.create!(m)
+enrollments.each do |e|
+  Enrollment.create!(e)
 end
 # --------------------
 
 recommendations = [
-    {:rating => 1, :descripition =>'Ótima aula', :course => Course.find(1), :student => Student.find(1)},
-    {:rating => 1, :descripition =>'Muito bom mesmo. recomendo!', :course => Course.find(2), :student => Student.find(2)},
-    {:rating => 0, :descripition =>'Não gostei do material nem da didatica.', :course => Course.find(4), :student => Student.find(3)},
-    {:rating => 1, :descripition =>'Melhor impossivel.', :course => Course.find(4), :student => Student.find(1)},
+    {:rating => 1, :description =>'Ótima aula', :enrollment => Enrollment.find(1), :course_date => Enrollment.find(1).created_at},
+    {:rating => 1, :description =>'Muito bom mesmo. recomendo!', :enrollment => Enrollment.find(2), :course_date => Enrollment.find(2).created_at},
+    {:rating => 0, :description =>'Não gostei do material nem da didatica.', :enrollment => Enrollment.find(3),  :course_date => Enrollment.find(3).created_at},
+    {:rating => 1, :description =>'Melhor impossivel.', :enrollment => Enrollment.find(4), :course_date => Enrollment.find(4).created_at},
     ]
 
 recommendations.each do |r|

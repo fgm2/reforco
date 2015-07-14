@@ -39,7 +39,8 @@ class TeachersController < ApplicationController
 
     @aulas = Course.where( "teacher_id = ? ", @teacher.id)
     
-    @aulas_realizadas = MatterTeacherStudent.where("course_id in ( ? )", @aulas.select { |aula| aula.id} )
+    # @aulas_realizadas = MatterTeacherStudent.where("course_id in ( ? )", @aulas.select { |aula| aula.id} )
+    @aulas_realizadas = Enrollment.where("course_id in ( ? )", @aulas.select { |aula| aula.id} )
    
     @horas_aulas = 0
     @aulas_realizadas.each do |aula|

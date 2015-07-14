@@ -21,8 +21,8 @@ class ApplicationController < ActionController::Base
       "/cursos/agendamento/#{id}"
   end
   
-  def recomendacao_path(id)
-      "/cursos/agendamento/recomendacao/#{id}"
+  def recomendacao_path
+      "/cursos/agendamento/recomendacao/"
   end
   
   def cursos_path
