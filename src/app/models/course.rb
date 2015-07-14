@@ -24,6 +24,9 @@ class Course < ActiveRecord::Base
             configure :value do
                 label 'R$ por Hora'
             end
+            configure :evaluation do
+                label 'Curso Avaliado'
+            end
             configure :created_at do
                 label 'Criado em'
             end
@@ -37,6 +40,7 @@ class Course < ActiveRecord::Base
               field :teacher
               field :description
               field :value
+              field :evaluation
               field :created_at
               field :updated_at
             end
