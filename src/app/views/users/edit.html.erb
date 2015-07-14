@@ -1,8 +1,15 @@
 <% if (@user.id == current_user.id) %>
 
-    <h1>Editing User</h1>
+    <h1>Editando meu perfil</h1>
     
-    <%= render 'form' %>
+    <% if user_signed_in? %>
+  <ul class="nav nav-tabs">
+    <li> <%= link_to 'Visualizar', @user %></li>
+    <li class="active"><a href="#">Editar</a></li>
+  </ul>
+<% end %>
+
+     <%= render 'form' %>
     
     <%= link_to 'Show', @user %> |
     <%= link_to 'Back', users_path %>
