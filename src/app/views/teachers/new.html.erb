@@ -1,8 +1,139 @@
- <h2> </h2>
-
-<%= link_to (image_tag current_user.avatar.url(:thumb), class: 'avatar') %> <br>
-
-<%= render 'form' %>
-
-
-<%= link_to 'Back', teachers_path %>
+ <div class="container">
+    <div class="row">
+        <h2> Seja muito bem vindo ao nosso cadastro de professor</h2>    
+        <p>Após concluir esse cadastro você poderá dar aulas em nosso portal.</p>
+    </div>
+    <div class="row">
+        <form role="form" method="POST" action="<%= "/teachers" %>">
+            <div class="row well">
+                <p><strong>DADOS DO USUÁRIO</strong></p>
+                <hr>
+                <div class="col-md-6">
+                    <div class="col-md-3">
+                        <%= (image_tag current_user.avatar.url(:thumb), class: 'avatar') %> <br>
+                        <% if ( (current_user.avatar.url == '/avatars/original/missing.png') )%>
+                            <div class="form-group">
+                                <input  type="file" class="form-control btn btn-success">
+                            </div>
+                        <% end %>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="form-group">
+                            <label for="name">Nome:</label>
+                            <input type="text" required class="form-control" id="name" name="teacher[name]" value="<%= current_user.name %>">
+                        </div>
+                        <div class="form-group">
+                            <label for="escolaridade">Escolaridade:</label>
+                            <input type="text" required class="form-control" id="scholarity" name="teacher[scholarity]" value="<%= current_user.scholarity %>">
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Endereço:</label>
+                            <input type="text" required class="form-control" id="address" name="teacher[address]" value="<%= current_user.addrress %>">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="state">Estado:</label>
+                                <input type="text" required class="form-control" id="state" name="teacher[state]" value="<%= current_user.state %>">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="country">País:</label>
+                                <input type="text" required class="form-control" id="country" name="teacher[country]" value="<%= current_user.country %>">
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="col-md-12 well">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="country">Data de Nascimento:</label>
+                                    <input type="date" required class="form-control" id="date_of_brith" name="teacher[[date_of_brith]" value="<%= current_user.date_of_birth %>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="cpf">CPF:</label>
+                                    <input type="text" required  class="form-control" id="cpf" name="teacher[cpf]" value="<%= current_user.cpf %>">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="fone">Telefone:</label>
+                                    <input type="text" required class="form-control" id="fone" name="teacher[fone]" value="<%= current_user.fone %>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">E-mail:</label>
+                                    <input type="text" required class="form-control" id="email" name="teacher[email]" value="<%= current_user.email %>">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 well">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="whatsapp">Whatsapp:</label>
+                                    <input type="text" required class="form-control" id="whatsapp" name="teacher[whatsapp]" value="<%= current_user.whatsapp %>">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="skype">Skype:</label>
+                                    <input type="text" required class="form-control" id="skype" name="teacher[skype]" value="<%= current_user.skype %>">
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row well">
+                    <p>Esclarecimento dos principais pontos do termo de adesão e funcionamento do portal REFORÇO.</p>
+                    <p>Todo agendamento e contratação deverá acontecer através do portal reforço.
+                    Antes do agendamento e contratação, é proibido a troca de meios de contato (e-mail, telefone outros).
+                    Todo reagendamento de aulas deverá acontecer através do REFORÇO.
+                    Somente as aulas agendadas pelo REFORÇO podem ser avaliadas. E somente alunos com aulas agendadas pelo REFORÇO podem recomendar o professor.
+                    As avaliações são os principais fatores para aumento do ranking do professor.
+                    Não há mensalidade ou taxas de manutenção. A taxa de sucesso de 20% sobre o valor da aula, com mínimo de R$8,00, é cobrada do professor por cada aula.
+                    O professor deverá manter seus dados cadastrais atualizados e completos.</p>
+                    <br>
+                    <div class="col-md-6">
+                        <label for="confirmacao">Você concorda com os termos de serviço do portal REFORÇO. </label> 
+                        <br> <input type="checkbox" id="confirmacao" name="confirmacao" value="yes" required> Concordo<br> 
+                    </div>
+            </div>
+            <hr>
+            <div class="row well">
+                <p><strong>DADOS DE PROFESSOR</strong></p>
+                <hr>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="formation">Formação:</label>
+                        <input type="text" class="form-control" id="formation" name="teacher[formation]" value="<%= @teacher.formation %>">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="university">Instituição onde formou:</label>
+                        <input type="text" class="form-control" id="university" name="teacher[university]" value="<%= @teacher.university %>">
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="date">Descrição Pessoal:</label>
+                      <textarea class="form-control" rows="10" id="description" name="teacher[description]" value="<%= @teacher.description %>"></textarea>
+                    </div>
+                </div>
+                <!--<%= hidden_field_tag "teacher[user]", current_user.id %>-->
+                <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
+                <div class="col-md-12" align="center">
+                    <button type="submit" class="btn btn-success btn-block" style="width: 90%; margin-left: 30px;" align="center" >
+                    Me tornar um professor agora!
+                    </button>
+                </div>            
+            </div>
+        </form>
+    </div>
+    
+    <div class="row">
+        
+    </div>
+ </div>
+ 

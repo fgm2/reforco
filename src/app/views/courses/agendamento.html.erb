@@ -1,0 +1,169 @@
+<% content_for :header do %>
+  <%= javascript_include_tag 'application' %>  
+<% end %>
+
+
+<div class="container">
+  
+  <p id="notice"><%= notice %></p>
+  
+  
+  <% if user_signed_in? %>
+  
+    <!--<div class = "row">-->
+    <!--  <h3>Suas Aulas Contratadas</h3>-->
+    <!--</div>-->
+    
+  <% end %>
+  
+  
+    <div class = "row">
+        <div class="col-sm-6 col-md-12">
+          <h1> Novo Agendamento: <h5><%= "#{@curso.name} , #{@prof.user.name}" %></h5></h1>
+          <hr>
+        </div>
+      
+        <div class="col-sm-6 col-md-2">
+            <div class="thumbnail">
+              <%= image_tag @curso.teacher.user.avatar.url(:thumb), class: 'avatar', style: "width: 75x; height: 75px;" %>
+            </div>
+            
+
+                <div class="well">
+                  
+                    <h4 class="text-center">
+                        <%= "#{@prof.user.name}" %>
+                    </h4>
+                  
+                  
+                  
+                    <div class="row">
+                         <div class="col-md-6">
+                             <span class="label label-success">
+                                <span class="glyphicon glyphicon-thumbs-up"></span> 
+                                   <span class="badge">7</span>
+                             </span>
+                         </div>
+                         
+                         <div class="col-md-6">   
+                           <span class="label label-danger">
+                            <span class="glyphicon glyphicon-thumbs-down"></span> 
+                               <span class="badge">3</span>
+                         </span>
+                         </div>
+                         
+                      </div>
+                      
+                      
+                </div>
+        
+        </div>
+        <div class="col-sm-6 col-md-3">
+          
+            <div class="well">
+              <h4><strong><%= @curso.name %></strong></h4>
+              
+              <strong>Valor (hora): </strong> <%= "R$" '%.2f' % @curso.value.to_f %>
+            </div>
+            
+            <div class="alert alert-info text-justify">
+              <strong>Atenção!</strong> Selecione 3 opções de datas/horários em que você tem disponibilidade 
+              para sua aula. As datas serão avaliadas e uma delas será escolhida pelo professor para que 
+              esta aula aconteça. (dd/mm/aaaa hh:mm).
+            </div>
+          
+        </div>
+        
+        
+        <div class="col-sm-6 col-md-6">
+            
+            
+            <form role="form" method="POST" action="<%= agendamentos_path %>">
+            
+            <div class="row">
+            
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="horas">Duração da Aula:</label>
+                  <select class="form-control" id="duracao" name="duracao">
+                      <option value="" selected="selected">Selecione uma duração...</option>
+                      <option value="1">1 hora</option>
+                      <option value="2">2 horas</option>
+                      <option value="3">3 horas</option>
+                      <option value="4">4 horas</option>
+                      <option value="5">5 horas</option>
+                      <option value="6">6 horas</option>
+                      <option value="7">7 horas</option>
+                      <option value="8">8 horas</option>
+                      <option value="9">9 horas</option>
+                      <option value="10">10 horas</option>
+                  </select>
+                </div>
+                
+                <div class="form-group">
+                  <label for="date">informe as possíveis datas:</label>
+                  <input type="date" class="form-control" id="date1" name="date1">
+                </div>
+                <div class="form-group">
+                  <input type="date" class="form-control" id="date2" name="date2">
+                </div>
+                <div class="form-group">
+                  <input type="date" class="form-control" id="date3" name="date3">
+                </div>
+
+              </div>
+              
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="date">Descreva sua necessidade:</label>
+                  <textarea class="form-control" rows="10" id="commentario"></textarea>
+                </div>
+                
+              </div>
+              <% if (user_signed_in?) %>
+              
+                  <%  if ( is_student(current_user.id) ) %>
+                      <div class="row">
+                        <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
+                        <input id="user_id" name="user_id" type="hidden" value="<%= current_user.id %>" >
+                        <input  id="id_curso" name="id_curso" type="hidden" value="<%= @curso.id %>" >
+                        <button type="submit" class="btn btn-success btn-block" style="  width: 90%; margin-left: 30px;" >
+                            Agendar Aula
+                        </button>
+                      </div>
+                  <% else %>
+                      <div class="col-md-12">
+                        <div class="alert alert-warning text-center">
+                            <a href="#" class="btn btn-info btn-block disabled" style="  width: 90%; margin-left: 30px;" >
+                              Agendar Aula</a> <br/>
+                        
+                            <strong>Sinto Muito!</strong> Você não é um aluno para realizar um agendamento. 
+
+                        </div>
+                      </div>
+                      
+                  <% end %>
+              <% else %>
+                  <div class="col-md-12">
+                    <div class="alert alert-warning text-center">
+                        <a href="#" class="btn btn-info btn-block disabled" style="  width: 90%; margin-left: 30px;" >
+                          Agendar Aula</a> <br/>
+                    
+                        <strong>Atenção!</strong> Você precisa fazer login para realizar um agendamento. 
+                        
+                    </div>
+                  </div>
+              <% end %>
+            
+            
+            </div>
+            
+            </form>
+
+        </div>
+          
+    </div>
+    
+    <hr>
+
+</div>
