@@ -118,18 +118,25 @@
 
 								<% end %>
 								</ul>
+								
+						<% if  user_signed_in? %>
+							<% if  @teacher.user_id == current_user.id %>
 								<div class="content text-center">
 									<a href="#modalnewCourse" class="btn btn-success" style="margin-top: 20px;"
 										data-toggle="modal" data-target="#modalnewCourse">Novo Curso</a>
 								</div>
+							<% end %>
+						<% end %>
 							</div>
 						</div>
 					</div> <!--panel-->
 					
 					
-					<% if @teacher.user_id == current_user.id %>	
+					<% if  user_signed_in? %>
+					
+						<% if  @teacher.user_id == current_user.id %>	
 						
-						<div class="bs-example">
+							<div class="bs-example">
 							    <div class="panel-group" id="accordion">
 							        <div class="panel panel-default">
 							            <div class="panel-heading">
@@ -188,9 +195,11 @@
 							            </div>
 							        </div>
 							    </div>
-						</div>
+							</div>
 						
-					<% end %>	
+						<% end %>
+					
+					<% end %>
 						
 					</div> <!--row-->
 				
