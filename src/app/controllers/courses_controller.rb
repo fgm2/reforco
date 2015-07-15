@@ -36,8 +36,12 @@ class CoursesController < ApplicationController
 		@negativas = @recomendacoes.where("rating = 0 AND enrollment_id IN (?) ",
                                             @matriculas.where("course_id IN (?)",
                                              @course.id).select(:id)).count
-                                                    
-    @porcentagem = (@positivas*100)/(@positivas+@negativas)                  
+
+    if ( @positivas+@negativas > 0)                                                    
+      @porcentagem = (@positivas*100)/(@positivas+@negativas)                  
+    else
+      @porcentagem = 0
+    end
     
                       
   end
@@ -54,11 +58,20 @@ class CoursesController < ApplicationController
   # POST /courses
   # POST /courses.json
   def create
-    @course = Course.new(course_params)
+    # @course = Course.new(course_params)
+    
+    @teacher = Teacher.where(:user_id => current_user.id).first
+    
+    @course = Course.new
+    @course.name = params[:course][:name]
+    @course.matter = Matter.find(params[:course][:matter])
+    @course.teacher = @teacher
+    @course.value = params[:course][:value]
+    @course.description = params[:course][:description]
 
     respond_to do |format|
       if @course.save
-        format.html { redirect_to @course, notice: 'Course was successfully created.' }
+        format.html { redirect_to @teacher, notice: 'Curso criado com sucesso.' }
         format.json { render :show, status: :created, location: @course }
       else
         format.html { render :new }
@@ -186,5 +199,6 @@ class CoursesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def course_params
       params[:course]
+      # params.require(:course).permit(:name, :matter_attributes [:name, :descripition], :value, :description)
     end
 end
