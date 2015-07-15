@@ -26,15 +26,14 @@
                 <p><strong>DADOS DO USUÁRIO</strong></p>
                 <hr>
                 <div class="col-md-6">
-                    <div class="col-md-3">
+                    <div class="col-md-5">
                         <%= (image_tag current_user.avatar.url(:thumb), class: 'avatar') %> <br>
-                        <% if ( (current_user.avatar.url == '/avatars/original/missing.png') )%>
-                            <div class="form-group">
-                                <input  id="avatar" name="user[avatar]" type="file" class="form-control btn btn-success">
-                            </div>
-                        <% end %>
+                        <br>
+                        <div class="col-md-3">
+                            <span class="btn btn-primary btn-file"><%= f.file_field :avatar, :title => 'tes',:class =>"col-md-1"%></span>
+                        </div>
                     </div>
-                    <div class="col-md-9">
+                    <div class="col-md-7">
                         <div class="form-group">
                             <label for="name">Nome:</label>
                             <input type="text" required class="form-control" id="name" name="user[name]" value="<%= current_user.name %>">
