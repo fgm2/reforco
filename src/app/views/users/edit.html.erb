@@ -6,6 +6,12 @@
   <ul class="nav nav-tabs">
     <li> <%= link_to 'Visualizar', @user %></li>
     <li class="active"><a href="#">Editar</a></li>
+    <% if is_student(current_user.id) %>
+        <li> <%= link_to 'Aluno', student_path(@user) %></li>
+    <% end %>
+    <% if is_teacher(current_user.id) %>
+        <li> <%= link_to 'Professor', teacher_path(@user) %></li>
+    <% end %>
   </ul>
 <% end %>
 <br>
