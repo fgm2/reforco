@@ -64,8 +64,13 @@ class TeachersController < ApplicationController
                                             @matriculas.where("course_id IN (?)",
                                               @cursos.where("teacher_id = ? ",@teacher.id).select(:id)
                                               ).select(:id)).count
-                                                    
-    @porcentagem = (@positivas*100)/(@positivas+@negativas)
+         
+         
+    if (@positivas+@negativas > 0)                                           
+      @porcentagem = (@positivas*100)/(@positivas+@negativas)
+    else
+      @porcentagem = 0
+    end
    
   end
 
