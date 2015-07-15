@@ -42,11 +42,12 @@ class TeachersController < ApplicationController
   def show
 
     @aulas = Course.where( "teacher_id = ? ", @teacher.id)
-
-    @aulas_realizadas = Enrollment.where("course_id in ( ? )", @aulas.select { |aula| aula.id} )
+    @ultimas_aulas = Enrollment.where("course_id in ( ? )", @aulas.select(:id) ).limit(5)
+    @aulas_realizadas = Enrollment.where("id NOT IN ( ? ) AND course_id in ( ? )", @ultimas_aulas.select(:id),@aulas.select(:id) )
+    @minhas_aulas = Enrollment.where("course_id in ( ? )", @aulas.select(:id) )
    
     @horas_aulas = 0
-    @aulas_realizadas.each do |aula|
+    @minhas_aulas.each do |aula|
       @horas_aulas = @horas_aulas + aula.hours 
 		end
 		
