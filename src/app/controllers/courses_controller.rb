@@ -108,6 +108,20 @@ class CoursesController < ApplicationController
   # GET /courses/agendamento/:course_id
   def agendamento
     @curso = Course.find(params[:course_id])
+    
+    @matriculas ||= Enrollment.all
+    @recomendacoes ||= Recommendation.all
+		
+		@positivas = @recomendacoes.where("rating = 1 AND enrollment_id IN (?) ",
+                                            @matriculas.where("course_id = (?)",
+                                              @curso.id).select(:id)).count
+		
+		@negativas = @recomendacoes.where("rating = 0 AND enrollment_id IN (?) ",
+                                            @matriculas.where("course_id IN (?)",
+                                             @curso.id).select(:id)).count
+    
+    
+    
     @prof = @curso.teacher
     if (user_signed_in?)
       @aluno = Student.where("user_id = ? ", current_user.id)
