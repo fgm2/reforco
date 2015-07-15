@@ -5,10 +5,10 @@
 
 <% if user_signed_in? %>
   
- <ul class="nav nav-tabs">
-  <li class="active"><a href="#">Visualizar</a></li>
-  <li><a href="#">Editar</a></li>
-</ul>
+<!-- <ul class="nav nav-tabs">-->
+<!--  <li class="active"><a href="#">Visualizar</a></li>-->
+<!--  <li><a href="#">Editar</a></li>-->
+<!--</ul>-->
   
 <% end %>
 
@@ -23,7 +23,7 @@
 			</div>
 			
 			<div class="col-md-3">
-				
+			<div class="row">
 				<div class="panel panel-default">
 		            <div class="panel-heading">
 		            	<!--<h3 class="panel-title">Foto</h3>-->
@@ -65,10 +65,10 @@
 					</div>
 				</div>
 				
-				
+			</div> <!--row-->
 			</div>
 			<div class="col-md-6">
-				<div class="panel panel-default">
+				<div class="panel panel-default" style = "min-height: 356px;">
 		                    <div class="panel-heading">
 		                        <h3 class="panel-title"><strong>Detalhes</strong></h3>
 		                    </div>
@@ -88,7 +88,7 @@
 		                            <p style='float:left;'>&nbsp;<i title='Recomendações Negativas' class='fa fa-thumbs-o-down'></i> 0</p>-->
 		                            <!--<p align="right"> &nbsp;&nbsp;&nbsp;<i title="Quantidade de aulas dadas" class="fa fa-graduation-cap"></i>-->
 		                            <!--    3</p>-->
-		                            <!--<br/><br/>-->
+		                            <br/><br/>
 		                        </div>
 		                    </div>
 		                </div>
@@ -96,6 +96,9 @@
 			</div>
 			
 			<div class="col-md-3">
+				
+				<div class="row">
+				
 				
 					<div class="panel panel-default">
 						
@@ -118,6 +121,74 @@
 							</div>
 						</div>
 					</div> <!--panel-->
+					
+					
+					<% if @teacher.user_id == current_user.id %>	
+						
+						<div class="bs-example">
+							    <div class="panel-group" id="accordion">
+							        <div class="panel panel-default">
+							            <div class="panel-heading">
+							                <h3 class="panel-title">
+							                	<strong>
+							                    	<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Ultimas aulas contratadas</a>
+							                    </strong>
+							                </h3>
+							            </div>
+							            <div id="collapseOne" class="panel-collapse collapse">
+							                <div class="panel-body">
+							                    
+							                    <ul>
+									                <%	@ultimas_aulas.each do |aula| %>
+												      	<li>
+												      		 <%= link_to aula.name, aula %>
+												      	</li>	
+													<% end %>
+						                		</ul>	
+							                    
+							                </div>
+							            </div>
+							        </div>
+							        <div class="panel panel-default">
+							            <div class="panel-heading">
+							                <h3 class="panel-title">
+							                	<strong>
+							                    	<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Todas as Aulas</a>
+							                    </strong>
+							                </h4>
+							            </div>
+							            <div id="collapseTwo" class="panel-collapse collapse">
+							                <div class="panel-body">
+							                    <ul>
+									                <%	@aulas_realizadas.each do |aula| %>
+												      	<li>
+												      		 <%= link_to aula.name, aula %>
+												      	</li>	
+													<% end %>
+						                		</ul>	
+							                </div>
+							            </div>
+							        </div>
+							        <div class="panel panel-default">
+							            <div class="panel-heading">
+							                <h3 class="panel-title">
+							                	<strong>
+							                    	<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">???</a>
+							                    </strong>
+							                </h3>
+							            </div>
+							            <div id="collapseThree" class="panel-collapse collapse">
+							                <div class="panel-body">
+							                    <p>Another text</p>
+							                </div>
+							            </div>
+							        </div>
+							    </div>
+						</div>
+						
+					<% end %>	
+						
+					</div> <!--row-->
 				
 			</div>
 		
@@ -126,7 +197,8 @@
 		<div class="row">
 			
 			<div class="col-md-9">
-				<div class="panel panel-default">
+				<div class="row">
+				<div class="panel panel-default" style = "max-width: 863px;">
 		            <div class="panel-heading">
 		            	<h3 class="panel-title"><strong>Estatisticas</strong></h3>
 					</div>
@@ -139,7 +211,7 @@
                             <div class="col-sm-4 col-md-4">
                                 <div class="text-center">
                                     <h1 class="count">
-                                        <%= @aulas_realizadas.count %>
+                                        <%= @minhas_aulas.count %>
                                     </h1>
                                     <p>Aulas Realizadas</p>
                                 </div>
@@ -171,6 +243,8 @@
 						
 						
 					</div>
+				</div>
+				
 				</div>
 			</div>
 			
