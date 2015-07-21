@@ -1,7 +1,8 @@
 class PagesController < ApplicationController
   
   def index
-    @teachers = Teacher.all
+    @teachers = Teacher.all.limit(4)
+    @quantidade_of_teachers = Teacher.all.count
   end
   
   def show
@@ -14,6 +15,10 @@ class PagesController < ApplicationController
   
   def termos
     # render 'pages/termos'
+  end
+  
+  def funcionamento
+    render 'pages/como-funciona'
   end
   
 end

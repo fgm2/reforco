@@ -11,10 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150709021637) do
+ActiveRecord::Schema.define(version: 20150713211604) do
 
   create_table "area_of_knowledges", force: :cascade do |t|
     t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "contacts", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "subject"
+    t.text     "message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -23,38 +32,33 @@ ActiveRecord::Schema.define(version: 20150709021637) do
     t.string   "name"
     t.integer  "teacher_id"
     t.integer  "matter_id"
+    t.text     "description"
     t.float    "value"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.boolean  "evaluation"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   add_index "courses", ["matter_id"], name: "index_courses_on_matter_id"
   add_index "courses", ["teacher_id"], name: "index_courses_on_teacher_id"
 
-  create_table "matter_teacher_students", force: :cascade do |t|
+  create_table "enrollments", force: :cascade do |t|
     t.integer  "course_id"
     t.integer  "student_id"
     t.integer  "hours"
+    t.boolean  "evaluation"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "matter_teachers", force: :cascade do |t|
-    t.integer  "matter_id"
-    t.integer  "teacher_id"
-    t.float    "value"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "matter_teachers", ["matter_id"], name: "index_matter_teachers_on_matter_id"
-  add_index "matter_teachers", ["teacher_id"], name: "index_matter_teachers_on_teacher_id"
+  add_index "enrollments", ["course_id"], name: "index_enrollments_on_course_id"
+  add_index "enrollments", ["student_id"], name: "index_enrollments_on_student_id"
 
   create_table "matters", force: :cascade do |t|
     t.string   "name"
     t.text     "descripition"
-    t.datetime "created_at",         null: false
     t.integer  "areaOfKnowledge_id"
+    t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
   end
 
@@ -62,27 +66,31 @@ ActiveRecord::Schema.define(version: 20150709021637) do
 
   create_table "recommendations", force: :cascade do |t|
     t.integer  "rating"
-    t.text     "descripition"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.text     "description"
+    t.integer  "enrollment_id"
+    t.datetime "course_date"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
+  add_index "recommendations", ["enrollment_id"], name: "index_recommendations_on_enrollment_id"
+
   create_table "students", force: :cascade do |t|
-    t.datetime "created_at",  null: false
-    t.integer  "user_id"
-    t.datetime "updated_at",  null: false
     t.text     "description"
-    t.text     "formation"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   add_index "students", ["user_id"], name: "index_students_on_user_id"
 
   create_table "teachers", force: :cascade do |t|
     t.string   "formation"
-    t.datetime "created_at",  null: false
-    t.integer  "user_id"
-    t.datetime "updated_at",  null: false
+    t.string   "university"
     t.text     "description"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   add_index "teachers", ["user_id"], name: "index_teachers_on_user_id"
@@ -94,7 +102,9 @@ ActiveRecord::Schema.define(version: 20150709021637) do
     t.string   "fone"
     t.string   "whatsapp"
     t.string   "skype"
+    t.string   "gender"
     t.string   "addrress"
+    t.string   "city"
     t.string   "state"
     t.string   "country"
     t.date     "date_of_birth"
@@ -110,7 +120,6 @@ ActiveRecord::Schema.define(version: 20150709021637) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.boolean  "is_female",              default: false
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"

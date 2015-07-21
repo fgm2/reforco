@@ -6,20 +6,26 @@ class Course < ActiveRecord::Base
   
   RailsAdmin.config do |config|
         config.model "Course" do
-            label "Curso Oferecido"
-            label_plural "Cursos Oferecidos"
+            label "Aula Oferecida"
+            label_plural "Aulas Oferecidas"
             
             configure :name do
               label 'Nome'
             end
             configure :matter do
-              label 'Disciplina'
+              label 'Matéria'
             end
             configure :teacher do
                 label 'Professor'
             end
+            configure :description do
+                label 'Descrição'
+            end
             configure :value do
-                label 'Valor por Hora'
+                label 'R$ por Hora'
+            end
+            configure :evaluation do
+                label 'Curso Avaliado'
             end
             configure :created_at do
                 label 'Criado em'
@@ -32,7 +38,9 @@ class Course < ActiveRecord::Base
               field :name
               field :matter
               field :teacher
+              field :description
               field :value
+              field :evaluation
               field :created_at
               field :updated_at
             end
@@ -40,6 +48,7 @@ class Course < ActiveRecord::Base
               field :name
               field :matter
               field :teacher
+              field :description
               field :value
             end
         end

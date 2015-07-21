@@ -1,4 +1,211 @@
-<p id="notice"><%= notice %></p>
+<% content_for :header do %>
+    <%= javascript_include_tag 'application' %>  
+<% end %>
 
-<%= link_to 'Edit', edit_course_path(@course) %> |
-<%= link_to 'Back', courses_path %>
+
+<% if user_signed_in? %>
+  
+ <ul class="nav nav-tabs">
+  <li class="active"><a href="#">Visualizar</a></li>
+  <li><a href="#">Editar</a></li>
+</ul>
+  
+<% end %>
+
+
+<div class="container">
+		
+		<div class="row">
+			
+			<div class="col-md-12">
+				<h1> <%= @course.name %> </h1>
+				<hr>
+			</div>
+			
+			<div class="col-md-9">
+				<div class="panel panel-default">
+		                    <div class="panel-heading">
+		                        <h3 class="panel-title"><strong>Detalhes</strong></h3>
+		                    </div>
+		                    <div class="panel-body">
+		                        
+        		                        <div class="row">
+        		                            
+        		                                <div class="col-md-6">
+                		                            
+                		                            <div class="well">
+                            		                        
+                            		                        <%= link_to (image_tag @course.teacher.user.avatar.url(:thumb), class: 'avatar', style: "width: 75x; height: 75px;" ), teacher_path(@course.teacher.id) %> <br>
+                            		                        
+                            		                        <div class="price">
+                            		                           <h3><%= @course.teacher.name %></h3>
+                            		                        </div>
+                            		                        
+                            		                        <p>
+                            		                            <strong>Formação:</strong> <%= @course.teacher.formation %> <br/>
+                            		                        </p>
+                            		    
+                            		                        <p>
+                            		                           <strong> Instituíção:</strong> <%= @course.teacher.university %> <br/>
+                            		                        </p>
+                            		                        
+                            		                        <p>
+                            		                           <strong> e-mail:</strong> <%= @course.teacher.user.email %> <br/>
+                            		                        </p>
+                            		                        
+                            		                        <br>
+                            		                        
+                            		                        <div>
+                            		<!--                        <p style='float:left;'><i title='Recomendações Positivas' class='fa fa-thumbs-o-up' ></i> 1</p>
+                            		                            <p style='float:left;'>&nbsp;<i title='Recomendações Negativas' class='fa fa-thumbs-o-down'></i> 0</p>-->
+                            		                            <p align="right"> &nbsp;&nbsp;&nbsp;<i title="Quantidade de aulas dadas" class="fa fa-graduation-cap"></i>
+                            		                                3</p>
+                            		                        </div>
+                        		                        
+                        		                      </div> <!--well-->
+                		                        
+                		                        </div> <!-- col -->
+        		                            
+        		                            
+        		                                <div class="col-md-6">
+        		                                    
+        		                                    <div class="well">
+        		                        
+                        		                        <strong><h3>Área de Conhecimento </h3></strong>
+                        		                        <p>
+                        		                        </p><div class="price">
+                        		                           <%= @course.matter.areaOfKnowledge.name %>
+                        		                        </div><p></p>
+                        		                       <strong><h3>Informações</h3></strong>
+                        		                       
+                        		                       <p>
+                        		                            <strong>Materia:</strong> <%= @course.matter.name %> <br/>
+                        		                        </p>
+                        		    
+                        		                        <p>
+                        		                           <strong> Valor:</strong> <%= "R$" '%.2f' % @course.value.to_f %> / hora <br/>
+                        		                        </p>
+                        		                        
+                        		                        <div class="row">
+                        		                            <div class="col-md-6">
+                        		                                    <p>
+                                    		                            <strong>Cadastrado em:</strong> <br/>
+                                    		                            <%= @course.created_at %>
+                                    		                        </p>
+                        		                                
+                    		                                </div>
+                    		                                <div class="col-md-6">
+                        		                                    <p>
+                                    		                            <strong>Ultima Atualização:</strong><br/>
+                                    		                            <%= @course.updated_at %> 
+                                    		                        </p>
+                        		                                
+                    		                                </div>
+                		                                </div>
+                        		                        
+                		                              </div> <!--well-->
+                		                        </div> <!-- col -->
+                		                        
+                		                        
+            		                  </div> <!--row-->
+		                    </div>
+	                </div>
+				
+			</div>
+			
+			<div class="col-md-3">
+				
+				<div class="row">
+			
+
+				<div class="panel panel-default">
+		            <div class="panel-heading">
+		            	<h3 class="panel-title"><strong>Estatisticas do Curso</strong></h3>
+					</div>
+					<div class="panel-body">
+						
+						
+						
+						
+						<div class="row">
+						    
+						    
+						    <div class="col-sm-12">
+                                <div class="content text-center">
+                                    <p>Avaliações Positivas</p>
+                                    <h1 class="count">
+                                        <%= @porcentagem.to_f %> %
+                                    </h1>
+                                    
+                                    
+                                    <div class="row">
+                                         <div class="col-md-6">
+                                             <span class="label label-success" style="padding: .60em .60em .60em;">
+                                                <span class="glyphicon glyphicon-thumbs-up"></span> 
+                                                   <span class="badge"><%= @positivas %></span>
+                                             </span>
+                                         </div>
+                                         
+                                         <div class="col-md-6">   
+                                           <span class="label label-danger" style="padding: .60em .60em .60em;">
+                                            <span class="glyphicon glyphicon-thumbs-down"></span> 
+                                               <span class="badge"><%= @negativas %></span>
+                                         </span>
+                                         </div>
+                                         
+                                      </div>
+                                    
+                                    
+                                    <hr>
+                                </div>
+                            </div>
+						    
+						    
+						    
+                            <div class="col-sm-12">
+                                <div class="content text-center">
+                                    <p>Alunos que cursaram</p>
+                                    <h1>
+                                        <%= !@alunos.nil? ? @alunos.count : "0"  %> 
+                                    </h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="value">
+                                    <!--<p>Tempo de Aula (HH:MM:SS)</p>-->
+                                    <!--<h1 class="count">-->
+          	                         <!--HORAS AULAS	-->
+                                    <!--</h1>-->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                             <a href="<%= agendamento_path(@course.id) %>" class="btn btn-success" style="  width: 90%; margin-left: 15px;" >
+                                  Agendamento</a> <br/>
+                            
+                        </div>
+                    </div>
+						
+						
+						
+						
+						
+					</div>
+				</div>
+	
+			
+		</div> <!--row2-->
+				
+				
+			</div>
+		
+			<hr>
+		
+		</div> <!--row 1-->
+		
+	
+		
+</div>  <!--container-->

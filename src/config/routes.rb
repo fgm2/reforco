@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
  
+  resources :enrollments
+  resources :contacts
   resources :matter_teacher_students
   resources :matter_teachers
   resources :recommendations
@@ -7,13 +9,24 @@ Rails.application.routes.draw do
   resources :area_of_knowledges
   resources :students
   resources :teachers
+  
+  # rotas personalizadas - Agendamento de Aulas
+  get   "/cursos/agendamento/:course_id" => "courses#agendamento"
+  post  "/cursos/agendamento/" => "courses#agendamento_save"
+  get   "/cursos/:id" => "courses#show"
+  get   "/cursos/agendamento/recomendacao/:course_id" => "courses#recomendacao"
+  post  "/cursos/agendamento/recomendacao"    => "courses#recomendacao_save"
+  
+  # reescrita da URL do RESOURCE. Ajuda esconder demais metodos aos conhecedores de REST
+  get "/cursos/" => "courses#index"
   resources :courses 
   
 
-  devise_for :users
+  devise_for :users, :controllers => {:registrations => "registrations"}
   resources :users
   
   # paginas personalizadas
+  get "/pages/como-funciona" => "pages#funcionamento"
   get "/pages/sobre" => "pages#sobre"
   get "/pages/termos" => "pages#termos"
   

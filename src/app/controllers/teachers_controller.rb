@@ -5,33 +5,103 @@ class TeachersController < ApplicationController
 
  
   def index
-    @teachers = Teacher.all
+    
+   
+    if ( (params[:area]) and (!params[:area][:id].eql? "") )
+      area_id = params[:area][:id] 
+        # @areas = AreaOfKnowledge.joins(' JOIN matters ON area_of_knowledges.id = matters.areaOfKnowledge_id').distinct
+        @materias = Matter.where("matters.areaOfKnowledge_id = ? ", area_id )
+        @teachers  = Teacher.joins('LEFT OUTER JOIN courses ON teachers.id = courses.teacher_id').
+              where("courses.id IN (?)", 
+                Course.where("matter_id IN (?) ", 
+                  Matter.where("matters.areaOfKnowledge_id = ? ", 
+                    area_id).select(:id) ).select(:id))
+    end
+
+    
+    if (params[:materia]) and (!params[:materia][:id].eql? "")
+      
+        materia_id = params[:materia][:id] 
+        @teachers  = Teacher.joins('LEFT OUTER JOIN courses ON teachers.id = courses.teacher_id').
+              where("courses.id IN (?)", 
+              Course.where("matter_id =  ?",materia_id).select(:id))
+    end
+      
+      @teachers ||= Teacher.all
+      @areas ||= AreaOfKnowledge.joins(' JOIN matters ON area_of_knowledges.id = matters.areaOfKnowledge_id').distinct
+      @materias ||= Matter.all
+      
+      @cursos ||= Course.all
+      @matriculas ||= Enrollment.all
+      @recomendacoes ||= Recommendation.all
+    
+    
   end
 
  
   def show
+
+    @aulas = Course.where( "teacher_id = ? ", @teacher.id)
+    @ultimas_aulas = Enrollment.where("course_id in ( ? )", @aulas.select(:id) ).limit(5)
+    @aulas_realizadas = Enrollment.where("id NOT IN ( ? ) AND course_id in ( ? )", @ultimas_aulas.select(:id),@aulas.select(:id) )
+    @minhas_aulas = Enrollment.where("course_id in ( ? )", @aulas.select(:id) )
+   
+    @horas_aulas = 0
+    @minhas_aulas.each do |aula|
+      @horas_aulas = @horas_aulas + aula.hours 
+		end
+		
+		@cursos ||= Course.all
+    @matriculas ||= Enrollment.all
+    @recomendacoes ||= Recommendation.all
+		
+		@positivas = @recomendacoes.where("rating = 1 AND enrollment_id IN (?) ",
+                                            @matriculas.where("course_id IN (?)",
+                                              @cursos.where("teacher_id = ? ", @teacher.id).select(:id)
+                                                  ).select(:id) 
+                                                    ).count
+		
+		@negativas = @recomendacoes.where("rating = 0 AND enrollment_id IN (?) ",
+                                            @matriculas.where("course_id IN (?)",
+                                              @cursos.where("teacher_id = ? ",@teacher.id).select(:id)
+                                              ).select(:id)).count
+         
+         
+    if (@positivas+@negativas > 0)                                           
+      @porcentagem = (@positivas*100)/(@positivas+@negativas)
+    else
+      @porcentagem = 0
+    end
    
   end
 
  
   def new
+    @teacher = Teacher.all
+    if ( @teacher.find_by( user_id: current_user.id ) )
+       flash[:notice] = "Olá #{current_user.name}, Você já é um professor!"
+       redirect_to teacher_path(@teacher.find_by(user_id: current_user.id))
+    else
+      @teacher = Teacher.new
+      @teacher.user = User.find(current_user.id)
+    end  
     
-    @create = true   
-    id = current_user.id
-    @all_teacher = Teacher.all
-    @all_teacher.each do |t|
-      if t.user.id.to_s == id.to_s
-        @create = false
-        @t_id = t.id
-        redirect_to controller:'teachers', action: 'show', id: @t_id
-      end
-    end
-    if @create == true
-      #redirect_to teachers_path
-      @teacher = current_user.teachers.build
-      @teacher.user_id = current_user.id
+    # @create = true   
+    # id = current_user.id
+    # @all_teacher = Teacher.all
+    # @all_teacher.each do |t|
+    #   if t.user.id.to_s == id.to_s
+    #     @create = false
+    #     @t_id = t.id
+    #     redirect_to controller:'teachers', action: 'show', id: @t_id
+    #   end
+    # end
+    # if @create == true
+    #   #redirect_to teachers_path
+    #   @teacher = current_user.teachers.build
+    #   @teacher.user_id = current_user.id
       
-    end
+    # end
     
   end
 
@@ -41,7 +111,8 @@ class TeachersController < ApplicationController
 
   
   def create
-    @teacher = current_user.teachers.build(teacher_params)
+    @teacher = Teacher.new(teacher_params)
+    @teacher.user = User.find(current_user.id)
 
     respond_to do |format|
       if @teacher.save
@@ -83,7 +154,7 @@ class TeachersController < ApplicationController
     end
 
     def teacher_params
-      params.require(:teacher).permit(:formation, :description, courses_attributes: [:id, :name, :_destroy])
+      params.require(:teacher).permit(:formation, :university, :description,  courses_attributes: [:id, :name, :_destroy], users_attributes: [:name, :cpf, :scholarity, :fone, :whatsapp, :skype, :addrress, :state, :country, :date_of_birth])
     end
     ## para tomar um action em caso de duplicidades
     #def find_teacher

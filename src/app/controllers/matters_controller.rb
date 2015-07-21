@@ -4,12 +4,17 @@ class MattersController < ApplicationController
   # GET /matters
   # GET /matters.json
   def index
+    @area_of_knowledges = AreaOfKnowledge.all
     @matters = Matter.all
+    @courses = Course.all
   end
 
   # GET /matters/1
   # GET /matters/1.json
   def show
+    @courses  = Course.where("matter_id = ? ", @matter.id)
+    @teachers = Course.where("matter_id = ? ", @matter.id).select(:teacher_id).distinct
+  
   end
 
   # GET /matters/new

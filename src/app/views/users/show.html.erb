@@ -1,91 +1,110 @@
-<div class="container"></div>
-
-<div class="container">
 
 <p id="notice"><%= notice %></p>
-<div class= "row">
-  
-  <dic class= "col-md-12">
-    <h1><%= @user.name %></h1>
-  </dic>
-  
-  <div class= "col-md-3">
+<% if (@user.id == current_user.id) %>
+
+    <h1>Meu perfil</h1>
     
-    <div class= "panel panel-default">
-      <div class="panel-heading">
-        <!--<h3 class="panel-title">Foto</h3>-->
-      </div>
-      <div class="panel-body">
-        <div class="container">
-         <img class= "avatar" src="<%= @user.avatar %>" class="img-responsive">
+    <% if user_signed_in? %>
+      <ul class="nav nav-tabs">
+        <li class="active"> <%= link_to 'Visualizar', @user %></li>
+        <li> <%= link_to 'Editar', edit_user_path(@user) %></li>
+        <% if is_student(current_user.id) %>
+            <li> <%= link_to 'Aluno', student_path(@user) %></li>
+        <% end %>
+        <% if is_teacher(current_user.id) %>
+            <li> <%= link_to 'Professor', teacher_path(@user) %></li>
+        <% end %>
+      </ul> 
+    <% end %>
+    <br>
+    <div class="container">
+    <div class="row">
+
+    </div>
+    <div class="row">
+        <div class="row well">
+            <p><strong>DADOS DO USUÁRIO</strong></p>
+            <hr>
+            <div class="col-md-6">
+                <div class="col-md-5">
+                    <%= (image_tag current_user.avatar.url(:thumb), class: 'avatar') %> <br>
+                </div>
+                <div class="col-md-7">
+                    <div class="form-group">
+                        <label for="name">Nome:</label>
+                        <input type="text" disabled class="form-control" id="name" name="user[name]" value="<%= current_user.name %>">
+                    </div>
+                    <div class="form-group">
+                        <label for="escolaridade">Escolaridade:</label>
+                        <input type="text" disabled class="form-control" id="scholarity" name="user[scholarity]" value="<%= current_user.scholarity %>">
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Endereço:</label>
+                        <input type="text" disabled class="form-control" id="address" name="user[address]" value="<%= current_user.addrress %>">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="state">Estado:</label>
+                            <input type="text" disabled class="form-control" id="state" name="user[state]" value="<%= current_user.state %>">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="country">País:</label>
+                            <input type="text" disabled class="form-control" id="country" name="user[country]" value="<%= current_user.country %>">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="col-md-12 well">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="country">Data de Nascimento:</label>
+                                <input type="date" disabled class="form-control" id="date_of_brith" name="user[[date_of_brith]" value="<%= current_user.date_of_birth %>">
+                            </div>
+                            <div class="form-group">
+                                <label for="cpf">CPF:</label>
+                                <input type="text" disabled  class="form-control" id="cpf" name="user[cpf]" value="<%= current_user.cpf %>">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="fone">Telefone:</label>
+                                <input type="text" disabled class="form-control" id="fone" name="user[fone]" value="<%= current_user.fone %>">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">E-mail:</label>
+                                <input type="text" disabled class="form-control" id="email" name="user[email]" value="<%= current_user.email %>">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 well">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="whatsapp">Whatsapp:</label>
+                                <input type="text" disabled class="form-control" id="whatsapp" name="user[whatsapp]" value="<%= current_user.whatsapp %>">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="skype">Skype:</label>
+                                <input type="text" disabled class="form-control" id="skype" name="user[skype]" value="<%= current_user.skype %>">
+                            </div>
+                        </div>
+                    </div>
+            </div>
         </div>
-      </div>
     </div>
     
-    <div class= "panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">Contatos</h3>
-      </div>
-      <div class="panel-body">
-        <div class="container">
-          <d1>
-            <p>
-              <dt>Telefone:</dt>
-              <dd><%= @user.fone %></dd>
-            </p>
-            <p>
-              <dt>Whatsapp:</dt>
-              <dd><%= @user.whatsapp %></dd>
-            </p>
-            <p>
-              <dt>Skype:</dt>
-              <dd><%= @user.skype %></dd>
-            </p>
-          </d1>  
+<% else %>
+    <div class="container">
+        <div class="alert alert-danger fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Atenção!</strong> Você não tem permissão para realizar esta ação.
         </div>
-      </div>
+
     </div>
-    
-  </div>
-  
-  <div class="col-md-6">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">Dados Gerais</h3>
-      </div>
-      <div class="panel-body">
-        <p>
-          <dt>Data de Nascimento</dt>
-          <dd><%= @user.date_of_birth %></dd>
-        </p>
-        <p>
-          <dt>Cpf:</dt>
-          <dd><%= @user.cpf %></dd>
-        </p>
-        <p>
-          <dt>Escolaridade</dt>
-          <dd><%= @user.scholarity %></dd>
-        </p>
-        
-        <dt>Endereço</dt>
-          <dd>
-            <address>
-              <%= @user.addrress %><br>
-              <%= @user.country %>, <%= @user.state %><br>
-            </address>  
-        </dd>
-      </div>
-    </div>
-  </div>
 
-</div>
-  
-<div class="container">  
+<% end %>
 
-  <% if (@user.id == current_user.id ) %>
-    <%= link_to 'Edit', edit_user_path(@user), class:"btn btn-primary btn-lg active"%> |
-  <% end %>  
-
-  <%= link_to 'Back', users_path, class:"btn btn-default btn-lg active" %>
-
-</div>
