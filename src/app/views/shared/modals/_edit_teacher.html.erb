@@ -21,7 +21,6 @@
                   </ul>
                 </div>
               <% end %>
-              
               <div class="container">
             	  <div class="row" >
             	    <div class="col-md-6">
@@ -39,9 +38,10 @@
                           <label >Descrição Pessoal</label>
                           <textarea class="form-control" rows="5" id="description" name="teacher[description]" > <%= @teacher.description %></textarea>
                         </div>
-                            <div class="content text-center">
-                                  <button type="submit" class="btn btn-success">Atualizar dados.</button>
-                            </div>
+                        <%= hidden_field_tag "teacher[redirect]", "meuperfil" -%>
+                        <div class="content text-center">
+                              <button type="submit" class="btn btn-success">Atualizar dados.</button>
+                        </div>
                       </div>
                     </div>
                   </div>

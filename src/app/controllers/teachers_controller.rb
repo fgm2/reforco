@@ -116,6 +116,7 @@ class TeachersController < ApplicationController
 
     respond_to do |format|
       if @teacher.save
+        
         format.html { redirect_to @teacher, notice: 'Teacher was successfully created.' }
         format.json { render :show, status: :created, location: @teacher }
       else
@@ -127,10 +128,17 @@ class TeachersController < ApplicationController
 
   
   def update
+
+    goback = params[:teacher][:redirect]
+    
     respond_to do |format|
       if @teacher.update(teacher_params)
-        format.html { redirect_to @teacher, notice: 'Teacher was successfully updated.' }
-        format.json { render :show, status: :ok, location: @teacher }
+        if goback == "meuperfil"
+          format.html { redirect_to "/meuperfil", notice: 'Teacher was successfully created.' }
+        else
+          format.html { redirect_to @teacher, notice: 'Teacher was successfully updated.' }
+          format.json { render :show, status: :ok, location: @teacher }
+        end
       else
         format.html { render :edit }
         format.json { render json: @teacher.errors, status: :unprocessable_entity }
