@@ -134,9 +134,9 @@ class TeachersController < ApplicationController
     respond_to do |format|
       if @teacher.update(teacher_params)
         if goback == "meuperfil"
-          format.html { redirect_to "/meuperfil", notice: 'Teacher was successfully created.' }
+          format.html { redirect_to "/meuperfil", notice: 'Professor atualizado com sucesso!' }
         else
-          format.html { redirect_to @teacher, notice: 'Teacher was successfully updated.' }
+          format.html { redirect_to @teacher, notice: 'Professor atualizado com sucesso!' }
           format.json { render :show, status: :ok, location: @teacher }
         end
       else
