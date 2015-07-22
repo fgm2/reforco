@@ -5,7 +5,6 @@
 <table>
   <thead>
     <tr>
-      <th>Formation</th>
       <th>Description</th>
       <th>user</th>
       <th></th>
@@ -16,7 +15,6 @@
   <tbody>
     <% @students.each do |student| %>
       <tr>
-        <td><%= student.formation %></td>
         <td><%= student.description %></td>
         
         <td><%= link_to 'Show', student %></td>
@@ -29,4 +27,3 @@
 
 <br>
 
-<%= link_to 'New Student', new_student_path %>
