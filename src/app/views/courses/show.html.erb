@@ -90,14 +90,14 @@
                         		                            <div class="col-md-6">
                         		                                    <p>
                                     		                            <strong>Cadastrado em:</strong> <br/>
-                                    		                            <%= @course.created_at %>
+                                    		                            <%= @course.created_at.strftime('%d/%m/%Y %H:%M:%S') %>
                                     		                        </p>
                         		                                
                     		                                </div>
                     		                                <div class="col-md-6">
                         		                                    <p>
                                     		                            <strong>Ultima Atualização:</strong><br/>
-                                    		                            <%= @course.updated_at %> 
+                                    		                            <%= @course.updated_at.strftime('%d/%m/%Y %H:%M:%S') %> 
                                     		                        </p>
                         		                                
                     		                                </div>

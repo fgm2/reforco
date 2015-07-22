@@ -6,12 +6,12 @@
     <!--<div class="container">-->
     <!--    <ul class="nav nav-tabs">-->
     <!--      <li class="active"> <%= link_to 'Visualizar', @user %></li>-->
-    <!--      <li> <%= link_to 'Editar', user_path(User.find(current_user.id) )%></li>-->
+    <!--      <li> <%= link_to 'Editar', user_path(@user )%></li>-->
     <!--      <% if is_student(current_user.id) %>-->
-    <!--          <li> <%= link_to 'Aluno', student_path(Student.find_by(user_id: current_user.id) ) %></li>-->
+    <!--          <li> <%= link_to 'Aluno', student_path(@student) %></li>-->
     <!--      <% end %>-->
     <!--      <% if is_teacher(current_user.id) %>-->
-    <!--          <li> <%= link_to 'Professor', teacher_path(Teacher.find_by(user_id: current_user.id) ) %></li>-->
+    <!--          <li> <%= link_to 'Professor', teacher_path(@teacher) %></li>-->
     <!--      <% end %>-->
     <!--    </ul>-->
     <!--</div>-->
@@ -82,7 +82,7 @@
 		                    <div class="panel-body">
 		                        <div>
 		                            <h3>Sobre o usuário</h3>
-		                            <p>Data de Nascimento:: <%= @user.date_of_birth %> </p>
+		                            <p>Data de Nascimento:: <%= @user.date_of_birth.strftime('%d/%m/%Y')  %> </p>
 		                            <p>CPF: <%= @user.cpf %> </p>
 		                            <p>Endereço: <%= @user.addrress %> </p>
             					    <p>UF: <%= @user.state %> </p>
