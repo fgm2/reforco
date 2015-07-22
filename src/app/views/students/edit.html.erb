@@ -1,6 +1,28 @@
-<h1>Editing Student</h1>
+<% if (@student.user.id == current_user.id) %>
+
+    <h1>Meu perfil</h1>
+    
+    <% if user_signed_in? %>
+    <ul class="nav nav-tabs">
+      <li> <%= link_to 'Visualizar', @student %></li>
+      <li class="active"><a href="#">Editar</a></li>
+      <li> <%= link_to 'Usuário', user_path(User.find(current_user.id) )%></li>
+      <% if is_teacher(current_user.id) %>
+          <li> <%= link_to 'Professor', teacher_path(Teacher.find_by(user_id: current_user.id) ) %></li>
+      <% end %>
+    </ul>
+    <% end %>
+<h1>Editando Perfil do Aluno</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @student %> |
-<%= link_to 'Back', students_path %>
+<% else %>
+    <div class="container">
+        <div class="alert alert-danger fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Atenção!</strong> Você não tem permissão para realizar esta ação.
+        </div>
+
+    </div>
+
+<% end %>

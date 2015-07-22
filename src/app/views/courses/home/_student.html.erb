@@ -38,7 +38,7 @@
                     <td> 
                         <%= link_to(rec.name, curso_path(rec.course.id) ) %> <br>
                     </td>
-                    <td> <%= rec.course.created_at %> </td>
+                    <td> <%= rec.course.created_at.strftime('%d/%m/%Y %H:%M:%S') %> </td>
                     
                     <td> <%= rec.hours %> </td>
                     

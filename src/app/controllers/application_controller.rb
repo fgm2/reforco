@@ -9,8 +9,18 @@ class ApplicationController < ActionController::Base
     Student.where("user_id = ? ", id).select(:id).count == 1
   end
   
+  def getStudent(id)
+    # Student.where("user_id = ? ", id).first
+    return Student.find_by(user_id: id)
+  end
+  
   def is_teacher(id)
     Teacher.where("user_id = ? ", id).select(:id).count == 1
+  end
+  
+  def getTeacher(id)
+    # Teacher.where("user_id = ? ", id).first
+    return Teacher.find_by(user_id: id)
   end
   
   def agendamentos_path
@@ -35,7 +45,9 @@ class ApplicationController < ActionController::Base
   
   
   helper_method :is_student
+  helper_method :getStudent
   helper_method :is_teacher
+  helper_method :getTeacher
   helper_method :agendamentos_path
   helper_method :agendamento_path
   helper_method :recomendacao_path

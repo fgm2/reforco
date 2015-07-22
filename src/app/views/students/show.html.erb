@@ -1,9 +1,21 @@
+
+<% if (@student.user.id == current_user.id) %>
+
+    <h1>Meu perfil</h1>
+    
+    <% if user_signed_in? %>
+    <ul class="nav nav-tabs">
+      <li class="active"> <%= link_to 'Visualizar', @student %></li>
+      <li><%= link_to 'Editar', edit_student_path(@student) %></li>
+      <li> <%= link_to 'Usuário', user_path(User.find(current_user.id) )%></li>
+      <% if is_teacher(current_user.id) %>
+          <li> <%= link_to 'Professor', teacher_path(Teacher.find_by(user_id: current_user.id) ) %></li>
+      <% end %>
+    </ul>
+    <% end %>
+
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Formation:</strong>
-  <%= @student.formation %>
-</p>
 
 <p>
   <strong>Description:</strong>
@@ -14,6 +26,13 @@
   <%= @student.user.email %>
 </p>
 
+<% else %>
+    <div class="container">
+        <div class="alert alert-danger fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Atenção!</strong> Você não tem permissão para realizar esta ação.
+        </div>
 
-<%= link_to 'Edit', edit_student_path(@student) %> |
-<%= link_to 'Back', students_path %>
+    </div>
+
+<% end %>

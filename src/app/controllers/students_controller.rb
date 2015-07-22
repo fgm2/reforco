@@ -46,10 +46,17 @@ class StudentsController < ApplicationController
   # PATCH/PUT /students/1
   # PATCH/PUT /students/1.json
   def update
+    
+    goback = params[:student][:redirect]
+    
     respond_to do |format|
       if @student.update(student_params)
-        format.html { redirect_to @student, notice: 'Student was successfully updated.' }
-        format.json { render :show, status: :ok, location: @student }
+        if goback == "meuperfil"
+          format.html { redirect_to "/meuperfil", notice: 'Aluno atualizado com sucesso!' }
+        else
+          format.html { redirect_to @student, notice: 'Aluno atualizado com sucesso!' }
+          format.json { render :show, status: :ok, location: @student }
+        end
       else
         format.html { render :edit }
         format.json { render json: @student.errors, status: :unprocessable_entity }
