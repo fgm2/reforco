@@ -9,14 +9,21 @@ class CoursesController < ApplicationController
     @courses = Course.where("id NOT IN (?) ", @destaques.select(:id).distinct)
     
     if ( (user_signed_in?) and (is_student(current_user.id)) )
-    # if @aluno.valid?
       @aluno = Student.where("user_id = ? ",current_user.id).first
       @suas_aulas = Enrollment.where("student_id = ? ", @aluno.id )
       @recomendacoes = Recommendation.where("enrollment_id IN (?)", @suas_aulas.select(:id))
-      
     else
-      @suas_aulas = nil
+      
+      if ( (user_signed_in?) and (is_teacher(current_user.id)) )
+        # if @aluno.valid?
+          @teacher = Teacher.where("user_id = ? ",current_user.id).first
+          @suas_aulas = Course.where("teacher_id = ? ", @teacher.id )
+          @contratacoes = Enrollment.where("course_id IN (?)", @suas_aulas.select(:id))
+      else
+        @suas_aulas = nil
+      end
     end
+    
   end
 
   # GET /courses/1
