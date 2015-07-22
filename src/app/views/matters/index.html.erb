@@ -11,12 +11,14 @@
 <br>
 <div class="container">
 	<div class="row">
+		<h1>Matérias</h1>
+		<hr>
 		<% @area_of_knowledges.each do |ak| %>
 		<div class="col-md-4">
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<% @matter_of_ak = Matter.where( "areaOfKnowledge_id = ? ", ak.id) %>
-	  			  	<h4> <%= link_to (ak.name), ak %> <span class="badge"> <%= @matter_of_ak.count %> </span> </h4>
+	  			  	<h4> <%= ak.name %> <span class="badge"> <%= @matter_of_ak.count %> </span> </h4>
 	  			</div>
 	  			<div class="panel-body">
 					<div class="container">
