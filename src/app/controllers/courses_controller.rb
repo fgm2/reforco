@@ -68,11 +68,17 @@ class CoursesController < ApplicationController
     @course.teacher = @teacher
     @course.value = params[:course][:value]
     @course.description = params[:course][:description]
+    
+    goback = params[:course][:redirect]
 
     respond_to do |format|
       if @course.save
-        format.html { redirect_to @teacher, notice: 'Curso criado com sucesso.' }
-        format.json { render :show, status: :created, location: @course }
+        if goback == "meuperfil"
+          format.html { redirect_to "/meuperfil", notice: 'Curso atualizado com sucesso!' }
+        else
+          format.html { redirect_to @teacher, notice: 'Curso criado com sucesso.' }
+          format.json { render :show, status: :created, location: @course }
+        end
       else
         format.html { render :new }
         format.json { render json: @course.errors, status: :unprocessable_entity }
@@ -83,10 +89,17 @@ class CoursesController < ApplicationController
   # PATCH/PUT /courses/1
   # PATCH/PUT /courses/1.json
   def update
+    
+    goback = params[:course][:redirect]
+    
     respond_to do |format|
       if @course.update(course_params)
-        format.html { redirect_to @course, notice: 'Course was successfully updated.' }
-        format.json { render :show, status: :ok, location: @course }
+        if goback == "meuperfil"
+          format.html { redirect_to "/meuperfil", notice: 'Curso atualizado com sucesso!' }
+        else
+          format.html { redirect_to @course, notice: 'Curso atualizado com sucesso!' }
+          format.json { render :show, status: :ok, location: @course }
+        end
       else
         format.html { render :edit }
         format.json { render json: @course.errors, status: :unprocessable_entity }
@@ -213,6 +226,6 @@ class CoursesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def course_params
       params[:course]
-      # params.require(:course).permit(:name, :matter_attributes [:name, :descripition], :value, :description)
+      #params.require(:course).permit(:name, :matter_attributes [:name, :descripition], :value, :description)
     end
 end
