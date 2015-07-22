@@ -3,28 +3,6 @@
 <% end %>
 
 
-<% if (@teacher.user.id == current_user.id) %>
-	
-	<%= render "shared/modals/novo_curso" %>
-	<%= render "shared/modals/edit_teacher" %>
-
-    <h1>Meu perfil</h1>
-    
-    <% if user_signed_in? %>
-    <ul class="nav nav-tabs">
-      <li class="active"> <%= link_to 'Visualizar', @teacher %></li>
-      <li><a href="#modalEditTeacher" data-toggle="modal" data-target="#modalEditTeacher">
-                Editar
-              </a></li>
-      <li> <%= link_to 'Usuário', user_path(User.find(current_user.id) )%></li>
-      <% if is_student(current_user.id) %>
-          <li> <%= link_to 'Aluno', student_path(Student.find_by(user_id: current_user.id) ) %></li>
-      <% end %>
-    </ul>
-    <% end %>
-<% end %>
-
-
 <div class="container">
 		
 		<div class="row">
@@ -277,4 +255,7 @@
 		
 </div>  <!--container-->
 
-
+<% if (@teacher.user.id == current_user.id) %>
+	<%= render "shared/modals/novo_curso" %>
+	<%= render "shared/modals/edit_teacher" %>
+<% end %>
