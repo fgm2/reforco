@@ -81,38 +81,63 @@
 		                    </div>
 		                    <div class="panel-body">
 		                        <div>
-		                            <h3>Sobre o usuário</h3>
-		                            <p>Data de Nascimento:: <%= @user.date_of_birth.strftime('%d/%m/%Y')  %> </p>
+		                        	<div class="row">
+			                        	<div class="col-md-6">
+			                        		<h3>Sobre o usuário</h3>	
+			                        	</div>
+			                            <div class="col-md-6 content text-right">
+											<a href="#modalEditUser" class="btn btn-success btn-xs" style="margin-top: 20px;"
+												data-toggle="modal" data-target="#modalEditUser">Editar</a>
+										</div>
+									</div>
+									<p>Data de Nascimento: <%=  @user.date_of_birth ? @user.date_of_birth.strftime('%d/%m/%Y') : " " %></p>
+
 		                            <p>CPF: <%= @user.cpf %> </p>
 		                            <p>Endereço: <%= @user.addrress %> </p>
             					    <p>UF: <%= @user.state %> </p>
             					    <p>País: <%= @user.country %> </p>    
 		                        </div>
+								<hr>
 		                        <% if is_teacher(current_user.id) %>
-    		                        <div>
-    		                            <h3>Sobre o professor</h3>
+		                        	<div>
+    		                        	<div class="row">
+				                        	<div class="col-md-6">
+				                        		<h3>Sobre o professor</h3>	
+				                        	</div>
+				                            <% if  @teacher.user_id == current_user.id %>
+												<div class="col-md-6 content text-right">
+													<a href="#modalEditTeacher" class="btn btn-success btn-xs" style="margin-top: 20px;"
+														data-toggle="modal" data-target="#modalEditTeacher">Editar</a>
+												</div>
+											<% end %>
+										</div>
         		                        <p>Formação: <%= @teacher.formation %></p>
-        		                        <div class="price">
-        		                           <%=  @teacher.university ? @teacher.university : "<<universidade>>" %>
-        		                        </div>
+        		                        <%=  @teacher.university ? @teacher.university : "<<universidade>>" %>
         		                        <p>Descrição Pessoal: <%= @teacher.description %></p>
+        		                        <hr>
     		                        </div>
 		                        <% end %>
 		                        <% if is_student(current_user.id) %>
-    		                        <div>
-    		                            <h3>Sobre o Aluno</h3>
-        		                        <p>Descrição Pessoal: <%= @student.description %></p>
-    		                        </div>
+		                        	<div class="row">
+			                        	<div class="col-md-6">
+			                        		<h3>Sobre o Aluno</h3>	
+			                        	</div>
+			                            <% if  @student.user_id == current_user.id %>
+											<div class="col-md-6 content text-right">
+												<a href="#modalEditStudent" class="btn btn-success btn-xs" style="margin-top: 20px;"
+													data-toggle="modal" data-target="#modalEditStudent">Editar</a>
+											</div>
+										<% end %>
+									</div>
+									<br>
+        		                    <p>Descrição Pessoal: <%= @student.description %></p>
+        		                    <hr>
 		                        <% end %>
 		                        <div>
-		<!--                        <p style='float:left;'><i title='Recomendações Positivas' class='fa fa-thumbs-o-up' ></i> 1</p>
-		                            <p style='float:left;'>&nbsp;<i title='Recomendações Negativas' class='fa fa-thumbs-o-down'></i> 0</p>-->
-		                            <!--<p align="right"> &nbsp;&nbsp;&nbsp;<i title="Quantidade de aulas dadas" class="fa fa-graduation-cap"></i>-->
-		                            <!--    3</p>-->
-		                        </div>
 		                    </div>
 		                </div>
 				
+				</div>
 			</div>
 			
 			<div class="col-md-3">
@@ -133,7 +158,7 @@
 								<% @matriculas_student.each do |aulas| %>
 								
 									<div class="col-md-12">
-										<li> <%= link_to aulas.course.name, "#" %> </li>
+										<li> <%= link_to aulas.course.name, aulas %> </li>
 									</div>
 
 								<% end %>
@@ -165,7 +190,8 @@
 								<% @aulas.each do |aula| %>
 								
 									<div class="col-md-12">
-										<li> <%= link_to aula.name, aula %> </li>
+										<li> <%= link_to aula.name, aula %>
+										<br>
 									</div>
 
 								<% end %>
@@ -175,7 +201,7 @@
 							<% if  @teacher.user_id == current_user.id %>
 								<div class="content text-center">
 									<a href="#modalnewCourse" class="btn btn-success" style="margin-top: 20px;"
-										data-toggle="modal" data-target="#modalnewCourse">Cadastrar Novo Curso</a>
+										data-toggle="modal" data-target="#modalnewCourse">Novo Curso</a>
 								</div>
 							<% end %>
 						<% end %>
@@ -313,9 +339,6 @@
 				</div>
 			</div>
 			
-			<%= render "shared/modals/novo_curso" %>
-		    <%= render "shared/modals/edit_teacher" %>
-		    
 			<% end %>
 			
 		</div> <!--row2-->
@@ -327,3 +350,15 @@
     
     <% end %>
 </div>  <!--container-->
+
+<% if is_teacher(current_user.id) %>
+	<%= render "shared/modals/novo_curso" %>
+	<%= render "shared/modals/edit_curso" %>
+    <%= render "shared/modals/edit_teacher" %>
+<% end %>
+
+<% if is_student(current_user.id) %>
+    <%= render "shared/modals/edit_student" %>
+<% end %>
+
+<%= render "shared/modals/edit_user" %>
