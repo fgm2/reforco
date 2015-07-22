@@ -255,7 +255,9 @@
 		
 </div>  <!--container-->
 
-<% if (@teacher.user.id == current_user.id) %>
-	<%= render "shared/modals/novo_curso" %>
-	<%= render "shared/modals/edit_teacher" %>
+<% if user_signed_in? %>
+	<% if (@teacher.user.id == current_user.id )%>
+		<%= render "shared/modals/novo_curso" %>
+		<%= render "shared/modals/edit_teacher" %>
+	<% end %>
 <% end %>
