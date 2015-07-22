@@ -46,9 +46,10 @@
                               <label >Descição</label>
                               <textarea placeholder="informe uma descrição para o curso" class="form-control" rows="5" required  name="course[description]" id="course_description">  </textarea>
                             </div>
-                                <div class="content text-center">
-                                      <button type="submit" class="btn btn-success">Salvar Curso</button>
-                                </div>
+                            <%= hidden_field_tag "course[redirect]", "meuperfil" -%>
+                            <div class="content text-center">
+                                  <button type="submit" class="btn btn-success">Salvar Curso</button>
+                            </div>
                           </div>
                         </div>
                       </div>
