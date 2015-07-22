@@ -1,1 +1,66 @@
-FOR TEACHERS
+<!--FOR TEACHERS-->
+
+<div class="well">
+  
+  <div class="row">
+  
+      <div class="col-md-12">
+      
+            <h1>Sou Professor em:</h1>
+              <!--FOR STUDENTS-->
+
+      </div>
+      
+      
+      <div class="col-md-12">
+        
+        
+        <form method="post" role="form" name="form-recomendacao" action="<%= recomendacao_path %>">
+        
+          <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Nome</th>
+                    <th>Criado em</th>
+                    <th>Valor / hora</th>
+                    <th>Contratações</th>
+                    <!--<th>Avaliação</th>-->
+                    <!--<th>Opção</th>-->
+                    <!--<th>Enviar</th>-->
+                  </tr>
+                </thead>
+                <tbody>
+                    
+                <% @suas_aulas.each do |curso|   %>
+                
+                
+                 
+                
+                  <tr>
+                    <td> 
+                        <%= link_to(curso.name, curso_path(curso.id) ) %> <br>
+                    </td>
+                    <td> <%= curso.created_at.strftime('%d/%m/%Y - %H:%M:%S') %> </td>
+                    
+                    <td> <%= "R$" '%.2f' % curso.value.to_f %> </td>
+                    
+                      <td>
+                        <%= @contratacoes.where("course_id = ? ", curso.id).count %>
+                      </td>
+                          
+                   
+                  </tr>
+                  
+                  
+                <% end %>
+                </tbody>
+            </table>
+        
+          </form>
+        
+      </div>
+      
+  
+  </div> <!--row-->
+  
+</div>   <!--well-->
