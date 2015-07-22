@@ -1,0 +1,329 @@
+<% content_for :header do %>
+    <%= javascript_include_tag 'application' %>  
+<% end %>
+
+<% if user_signed_in? %>
+    <!--<div class="container">-->
+    <!--    <ul class="nav nav-tabs">-->
+    <!--      <li class="active"> <%= link_to 'Visualizar', @user %></li>-->
+    <!--      <li> <%= link_to 'Editar', user_path(User.find(current_user.id) )%></li>-->
+    <!--      <% if is_student(current_user.id) %>-->
+    <!--          <li> <%= link_to 'Aluno', student_path(Student.find_by(user_id: current_user.id) ) %></li>-->
+    <!--      <% end %>-->
+    <!--      <% if is_teacher(current_user.id) %>-->
+    <!--          <li> <%= link_to 'Professor', teacher_path(Teacher.find_by(user_id: current_user.id) ) %></li>-->
+    <!--      <% end %>-->
+    <!--    </ul>-->
+    <!--</div>-->
+    
+    <!--<%= render :template => "users/show" %>-->
+    <div class="container">
+		
+		<div class="row">
+			
+			<div class="col-md-12">
+				<h1> <%= @user.name %> </h1>
+				<hr>
+			</div>
+			
+			<div class="col-md-3">
+			<div class="row">
+				<div class="panel panel-default">
+		            <div class="panel-heading">
+		            	<!--<h3 class="panel-title">Foto</h3>-->
+					</div>
+					<div class="panel-body">
+						<div class="container ">
+							<%= link_to (image_tag @user.avatar.url(:medium), class: 'avatar img-thumbnail ', style: "margin-left: 50px; width: 90px; height: 90px;"), "#" %>
+						</div>
+						<hr>
+						<% if is_teacher(current_user.id) %>
+    						<div class="row text-center">
+                                 <div class="col-md-6">
+                                     <span class="label label-success" style="padding: .60em .60em .60em;">
+                                        <span class="glyphicon glyphicon-thumbs-up"></span> 
+                                           <span class="badge"><%= @positivas %></span>
+                                     </span>
+                                 </div>
+                                 
+                                 <div class="col-md-6">   
+                                   <span class="label label-danger" style="padding: .60em .60em .60em;">
+                                    <span class="glyphicon glyphicon-thumbs-down"></span> 
+                                       <span class="badge"><%= @negativas %></span>
+                                 </span>
+                                 </div>
+                                 
+                            </div>
+						<% end %>
+					</div>
+				</div>
+				
+				<div class="panel panel-default">
+		            <div class="panel-heading">
+		            	<h3 class="panel-title"><strong>Contatos</strong></h3>
+					</div>
+					<div class="panel-body">
+						<div class="container">
+							<p>e-mail: <%= @user.email %> </p>
+							<p>Telefone: <%= @user.fone %> </p>
+							<p>Whatsapp: <%= @user.whatsapp %> </p>
+							<p>Skype: <%= @user.skype %> </p>
+						</div>
+					</div>
+				</div>
+				
+			</div> <!--row-->
+			</div>
+			<div class="col-md-6">
+				<div class="panel panel-default" style = "min-height: 356px;">
+		                    <div class="panel-heading">
+		                        <h3 class="panel-title"><strong>Detalhes</strong></h3>
+		                    </div>
+		                    <div class="panel-body">
+		                        <div>
+		                            <h3>Sobre o usuário</h3>
+		                            <p>Data de Nascimento:: <%= @user.date_of_birth %> </p>
+		                            <p>CPF: <%= @user.cpf %> </p>
+		                            <p>Endereço: <%= @user.addrress %> </p>
+            					    <p>UF: <%= @user.state %> </p>
+            					    <p>País: <%= @user.country %> </p>    
+		                        </div>
+		                        <% if is_teacher(current_user.id) %>
+    		                        <div>
+    		                            <h3>Sobre o professor</h3>
+        		                        <p>Formação: <%= @teacher.formation %></p>
+        		                        <div class="price">
+        		                           <%=  @teacher.university ? @teacher.university : "<<universidade>>" %>
+        		                        </div>
+        		                        <p>Descrição Pessoal: <%= @teacher.description %></p>
+    		                        </div>
+		                        <% end %>
+		                        <% if is_student(current_user.id) %>
+    		                        <div>
+    		                            <h3>Sobre o Aluno</h3>
+        		                        <p>Descrição Pessoal: <%= @student.description %></p>
+    		                        </div>
+		                        <% end %>
+		                        <div>
+		<!--                        <p style='float:left;'><i title='Recomendações Positivas' class='fa fa-thumbs-o-up' ></i> 1</p>
+		                            <p style='float:left;'>&nbsp;<i title='Recomendações Negativas' class='fa fa-thumbs-o-down'></i> 0</p>-->
+		                            <!--<p align="right"> &nbsp;&nbsp;&nbsp;<i title="Quantidade de aulas dadas" class="fa fa-graduation-cap"></i>-->
+		                            <!--    3</p>-->
+		                        </div>
+		                    </div>
+		                </div>
+				
+			</div>
+			
+			<div class="col-md-3">
+				
+				<div class="row">
+				    
+				<% if is_student(current_user.id) %>
+				    <div class="panel panel-default">
+						
+			            <div class="panel-heading">
+			            	<h3 class="panel-title"><strong>Sou aluno em:</strong></h3>
+						</div> <!--panel-heading-->
+						
+						<div class="panel-body">
+							
+							<div class="row">
+								<ul>
+								<% @matriculas_student.each do |aulas| %>
+								
+									<div class="col-md-12">
+										<li> <%= link_to aulas.course.name, "#" %> </li>
+									</div>
+
+								<% end %>
+								</ul>
+								
+						<% if  user_signed_in? && is_student(current_user.id) %>
+							<% if  @student.user_id == current_user.id %>
+								<div class="content text-center">
+									<!--<a href="#modalnewCourse" class="btn btn-success" style="margin-top: 20px;"-->
+										<!--data-toggle="modal" data-target="#modalnewCourse">Novo Curso</a>-->
+								</div>
+							<% end %>
+						<% end %>
+							</div>
+						</div>
+					</div> <!--panel-->
+				<% end %>
+				<% if is_teacher(current_user.id) %>
+					<div class="panel panel-default">
+						
+			            <div class="panel-heading">
+			            	<h3 class="panel-title"><strong>Sou professor em:</strong></h3>
+						</div> <!--panel-heading-->
+						
+						<div class="panel-body">
+							
+							<div class="row">
+								<ul>
+								<% @aulas.each do |aula| %>
+								
+									<div class="col-md-12">
+										<li> <%= link_to aula.name, aula %> </li>
+									</div>
+
+								<% end %>
+								</ul>
+								
+						<% if  user_signed_in? && is_teacher(current_user.id) %>
+							<% if  @teacher.user_id == current_user.id %>
+								<div class="content text-center">
+									<a href="#modalnewCourse" class="btn btn-success" style="margin-top: 20px;"
+										data-toggle="modal" data-target="#modalnewCourse">Cadastrar Novo Curso</a>
+								</div>
+							<% end %>
+						<% end %>
+							</div>
+						</div>
+					</div> <!--panel-->
+	
+					<% if  user_signed_in?  && is_teacher(current_user.id)%>
+					
+						<% if  @teacher.user_id == current_user.id %>	
+						
+							<div class="bs-example">
+							    <div class="panel-group" id="accordion">
+							        <div class="panel panel-default">
+							            <div class="panel-heading">
+							                <h3 class="panel-title">
+							                	<strong>
+							                    	<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Ultimas aulas contratadas</a>
+							                    </strong>
+							                </h3>
+							            </div>
+							            <div id="collapseOne" class="panel-collapse collapse">
+							                <div class="panel-body">
+							                    
+							                    <ul>
+									                <%	@ultimas_aulas.each do |aula| %>
+												      	<li>
+												      		 <%= link_to aula.name, aula %>
+												      	</li>	
+													<% end %>
+						                		</ul>	
+							                    
+							                </div>
+							            </div>
+							        </div>
+							        <div class="panel panel-default">
+							            <div class="panel-heading">
+							                <h3 class="panel-title">
+							                	<strong>
+							                    	<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Todas as Aulas</a>
+							                    </strong>
+							                </h4>
+							            </div>
+							            <div id="collapseTwo" class="panel-collapse collapse">
+							                <div class="panel-body">
+							                    <ul>
+									                <%	@aulas_realizadas.each do |aula| %>
+												      	<li>
+												      		 <%= link_to aula.name, aula %>
+												      	</li>	
+													<% end %>
+						                		</ul>	
+							                </div>
+							            </div>
+							        </div>
+							        <div class="panel panel-default">
+							            <div class="panel-heading">
+							                <h3 class="panel-title">
+							                	<strong>
+							                    	<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">???</a>
+							                    </strong>
+							                </h3>
+							            </div>
+							            <div id="collapseThree" class="panel-collapse collapse">
+							                <div class="panel-body">
+							                    <p>Another text</p>
+							                </div>
+							            </div>
+							        </div>
+							    </div>
+							</div>
+						
+						<% end %>
+					<% end %>
+				<% end %>
+						
+					</div> <!--row-->
+				
+			</div>
+		
+		</div> <!--row 1-->
+		
+		<div class="row">
+			
+			<% if is_teacher(current_user.id) %>
+			<div class="col-md-9">
+				<div class="row">
+				<div class="panel panel-default" style = "max-width: 863px;">
+		            <div class="panel-heading">
+		            	<h3 class="panel-title"><strong>Estatisticas</strong></h3>
+					</div>
+					<div class="panel-body">
+						
+						
+						
+						
+						<div class="row">
+                            <div class="col-sm-4 col-md-4">
+                                <div class="text-center">
+                                    <h1 class="count">
+                                        <%= @minhas_aulas.count %>
+                                    </h1>
+                                    <p>Aulas Realizadas</p>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4 col-md-4">
+                                <div class="text-center">
+                                    
+                                    <h1 class="count">
+          	                         	<%= @horas_aulas %>
+											
+                                    </h1>
+                                    <p>Tempo de Aula (HH:MM:SS)</p>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4 col-md-4">
+                                <div class="text-center">
+                                    <h1 class="count">
+                                        <%= @porcentagem.to_f %> %
+                                    </h1>
+                                    <p>Percentual de Avaliações Positivas</p>
+                                </div>
+                            </div>
+                        </div>
+						
+						
+						
+						
+						
+					</div>
+				</div>
+				
+				</div>
+			</div>
+			
+			<%= render "shared/modals/novo_curso" %>
+		    <%= render "shared/modals/edit_teacher" %>
+		    
+			<% end %>
+			
+		</div> <!--row2-->
+		
+</div>
+
+    <% else %>
+
+    
+    <% end %>
+</div>  <!--container-->
