@@ -63,13 +63,36 @@
             <div class="well">
               <h4><strong><%= @curso.name %></strong></h4>
               
-              <strong>Valor (hora): </strong> <%= "R$" '%.2f' % @curso.value.to_f %>
+              <strong>Valor (hora): </strong> <%= "R$" '%.2f' % @curso.value.to_f %></span>
+              <span id="valorHora" style="color:red; display:none;" ><%= @curso.value.to_f %></span>
             </div>
             
-            <div class="alert alert-info text-justify">
-              <strong>Atenção!</strong> Selecione 3 opções de datas/horários em que você tem disponibilidade 
-              para sua aula. As datas serão avaliadas e uma delas será escolhida pelo professor para que 
-              esta aula aconteça. (dd/mm/aaaa hh:mm).
+            <div>
+              <div class="col-sm-12 alert alert-info">
+                  <div class="content text-center">
+                    <p>Avaliações Positivas do Curso</p>
+                    <h1 class="count">
+                       <strong> <%= @porcentagem%>% </strong>
+                    </h1>
+                    <div class="row">
+                       <div class="col-md-6">
+                           <span class="label label-success" style="padding: .60em .60em .60em;">
+                              <span class="glyphicon glyphicon-thumbs-up"></span> 
+                                 <span class="badge"><%= @positivas %></span>
+                           </span>
+                       </div>
+                       
+                       <div class="col-md-6">   
+                         <span class="label label-danger" style="padding: .60em .60em .60em;">
+                          <span class="glyphicon glyphicon-thumbs-down"></span> 
+                             <span class="badge"><%= @negativas %></span>
+                       </span>
+                       </div>
+                       
+                    </div>
+                    <hr>
+                  </div>
+              </div>
             </div>
           
         </div>
@@ -82,8 +105,8 @@
             
             <div class="row">
             
-              <div class="col-md-6">
-                <div class="form-group">
+              <div class="col-md-12">
+                <div class="form-group col-md-6">
                   <label for="horas">Duração da Aula:</label>
                   <select class="form-control" id="duracao" name="duracao">
                       <option value="" selected="selected">Selecione uma duração...</option>
@@ -99,21 +122,33 @@
                       <option value="10">10 horas</option>
                   </select>
                 </div>
-                
-                <div class="form-group">
-                  <label for="date">informe as possíveis datas:</label>
-                  <input type="date" class="form-control" id="date1" name="date1">
+                <script>
+                   $("#duracao").change(function () {
+                        var hora   = this.value;
+                        var valor  = $("#valorHora").html()
+                        var tmp    =  ( parseFloat(hora) * parseFloat(valor) )
+                        var result = tmp.toFixed(2)
+                        $('#valorTotal').val('R$'+ result );
+                    });
+                </script>
+                <div class="form-group col-md-6">
+                  <label for="ValorTotal">Valor Total:</label>
+                  <input type="text" disabled class="form-control" id="valorTotal" name="valorTotal" value="<%= "R$" '%.2f' % (@curso.value.to_f) %>">
                 </div>
-                <div class="form-group">
-                  <input type="date" class="form-control" id="date2" name="date2">
-                </div>
-                <div class="form-group">
-                  <input type="date" class="form-control" id="date3" name="date3">
-                </div>
+              <!--  <div class="form-group">-->
+              <!--    <label for="date">informe as possíveis datas:</label>-->
+              <!--    <input type="date" class="form-control" id="date1" name="date1">-->
+              <!--  </div>-->
+              <!--  <div class="form-group">-->
+              <!--    <input type="date" class="form-control" id="date2" name="date2">-->
+              <!--  </div>-->
+              <!--  <div class="form-group">-->
+              <!--    <input type="date" class="form-control" id="date3" name="date3">-->
+              <!--  </div>-->
 
-              </div>
+              <!--</div>-->
               
-              <div class="col-md-6">
+              <div class="col-md-12">
                 <div class="form-group">
                   <label for="date">Descreva sua necessidade:</label>
                   <textarea class="form-control" rows="10" id="commentario"></textarea>

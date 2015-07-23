@@ -155,12 +155,18 @@
 							
 							<div class="row">
 								<ul>
-								<% @matriculas_student.each do |aulas| %>
-								
-									<div class="col-md-12">
-										<li> <%= link_to aulas.course.name, aulas %> </li>
-									</div>
-
+								<% if !@matriculas_student.empty? %>
+									<% @matriculas_student.each do |aulas| %>
+									
+										<div class="col-md-12">
+											<li> <%= link_to aulas.course.name, aulas %> </li>
+										</div>
+	
+									<% end %>
+								<% else %>
+										<div class="col-md-12">
+											<li> Nenhuma aula realizada. </li>
+										</div>
 								<% end %>
 								</ul>
 								
@@ -187,13 +193,19 @@
 							
 							<div class="row">
 								<ul>
-								<% @aulas.each do |aula| %>
-								
-									<div class="col-md-12">
-										<li> <%= link_to aula.name, aula %>
-										<br>
-									</div>
-
+								<% if !@aulas.empty? %>
+									<% @aulas.each do |aula| %>
+									
+										<div class="col-md-12">
+											<li> <%= link_to aula.name, aula %>
+											<br>
+										</div>
+	
+									<% end %>
+								<% else %>
+										<div class="col-md-12">
+											<li> Nenhuma aula ofertada. </li>
+										</div>
 								<% end %>
 								</ul>
 								
@@ -225,49 +237,20 @@
 							            </div>
 							            <div id="collapseOne" class="panel-collapse collapse">
 							                <div class="panel-body">
-							                    
 							                    <ul>
-									                <%	@ultimas_aulas.each do |aula| %>
-												      	<li>
-												      		 <%= link_to aula.name, aula %>
-												      	</li>	
-													<% end %>
+							                    <% if !@aulas.empty? %>
+											                <%	@ultimas_aulas.each do |aula| %>
+																	      	<li>
+																	      		 <%= link_to aula.name, aula %>
+																	      	</li>	
+																			<% end %>
+																	<% else %>
+																				<div class="col-md-12">
+																					<li> Nenhuma aula contratada. </li>
+																				</div>
+																	<% end %>
 						                		</ul>	
 							                    
-							                </div>
-							            </div>
-							        </div>
-							        <div class="panel panel-default">
-							            <div class="panel-heading">
-							                <h3 class="panel-title">
-							                	<strong>
-							                    	<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Todas as Aulas</a>
-							                    </strong>
-							                </h4>
-							            </div>
-							            <div id="collapseTwo" class="panel-collapse collapse">
-							                <div class="panel-body">
-							                    <ul>
-									                <%	@aulas_realizadas.each do |aula| %>
-												      	<li>
-												      		 <%= link_to aula.name, aula %>
-												      	</li>	
-													<% end %>
-						                		</ul>	
-							                </div>
-							            </div>
-							        </div>
-							        <div class="panel panel-default">
-							            <div class="panel-heading">
-							                <h3 class="panel-title">
-							                	<strong>
-							                    	<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">???</a>
-							                    </strong>
-							                </h3>
-							            </div>
-							            <div id="collapseThree" class="panel-collapse collapse">
-							                <div class="panel-body">
-							                    <p>Another text</p>
 							                </div>
 							            </div>
 							        </div>

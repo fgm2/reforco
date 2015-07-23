@@ -4,20 +4,61 @@
         <p>Após concluir esse cadastro você poderá dar aulas em nosso portal.</p>
     </div>
     <div class="row">
-        <form role="form" method="POST" action="<%= "/teachers" %>">
+        <% @teacher = Teacher.new()%>
+            <%= form_for(@teacher) do |f| %>
+              <% if @teacher.errors.any? %>
+                <div id="error_explanation">
+                  <h2><%= pluralize(@teacher.errors.count, "error") %> prohibited this contact from being saved:</h2>
+            
+                  <ul>
+                  <% @teacher.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                  </ul>
+                </div>
+              <% end %>
+        <!--<form role="form" method="POST" action="<%= "/teachers" %>">-->
             <div class="row well">
                 <p><strong>DADOS DO USUÁRIO</strong></p>
-                <hr>
+                <hr>  
                 <div class="col-md-6">
-                    <div class="col-md-3">
-                        <%= (image_tag current_user.avatar.url(:thumb), class: 'avatar') %> <br>
+                    <div class="col-md-5 text-center">
+                        <%= (image_tag current_user.avatar.url(:thumb), class: 'avatar', id:'avatarspace') %> <br>
                         <% if ( (current_user.avatar.url == '/avatars/original/missing.png') )%>
                             <div class="form-group">
-                                <input  type="file" class="form-control btn btn-success">
+                                <!--<input  type="file" class="form-control btn btn-success" id="avatarinput" style="display: none;" name="teacher[avatar]" >-->
+                                
                             </div>
                         <% end %>
+                        <%= f.file_field :avatar, :id =>'avatarinput' , :style => 'display:none' , :class =>'col-md-1', :name => "teacher[avatar]" %>
+                        <a class="btn btn-success" id="btn-image" > Alterar Foto</a>
                     </div>
-                    <div class="col-md-9">
+                    <script>
+                    function readURL(input) {
+
+                        if (input.files && input.files[0]) {
+                            var reader = new FileReader();
+                            reader.onload = function (e) {
+                                $('#avatarspace').attr('src', e.target.result);
+                                $('#avatarspace').width(160);
+                                $('#avatarspace').height(130);
+                            }
+                            reader.readAsDataURL(input.files[0]);
+                        }
+                    }
+                    
+                    $("#avatarinput").change(function(){
+                            readURL(this);
+                        }
+                    );
+                    
+                    $(document).ready(function(e) {
+                            $("#btn-image").click(function(){
+                    			$("#avatarinput").trigger('click');
+                    		});
+                    });
+                    </script>
+                    <div class="col-md-7">
                         <div class="form-group">
                             <label for="name">Nome:</label>
                             <input type="text" required class="form-control" id="name" name="teacher[name]" value="<%= current_user.name %>">
@@ -49,7 +90,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="country">Data de Nascimento:</label>
-                                    <input type="date" required class="form-control" id="date_of_brith" name="teacher[[date_of_brith]" value="<%= current_user.date_of_birth %>">
+                                    <input type="date" required class="form-control" id="date_of_birth" name="teacher[date_of_birth]" value="<%= current_user.date_of_birth %>">
                                 </div>
                                 <div class="form-group">
                                     <label for="cpf">CPF:</label>
@@ -85,22 +126,6 @@
             </div>
             <hr>
             <div class="row well">
-                    <p>Esclarecimento dos principais pontos do termo de adesão e funcionamento do portal REFORÇO.</p>
-                    <p>Todo agendamento e contratação deverá acontecer através do portal reforço.
-                    Antes do agendamento e contratação, é proibido a troca de meios de contato (e-mail, telefone outros).
-                    Todo reagendamento de aulas deverá acontecer através do REFORÇO.
-                    Somente as aulas agendadas pelo REFORÇO podem ser avaliadas. E somente alunos com aulas agendadas pelo REFORÇO podem recomendar o professor.
-                    As avaliações são os principais fatores para aumento do ranking do professor.
-                    Não há mensalidade ou taxas de manutenção. A taxa de sucesso de 20% sobre o valor da aula, com mínimo de R$8,00, é cobrada do professor por cada aula.
-                    O professor deverá manter seus dados cadastrais atualizados e completos.</p>
-                    <br>
-                    <div class="col-md-6">
-                        <label for="confirmacao">Você concorda com os termos de serviço do portal REFORÇO. </label> 
-                        <br> <input type="checkbox" id="confirmacao" name="confirmacao" value="yes" required> Concordo<br> 
-                    </div>
-            </div>
-            <hr>
-            <div class="row well">
                 <p><strong>DADOS DE PROFESSOR</strong></p>
                 <hr>
                 <div class="col-md-6">
@@ -121,6 +146,25 @@
                       <textarea class="form-control" rows="10" id="description" name="teacher[description]" value="<%= @teacher.description %>"></textarea>
                     </div>
                 </div>
+                
+                
+                <div class="col-md-12 text-justify">
+                    <p>Esclarecimento dos principais pontos do termo de adesão e funcionamento do portal REFORÇO.</p>
+                    <p>Todo agendamento e contratação deverá acontecer através do portal reforço.
+                    Antes do agendamento e contratação, é proibido a troca de meios de contato (e-mail, telefone outros).
+                    Todo reagendamento de aulas deverá acontecer através do REFORÇO.
+                    Somente as aulas agendadas pelo REFORÇO podem ser avaliadas. E somente alunos com aulas agendadas pelo REFORÇO podem recomendar o professor.
+                    As avaliações são os principais fatores para aumento do ranking do professor.
+                    Não há mensalidade ou taxas de manutenção. A taxa de sucesso de 20% sobre o valor da aula, com mínimo de R$8,00, é cobrada do professor por cada aula.
+                    O professor deverá manter seus dados cadastrais atualizados e completos.</p>
+                    <p>Leia os termos de uso na integra <%= link_to "aqui", "#{root_url}pages/termos" ,:target => "_blank" %>.</p>
+                    <div class="col-md-12">
+                        <label for="confirmacao">Ao se cadastrar você concorda com os termos de serviço do portal REFORÇO. </label>
+                        <!--<br><input type="checkbox" id="confirmacao" name="confirmacao" value="yes" required> Concordo<br> -->
+                    </div>
+            </div>
+            <hr>
+                
                 <!--<%= hidden_field_tag "teacher[user]", current_user.id %>-->
                 <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
                 <div class="col-md-12" align="center">
@@ -129,7 +173,8 @@
                     </button>
                 </div>            
             </div>
-        </form>
+        <% end %>    
+        <!--</form>-->
     </div>
     
     <div class="row">
