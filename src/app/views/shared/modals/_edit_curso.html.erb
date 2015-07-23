@@ -8,7 +8,7 @@
       <div class="modal-body">
 
             <% @course = Course.find_by(teacher_id: @teacher.id) %>
-
+            <% if !@course.nil? %>
             <%= form_for(@course) do |f| %>
                   <% if @course.errors.any? %>
                     <div id="error_explanation">
@@ -53,6 +53,7 @@
                     </div>
                   </div>
                 <% end %>
+            <% end %>
 
       </div>
       <div class="modal-footer">
