@@ -113,11 +113,53 @@ class TeachersController < ApplicationController
   def create
     @teacher = Teacher.new(teacher_params)
     @teacher.user = User.find(current_user.id)
+    
+    # @teacher.user.avatar = Paperclip::Attachment.new(params[:teacher][:avatar], p, p.class.attachment_definitions[attach_name.to_suym])
+    
+    # user = { 
+    #     :avatar => params[:teacher][:avatar],
+    #     :name => params[:teacher][:name],
+    #     :scholarity => params[:teacher][:scholarity],
+    #     :addrress => params[:teacher][:address],
+    #     :state => params[:teacher][:state],
+    #     :country => params[:teacher][:country],
+    #     :date_of_birth => params[:teacher][:date_of_birth],
+    #     :cpf => params[:teacher][:cpf],
+    #     :fone => params[:teacher][:fone],
+    #     :email => params[:teacher][:email],
+    #     :whatsapp => params[:teacher][:whatsapp],
+    #     :skype => params[:teacher][:skype]
+    # }
+    
+    # @user = User.find(@teacher.user.id)
+    # @user.update(user)
+    
+    # @teacher.user = @user
+    
+    
+    # @teacher.user.avatar = Paperclip(avatar: params[:teacher][:avatar])
+    
+    # @teacher.user.update_attribute(:avatar,File.open(params[:teacher][:avatar]))
+    
+    # @teacher.user.avatar.url = params[:teacher][:avatar]
+    @teacher.user.name = params[:teacher][:name]
+    @teacher.user.scholarity = params[:teacher][:scholarity]
+    @teacher.user.addrress = params[:teacher][:address]
+    @teacher.user.state = params[:teacher][:state]
+    @teacher.user.country = params[:teacher][:country]
+    @teacher.user.date_of_birth = params[:teacher][:date_of_birth]
+    @teacher.user.cpf = params[:teacher][:cpf]
+    @teacher.user.fone = params[:teacher][:fone]
+    @teacher.user.email = params[:teacher][:email]
+    @teacher.user.whatsapp = params[:teacher][:whatsapp]
+    @teacher.user.skype = params[:teacher][:skype]
 
     respond_to do |format|
       if @teacher.save
         
-        format.html { redirect_to @teacher, notice: 'Teacher was successfully created.' }
+          @teacher.user.save
+        
+        format.html { redirect_to @teacher, notice: 'Parabéns! Agora você é um professor.' }
         format.json { render :show, status: :created, location: @teacher }
       else
         format.html { render :new }
