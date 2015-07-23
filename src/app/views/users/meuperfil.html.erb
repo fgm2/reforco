@@ -155,12 +155,18 @@
 							
 							<div class="row">
 								<ul>
-								<% @matriculas_student.each do |aulas| %>
-								
-									<div class="col-md-12">
-										<li> <%= link_to aulas.course.name, aulas %> </li>
-									</div>
-
+								<% if !@matriculas_student.empty? %>
+									<% @matriculas_student.each do |aulas| %>
+									
+										<div class="col-md-12">
+											<li> <%= link_to aulas.course.name, aulas %> </li>
+										</div>
+	
+									<% end %>
+								<% else %>
+										<div class="col-md-12">
+											<li> Nenhuma aula realizada. </li>
+										</div>
 								<% end %>
 								</ul>
 								
@@ -187,13 +193,19 @@
 							
 							<div class="row">
 								<ul>
-								<% @aulas.each do |aula| %>
-								
-									<div class="col-md-12">
-										<li> <%= link_to aula.name, aula %>
-										<br>
-									</div>
-
+								<% if !@aulas.empty? %>
+									<% @aulas.each do |aula| %>
+									
+										<div class="col-md-12">
+											<li> <%= link_to aula.name, aula %>
+											<br>
+										</div>
+	
+									<% end %>
+								<% else %>
+										<div class="col-md-12">
+											<li> Nenhuma aula ofertada. </li>
+										</div>
 								<% end %>
 								</ul>
 								
