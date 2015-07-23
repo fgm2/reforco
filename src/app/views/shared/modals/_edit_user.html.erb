@@ -26,13 +26,39 @@
                 <p><strong>DADOS DO USUÁRIO</strong></p>
                 <hr>
                 <div class="col-md-6">
-                    <div class="col-md-5">
-                        <%= (image_tag current_user.avatar.url(:thumb), class: 'avatar') %> <br>
+                    <div class="col-md-5 text-center">
+                        <%= (image_tag current_user.avatar.url(:thumb), class: 'avatar', id:'avatarspace') %> <br>
                         <br>
-                        <div class="col-md-3">
-                            <span class="btn btn-primary btn-file"><%= f.file_field :avatar, :title => 'tes',:class =>"col-md-1"%></span>
+                        <div class="form-group">
+                            <input  type="file" class="form-control btn btn-success" id="avatarinput" style="display: none;" >
                         </div>
+                        <a class="btn btn-success" id="btn-image" > Alterar Foto</a>
                     </div>
+                    <script>
+                    function readURL(input) {
+
+                        if (input.files && input.files[0]) {
+                            var reader = new FileReader();
+                            reader.onload = function (e) {
+                                $('#avatarspace').attr('src', e.target.result);
+                                $('#avatarspace').width(160);
+                                $('#avatarspace').height(130);
+                            }
+                            reader.readAsDataURL(input.files[0]);
+                        }
+                    }
+                    
+                    $("#avatarinput").change(function(){
+                            readURL(this);
+                        }
+                    );
+                    
+                    $(document).ready(function(e) {
+                            $("#btn-image").click(function(){
+                    			$("#avatarinput").trigger('click');
+                    		});
+                    });
+                    </script>
                     <div class="col-md-7">
                         <div class="form-group">
                             <label for="name">Nome:</label>
