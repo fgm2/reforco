@@ -9,7 +9,7 @@
                 <p><strong>DADOS DO USUÁRIO</strong></p>
                 <hr>
                 <div class="col-md-6">
-                    <div class="col-md-3">
+                    <div class="col-md-5">
                         <%= (image_tag current_user.avatar.url(:thumb), class: 'avatar') %> <br>
                         <% if ( (current_user.avatar.url == '/avatars/original/missing.png') )%>
                             <div class="form-group">
@@ -17,7 +17,7 @@
                             </div>
                         <% end %>
                     </div>
-                    <div class="col-md-9">
+                    <div class="col-md-7">
                         <div class="form-group">
                             <label for="name">Nome:</label>
                             <input type="text" required class="form-control" id="name" name="teacher[name]" value="<%= current_user.name %>">
@@ -93,10 +93,10 @@
                     As avaliações são os principais fatores para aumento do ranking do professor.
                     Não há mensalidade ou taxas de manutenção. A taxa de sucesso de 20% sobre o valor da aula, com mínimo de R$8,00, é cobrada do professor por cada aula.
                     O professor deverá manter seus dados cadastrais atualizados e completos.</p>
-                    <br>
+                    <p>Leia os termos de uso na integra <%= link_to "aqui", "#{root_url}pages/termos" ,:target => "_blank" %>.</p>
                     <div class="col-md-6">
                         <label for="confirmacao">Você concorda com os termos de serviço do portal REFORÇO. </label> 
-                        <br> <input type="checkbox" id="confirmacao" name="confirmacao" value="yes" required> Concordo<br> 
+                        <br><input type="checkbox" id="confirmacao" name="confirmacao" value="yes" required> Concordo<br> 
                     </div>
             </div>
             <hr>
