@@ -15,7 +15,7 @@ class TeachersController < ApplicationController
               where("courses.id IN (?)", 
                 Course.where("matter_id IN (?) ", 
                   Matter.where("matters.areaOfKnowledge_id = ? ", 
-                    area_id).select(:id) ).select(:id))
+                    area_id).select(:id) ).select(:id)).distinct
     end
 
     
@@ -24,7 +24,7 @@ class TeachersController < ApplicationController
         materia_id = params[:materia][:id] 
         @teachers  = Teacher.joins('LEFT OUTER JOIN courses ON teachers.id = courses.teacher_id').
               where("courses.id IN (?)", 
-              Course.where("matter_id =  ?",materia_id).select(:id))
+              Course.where("matter_id =  ?",materia_id).select(:id)).distinct
     end
       
       @teachers ||= Teacher.all
