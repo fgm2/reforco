@@ -67,11 +67,33 @@
               <span id="valorHora" style="color:red; display:none;" ><%= @curso.value.to_f %></span>
             </div>
             
-            <!--<div class="alert alert-info text-justify">-->
-            <!--  <strong>Atenção!</strong> Selecione 3 opções de datas/horários em que você tem disponibilidade -->
-            <!--  para sua aula. As datas serão avaliadas e uma delas será escolhida pelo professor para que -->
-            <!--  esta aula aconteça. (dd/mm/aaaa hh:mm).-->
-            <!--</div>-->
+            <div>
+              <div class="col-sm-12 alert alert-info">
+                  <div class="content text-center">
+                    <p>Avaliações Positivas do Curso</p>
+                    <h1 class="count">
+                       <strong> <%= @porcentagem%>% </strong>
+                    </h1>
+                    <div class="row">
+                       <div class="col-md-6">
+                           <span class="label label-success" style="padding: .60em .60em .60em;">
+                              <span class="glyphicon glyphicon-thumbs-up"></span> 
+                                 <span class="badge"><%= @positivas %></span>
+                           </span>
+                       </div>
+                       
+                       <div class="col-md-6">   
+                         <span class="label label-danger" style="padding: .60em .60em .60em;">
+                          <span class="glyphicon glyphicon-thumbs-down"></span> 
+                             <span class="badge"><%= @negativas %></span>
+                       </span>
+                       </div>
+                       
+                    </div>
+                    <hr>
+                  </div>
+              </div>
+            </div>
           
         </div>
         
