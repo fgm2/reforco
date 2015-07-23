@@ -30,7 +30,7 @@
                         <%= (image_tag current_user.avatar.url(:thumb), class: 'avatar', id:'avatarspace') %> <br>
                         <br>
                         <div class="form-group">
-                            <input  type="file" class="form-control btn btn-success" id="avatarinput" style="display: none;" >
+                            <%= f.file_field :avatar, :id =>'avatarinput' , :style => 'display:none' , :class =>'col-md-1' %>
                         </div>
                         <a class="btn btn-success" id="btn-image" > Alterar Foto</a>
                     </div>
