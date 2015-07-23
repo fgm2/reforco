@@ -85,24 +85,6 @@ class TeachersController < ApplicationController
       @teacher = Teacher.new
       @teacher.user = User.find(current_user.id)
     end  
-    
-    # @create = true   
-    # id = current_user.id
-    # @all_teacher = Teacher.all
-    # @all_teacher.each do |t|
-    #   if t.user.id.to_s == id.to_s
-    #     @create = false
-    #     @t_id = t.id
-    #     redirect_to controller:'teachers', action: 'show', id: @t_id
-    #   end
-    # end
-    # if @create == true
-    #   #redirect_to teachers_path
-    #   @teacher = current_user.teachers.build
-    #   @teacher.user_id = current_user.id
-      
-    # end
-    
   end
 
  
@@ -114,34 +96,7 @@ class TeachersController < ApplicationController
     @teacher = Teacher.new(teacher_params)
     @teacher.user = User.find(current_user.id)
     
-    # @teacher.user.avatar = Paperclip::Attachment.new(params[:teacher][:avatar], p, p.class.attachment_definitions[attach_name.to_suym])
-    
-    # user = { 
-    #     :avatar => params[:teacher][:avatar],
-    #     :name => params[:teacher][:name],
-    #     :scholarity => params[:teacher][:scholarity],
-    #     :addrress => params[:teacher][:address],
-    #     :state => params[:teacher][:state],
-    #     :country => params[:teacher][:country],
-    #     :date_of_birth => params[:teacher][:date_of_birth],
-    #     :cpf => params[:teacher][:cpf],
-    #     :fone => params[:teacher][:fone],
-    #     :email => params[:teacher][:email],
-    #     :whatsapp => params[:teacher][:whatsapp],
-    #     :skype => params[:teacher][:skype]
-    # }
-    
-    # @user = User.find(@teacher.user.id)
-    # @user.update(user)
-    
-    # @teacher.user = @user
-    
-    
-    # @teacher.user.avatar = Paperclip(avatar: params[:teacher][:avatar])
-    
-    # @teacher.user.update_attribute(:avatar,File.open(params[:teacher][:avatar]))
-    
-    # @teacher.user.avatar.url = params[:teacher][:avatar]
+    @teacher.user.avatar = params[:teacher][:avatar]
     @teacher.user.name = params[:teacher][:name]
     @teacher.user.scholarity = params[:teacher][:scholarity]
     @teacher.user.addrress = params[:teacher][:address]

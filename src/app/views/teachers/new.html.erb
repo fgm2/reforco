@@ -4,19 +4,34 @@
         <p>Após concluir esse cadastro você poderá dar aulas em nosso portal.</p>
     </div>
     <div class="row">
-        <form role="form" method="POST" action="<%= "/teachers" %>">
+        <% @teacher = Teacher.new()%>
+            <%= form_for(@teacher) do |f| %>
+              <% if @teacher.errors.any? %>
+                <div id="error_explanation">
+                  <h2><%= pluralize(@teacher.errors.count, "error") %> prohibited this contact from being saved:</h2>
+            
+                  <ul>
+                  <% @teacher.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                  </ul>
+                </div>
+              <% end %>
+        <!--<form role="form" method="POST" action="<%= "/teachers" %>">-->
             <div class="row well">
                 <p><strong>DADOS DO USUÁRIO</strong></p>
-                <hr>
+                <hr>  
                 <div class="col-md-6">
                     <div class="col-md-5 text-center">
                         <%= (image_tag current_user.avatar.url(:thumb), class: 'avatar', id:'avatarspace') %> <br>
                         <% if ( (current_user.avatar.url == '/avatars/original/missing.png') )%>
                             <div class="form-group">
-                                <input  type="file" class="form-control btn btn-success" id="avatarinput" style="display: none;" name="teacher[avatar]" >
+                                <!--<input  type="file" class="form-control btn btn-success" id="avatarinput" style="display: none;" name="teacher[avatar]" >-->
+                                
                             </div>
-                            <a class="btn btn-success" id="btn-image" > Alterar Foto</a>
                         <% end %>
+                        <%= f.file_field :avatar, :id =>'avatarinput' , :style => 'display:none' , :class =>'col-md-1', :name => "teacher[avatar]" %>
+                        <a class="btn btn-success" id="btn-image" > Alterar Foto</a>
                     </div>
                     <script>
                     function readURL(input) {
@@ -75,7 +90,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="country">Data de Nascimento:</label>
-                                    <input type="date" required class="form-control" id="date_of_brith" name="teacher[date_of_brith]" value="<%= current_user.date_of_birth %>">
+                                    <input type="date" required class="form-control" id="date_of_birth" name="teacher[date_of_birth]" value="<%= current_user.date_of_birth %>">
                                 </div>
                                 <div class="form-group">
                                     <label for="cpf">CPF:</label>
@@ -158,7 +173,8 @@
                     </button>
                 </div>            
             </div>
-        </form>
+        <% end %>    
+        <!--</form>-->
     </div>
     
     <div class="row">
