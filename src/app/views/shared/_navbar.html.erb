@@ -19,13 +19,20 @@
           <li><%= link_to "Materias", "/matters/", class: "active"%></li>
           <li><%= link_to "Aulas", "/cursos/", class: "active"%></li>
           
+          <li>
+          
+              <a href="#modalContacts" data-toggle="modal" data-target="#modalContacts">
+                Contato
+              </a>
+          
+          </li>
+          
+          
           <% if user_signed_in? %>
             <!--<li><%= link_to "Professor", new_teacher_path, class: "active" %></li>-->
             <!--<li><%= link_to "Aluno", new_student_path, class: "active" %></li>-->
-            <li><%= link_to "Meu Perfil", user_path(current_user.id), class: "active" %></li>
-            <% if current_user.admin? %>
-              <li><%= link_to 'Área Administrativa', rails_admin.dashboard_path, class: "active" %> </li>
-            <% end %>
+            <li><%= link_to "Meu Perfil", "#{root_url}meuperfil" ,class: "active" %></li>
+            
             <li><%= link_to 'Sair', destroy_user_session_path, :method => :delete, class: "active" %> </li>
           <% end %>
 
@@ -37,18 +44,21 @@
           <% if user_signed_in? %>
           
             <div class="dropdown">
-              <button class="btn btn-primary dropdown-toggle" style="margin-right: 10px;" type="button" data-toggle="dropdown"> <%= current_user.name %>
-              <span class="caret"></span></button>
+              <button class="btn btn-primary dropdown-toggle" style="margin-right: 10px;" type="button" data-toggle="dropdown">
+                 <span class="glyphicon glyphicon-user"></span> <%= current_user.name %>
+                <span class="caret"></span>
+              </button>
               <ul class="dropdown-menu">
-                <li><a href="#">Meu Perfil</a></li>
-                <li><a href="#">Meus Cursos</a></li>
-                <li><a href="#">Sair</a></li>
+                <li><%= link_to "Meu Perfil", "#{root_url}meuperfil", class: "active" %></li>
+                <% if current_user.admin? %>
+                    <li><%= link_to 'Área Administrativa', rails_admin.dashboard_path, class: "active" %> </li>
+                <% end %>
+                <li><%= link_to 'Sair', destroy_user_session_path, :method => :delete, class: "active" %> </li>
               </ul>
             </div>
             
             <span>&nbsp;</span><span>&nbsp;</span>
           
-            <!--<li><%= link_to "Olá #{current_user.name}", "#", class: "active" %></li>-->
           <% else %>
             <li>
               
@@ -76,17 +86,7 @@
         </div>
         <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
       </form>
-      <!--<ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Link</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>-->
+     
         </li>
       </ul>
     </div><!-- /.navbar-collapse -->

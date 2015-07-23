@@ -90,14 +90,14 @@
                         		                            <div class="col-md-6">
                         		                                    <p>
                                     		                            <strong>Cadastrado em:</strong> <br/>
-                                    		                            <%= @course.created_at %>
+                                    		                            <%= @course.created_at.strftime('%d/%m/%Y %H:%M:%S') %>
                                     		                        </p>
                         		                                
                     		                                </div>
                     		                                <div class="col-md-6">
                         		                                    <p>
                                     		                            <strong>Ultima Atualização:</strong><br/>
-                                    		                            <%= @course.updated_at %> 
+                                    		                            <%= @course.updated_at.strftime('%d/%m/%Y %H:%M:%S') %> 
                                     		                        </p>
                         		                                
                     		                                </div>
@@ -120,7 +120,7 @@
 
 				<div class="panel panel-default">
 		            <div class="panel-heading">
-		            	<h3 class="panel-title"><strong>Estatisticas</strong></h3>
+		            	<h3 class="panel-title"><strong>Estatisticas do Curso</strong></h3>
 					</div>
 					<div class="panel-body">
 						
@@ -137,8 +137,26 @@
                                         <%= @porcentagem.to_f %> %
                                     </h1>
                                     
-                                    <hr>
                                     
+                                    <div class="row">
+                                         <div class="col-md-6">
+                                             <span class="label label-success" style="padding: .60em .60em .60em;">
+                                                <span class="glyphicon glyphicon-thumbs-up"></span> 
+                                                   <span class="badge"><%= @positivas %></span>
+                                             </span>
+                                         </div>
+                                         
+                                         <div class="col-md-6">   
+                                           <span class="label label-danger" style="padding: .60em .60em .60em;">
+                                            <span class="glyphicon glyphicon-thumbs-down"></span> 
+                                               <span class="badge"><%= @negativas %></span>
+                                         </span>
+                                         </div>
+                                         
+                                      </div>
+                                    
+                                    
+                                    <hr>
                                 </div>
                             </div>
 						    

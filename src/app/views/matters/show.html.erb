@@ -11,7 +11,7 @@
   	        		<% @courses.each_with_index do |c, index| %>
   	  			  		Aula: <%= link_to (c.name), c %> 
   	  			  		<p>Prof. <%= link_to (c.teacher.name), c.teacher %> - 
-  	  			  	  Valor por Hora: <b><%=  "R$" '%.2f' %c.value.to_f  %></b>   <%= link_to "Agendar aula", "#", class: "btn btn-success" %></p>
+  	  			  	  Valor por Hora: <b><%=  "R$" '%.2f' %c.value.to_f  %></b>   <%= link_to "Agendar aula", "#{agendamento_path(c.id)}", class: "btn btn-success" %></p>
   	  			  		<% if @courses.last %> <br> <% end %>
   	  			  	<% end %>
   				</div>

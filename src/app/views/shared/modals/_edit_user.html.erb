@@ -1,28 +1,28 @@
-<%= form_for(@user) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+<div class="modal fade" id="modalEditUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" style="width:90%;" role="document">
+    <div class="modal-content ">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h1 class="modal-title text-center" id="modalEditUserLabel">Editar dados do usuário.</h1>
+      </div>
+      <div class="modal-body">
 
-      <ul>
-      <% @user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+        <% @user = User.find(current_user.id)%>
 
-  <div class="container">
-    <div class="row">
-        <h2> Meu perfil</h2>
-          <% if ( notice.try )%>
-            <div class="alert alert-danger">
-              <p id="notice"><%= notice %></p>  
-            </div>
-          <% end %>
-    </div>
-    <div class="row">
-        <form role="form" method="PUT" action="<%= "/users/#{current_user.id}" %>">
-            <div class="row well">
+        <%= form_for(@user) do |f| %>
+              <% if @user.errors.any? %>
+                <div id="error_explanation">
+                  <h2><%= pluralize(@user.errors.count, "error") %> prohibited this contact from being saved:</h2>
+            
+                  <ul>
+                  <% @user.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                  </ul>
+                </div>
+              <% end %>
+              <div class="container">
+            	  <div class="row well">
                 <p><strong>DADOS DO USUÁRIO</strong></p>
                 <hr>
                 <div class="col-md-6">
@@ -64,8 +64,9 @@
                     <div class="col-md-12 well">
                             <div class="col-md-6">
                                 <div class="form-group">
+                                    <!--Campo data não formata em pt-br.-->
                                     <label for="country">Data de Nascimento:</label>
-                                    <input type="date" required class="form-control" id="date_of_birth" name="user[date_of_birth]" value="<%= current_user.date_of_birth %>">
+                                    <input type="date" data-date-format="DD/MM/YYYY" required class="form-control" id="date_of_birth" name="user[date_of_birth]" value="<%= current_user.date_of_birth %>">
                                 </div>
                                 <div class="form-group">
                                     <label for="cpf">CPF:</label>
@@ -96,25 +97,21 @@
                                     <input type="text" required class="form-control" id="skype" name="user[skype]" value="<%= current_user.skype %>">
                                 </div>
                             </div>
-                        </div>
-                        <%= hidden_field_tag "user[id]", current_user.id -%>
-                        <%= hidden_field_tag :id, current_user.id -%>
-                        <%= hidden_field_tag :authenticity_token, form_authenticity_token -%> 
+                        </div> 
                 </div>
-                <div class="col-md-12" align="center">
-                    <%= button_tag "Salvar", :name => "commit",:class => "btn btn-success btn-block", :type => 'submit', :controller => 'Users', :action=>'update'%>
-                    <!--<button type="submit" class="btn btn-success btn-block" style="width: 90%; margin-left: 30px;" align="center" >-->
-                    <!--Salvar as alterações!-->
-                    <!--</button>-->
+                <%= hidden_field_tag "user[redirect]", "meuperfil" -%>
+                <div class="content text-center">
+                      <button type="submit" class="btn btn-success">Atualizar dados.</button>
                 </div>
-            </div>
-        </form>
+                      
+              </div>
+            <% end %>
+
+      </div>
+      <div class="modal-footer">
+        <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+        <!--<button type="button" class="btn btn-primary">Salvar</button>-->
+      </div>
     </div>
-    
-    <div class="row">
-        
-    </div>
-    <br>
- </div>
-  
-<% end %>
+  </div>
+</div>

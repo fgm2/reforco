@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   get "/cursos/" => "courses#index"
   resources :courses 
   
+  # Rota para o perfil do usuário.
+  get   "/meuperfil" => "users#meuperfil"
 
   devise_for :users, :controllers => {:registrations => "registrations"}
   resources :users

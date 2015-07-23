@@ -15,7 +15,7 @@ class TeachersController < ApplicationController
               where("courses.id IN (?)", 
                 Course.where("matter_id IN (?) ", 
                   Matter.where("matters.areaOfKnowledge_id = ? ", 
-                    area_id).select(:id) ).select(:id))
+                    area_id).select(:id) ).select(:id)).distinct
     end
 
     
@@ -24,7 +24,7 @@ class TeachersController < ApplicationController
         materia_id = params[:materia][:id] 
         @teachers  = Teacher.joins('LEFT OUTER JOIN courses ON teachers.id = courses.teacher_id').
               where("courses.id IN (?)", 
-              Course.where("matter_id =  ?",materia_id).select(:id))
+              Course.where("matter_id =  ?",materia_id).select(:id)).distinct
     end
       
       @teachers ||= Teacher.all
@@ -42,11 +42,12 @@ class TeachersController < ApplicationController
   def show
 
     @aulas = Course.where( "teacher_id = ? ", @teacher.id)
-
-    @aulas_realizadas = Enrollment.where("course_id in ( ? )", @aulas.select { |aula| aula.id} )
+    @ultimas_aulas = Enrollment.where("course_id in ( ? )", @aulas.select(:id) ).limit(5)
+    @aulas_realizadas = Enrollment.where("id NOT IN ( ? ) AND course_id in ( ? )", @ultimas_aulas.select(:id),@aulas.select(:id) )
+    @minhas_aulas = Enrollment.where("course_id in ( ? )", @aulas.select(:id) )
    
     @horas_aulas = 0
-    @aulas_realizadas.each do |aula|
+    @minhas_aulas.each do |aula|
       @horas_aulas = @horas_aulas + aula.hours 
 		end
 		
@@ -64,8 +65,13 @@ class TeachersController < ApplicationController
                                             @matriculas.where("course_id IN (?)",
                                               @cursos.where("teacher_id = ? ",@teacher.id).select(:id)
                                               ).select(:id)).count
-                                                    
-    @porcentagem = (@positivas*100)/(@positivas+@negativas)
+         
+         
+    if (@positivas+@negativas > 0)                                           
+      @porcentagem = (@positivas*100)/(@positivas+@negativas)
+    else
+      @porcentagem = 0
+    end
    
   end
 
@@ -110,6 +116,7 @@ class TeachersController < ApplicationController
 
     respond_to do |format|
       if @teacher.save
+        
         format.html { redirect_to @teacher, notice: 'Teacher was successfully created.' }
         format.json { render :show, status: :created, location: @teacher }
       else
@@ -121,10 +128,17 @@ class TeachersController < ApplicationController
 
   
   def update
+
+    goback = params[:teacher][:redirect]
+    
     respond_to do |format|
       if @teacher.update(teacher_params)
-        format.html { redirect_to @teacher, notice: 'Teacher was successfully updated.' }
-        format.json { render :show, status: :ok, location: @teacher }
+        if goback == "meuperfil"
+          format.html { redirect_to "/meuperfil", notice: 'Professor atualizado com sucesso!' }
+        else
+          format.html { redirect_to @teacher, notice: 'Professor atualizado com sucesso!' }
+          format.json { render :show, status: :ok, location: @teacher }
+        end
       else
         format.html { render :edit }
         format.json { render json: @teacher.errors, status: :unprocessable_entity }

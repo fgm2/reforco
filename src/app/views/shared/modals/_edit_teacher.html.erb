@@ -1,0 +1,59 @@
+<div class="modal fade" id="modalEditTeacher" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h1 class="modal-title text-center" id="modalEditTeacherLabel">Editar dados do Professor</h1>
+      </div>
+      <div class="modal-body">
+
+        <% @teacher = Teacher.find_by(user_id: current_user.id)%>
+
+        <%= form_for(@teacher) do |f| %>
+              <% if @teacher.errors.any? %>
+                <div id="error_explanation">
+                  <h2><%= pluralize(@teacher.errors.count, "error") %> prohibited this contact from being saved:</h2>
+            
+                  <ul>
+                  <% @teacher.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                  </ul>
+                </div>
+              <% end %>
+              <div class="container">
+            	  <div class="row" >
+            	    <div class="col-md-6">
+            			  <div class="panel panel-default">
+            				  <div class="panel-heading">
+                        <div class="form-group">
+                          <label >Formação</label>
+                          <input type="text" class="form-control" required placeholder="Informe sua formação." name="teacher[formation]" id="teacher_formation" value="<%= @teacher.formation %>">
+                        </div>
+                        <div class="form-group">
+                          <label >Universidade</label>
+                          <input type="text" class="form-control" required placeholder="Informe a instituição onde você se formou." name="teacher[university]" id="teacher_university" value="<%= @teacher.university %>">
+                        </div>
+                        <div class="form-group">
+                          <label >Descrição Pessoal</label>
+                          <textarea class="form-control" rows="5" id="description" name="teacher[description]" > <%= @teacher.description %></textarea>
+                        </div>
+                        <%= hidden_field_tag "teacher[redirect]", "meuperfil" -%>
+                        <div class="content text-center">
+                              <button type="submit" class="btn btn-success">Atualizar dados.</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+
+      </div>
+      <div class="modal-footer">
+        <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+        <!--<button type="button" class="btn btn-primary">Salvar</button>-->
+      </div>
+    </div>
+  </div>
+</div>

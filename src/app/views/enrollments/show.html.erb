@@ -1,24 +1,66 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Course:</strong>
-  <%= @enrollment.course %>
-</p>
-
-<p>
-  <strong>Student:</strong>
-  <%= @enrollment.student %>
-</p>
-
-<p>
-  <strong>Hours:</strong>
-  <%= @enrollment.hours %>
-</p>
-
-<p>
-  <strong>Evaluation:</strong>
-  <%= @enrollment.evaluation %>
-</p>
-
-<%= link_to 'Edit', edit_enrollment_path(@enrollment) %> |
-<%= link_to 'Back', enrollments_path %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <p id="notice"><%= notice %></p>
+      
+      <div>
+          <h1><strong><p> Detalhes da aula</p></strong></h1>
+      </div>
+      <div class="well col-md-6">
+        <div class="panel panel-default">
+          <p>
+            <strong>Curso:</strong>
+            <%= @enrollment.course.name %>
+          </p>
+          <p>
+            <strong>Professor:</strong>
+            <%= @enrollment.course.teacher.name %>
+          </p>
+          <p>
+            <strong>Valor cobrado por hora:</strong>
+            R$ <%= @enrollment.course.value %>
+          </p>
+        </div>
+        <p>
+          <strong>Aluno:</strong>
+          <%= @enrollment.student.user.name %>
+        </p>
+        
+        <p>
+          <strong>Quantidade de horas contratadas:</strong>
+          <%= @enrollment.hours %>
+        </p>
+        
+        <p>
+          <strong>Valor total pago:</strong>
+          R$ <%= (@enrollment.hours * @enrollment.course.value)%>
+        </p>
+        
+         <p>
+        <strong>Data de contratação da aula:</strong>
+        <%= @enrollment.created_at %>
+      </p>
+      
+      <p>
+        <strong>Curso avaliado pelo aluno:</strong>
+        <% if @enrollment.evaluation %>
+          Sim
+        <% else %>  
+          Não
+        <% end %>
+      </p>
+      </div>
+      <div class="col-md-1">
+      
+      </div>
+      <div class="col-md-3">
+        
+      
+      </div>
+      
+    </div>
+  </div>
+  <hr>
+</div>
+<br>
+ 

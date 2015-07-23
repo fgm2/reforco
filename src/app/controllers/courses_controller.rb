@@ -9,14 +9,21 @@ class CoursesController < ApplicationController
     @courses = Course.where("id NOT IN (?) ", @destaques.select(:id).distinct)
     
     if ( (user_signed_in?) and (is_student(current_user.id)) )
-    # if @aluno.valid?
       @aluno = Student.where("user_id = ? ",current_user.id).first
       @suas_aulas = Enrollment.where("student_id = ? ", @aluno.id )
       @recomendacoes = Recommendation.where("enrollment_id IN (?)", @suas_aulas.select(:id))
-      
     else
-      @suas_aulas = nil
+      
+      if ( (user_signed_in?) and (is_teacher(current_user.id)) )
+        # if @aluno.valid?
+          @teacher = Teacher.where("user_id = ? ",current_user.id).first
+          @suas_aulas = Course.where("teacher_id = ? ", @teacher.id )
+          @contratacoes = Enrollment.where("course_id IN (?)", @suas_aulas.select(:id))
+      else
+        @suas_aulas = nil
+      end
     end
+    
   end
 
   # GET /courses/1
@@ -36,8 +43,12 @@ class CoursesController < ApplicationController
 		@negativas = @recomendacoes.where("rating = 0 AND enrollment_id IN (?) ",
                                             @matriculas.where("course_id IN (?)",
                                              @course.id).select(:id)).count
-                                                    
-    @porcentagem = (@positivas*100)/(@positivas+@negativas)                  
+
+    if ( @positivas+@negativas > 0)                                                    
+      @porcentagem = (@positivas*100)/(@positivas+@negativas)                  
+    else
+      @porcentagem = 0
+    end
     
                       
   end
@@ -54,12 +65,27 @@ class CoursesController < ApplicationController
   # POST /courses
   # POST /courses.json
   def create
-    @course = Course.new(course_params)
+    # @course = Course.new(course_params)
+    
+    @teacher = Teacher.where(:user_id => current_user.id).first
+    
+    @course = Course.new
+    @course.name = params[:course][:name]
+    @course.matter = Matter.find(params[:course][:matter])
+    @course.teacher = @teacher
+    @course.value = params[:course][:value]
+    @course.description = params[:course][:description]
+    
+    goback = params[:course][:redirect]
 
     respond_to do |format|
       if @course.save
-        format.html { redirect_to @course, notice: 'Course was successfully created.' }
-        format.json { render :show, status: :created, location: @course }
+        if goback == "meuperfil"
+          format.html { redirect_to "/meuperfil", notice: 'Curso atualizado com sucesso!' }
+        else
+          format.html { redirect_to @teacher, notice: 'Curso criado com sucesso.' }
+          format.json { render :show, status: :created, location: @course }
+        end
       else
         format.html { render :new }
         format.json { render json: @course.errors, status: :unprocessable_entity }
@@ -70,10 +96,17 @@ class CoursesController < ApplicationController
   # PATCH/PUT /courses/1
   # PATCH/PUT /courses/1.json
   def update
+    
+    goback = params[:course][:redirect]
+    
     respond_to do |format|
       if @course.update(course_params)
-        format.html { redirect_to @course, notice: 'Course was successfully updated.' }
-        format.json { render :show, status: :ok, location: @course }
+        if goback == "meuperfil"
+          format.html { redirect_to "/meuperfil", notice: 'Curso atualizado com sucesso!' }
+        else
+          format.html { redirect_to @course, notice: 'Curso atualizado com sucesso!' }
+          format.json { render :show, status: :ok, location: @course }
+        end
       else
         format.html { render :edit }
         format.json { render json: @course.errors, status: :unprocessable_entity }
@@ -95,6 +128,20 @@ class CoursesController < ApplicationController
   # GET /courses/agendamento/:course_id
   def agendamento
     @curso = Course.find(params[:course_id])
+    
+    @matriculas ||= Enrollment.all
+    @recomendacoes ||= Recommendation.all
+		
+		@positivas = @recomendacoes.where("rating = 1 AND enrollment_id IN (?) ",
+                                            @matriculas.where("course_id = (?)",
+                                              @curso.id).select(:id)).count
+		
+		@negativas = @recomendacoes.where("rating = 0 AND enrollment_id IN (?) ",
+                                            @matriculas.where("course_id IN (?)",
+                                             @curso.id).select(:id)).count
+    
+    
+    
     @prof = @curso.teacher
     if (user_signed_in?)
       @aluno = Student.where("user_id = ? ", current_user.id)
@@ -186,5 +233,6 @@ class CoursesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def course_params
       params[:course]
+      #params.require(:course).permit(:name, :matter_attributes [:name, :descripition], :value, :description)
     end
 end
